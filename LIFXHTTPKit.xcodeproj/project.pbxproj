@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5D5898A81B1887530024D47B /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D5898A71B1887530024D47B /* LIFXHTTPKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5D5898AE1B1887530024D47B /* LIFXHTTPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */; };
+		5D5898B51B1887530024D47B /* LIFXHTTPKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5898B41B1887530024D47B /* LIFXHTTPKitTests.swift */; };
+		5D5898BF1B1887650024D47B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5898BE1B1887650024D47B /* Client.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5D5898AF1B1887530024D47B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5D5898991B1887530024D47B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5D5898A11B1887530024D47B;
+			remoteInfo = LIFXHTTPKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LIFXHTTPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D5898A61B1887530024D47B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5D5898A71B1887530024D47B /* LIFXHTTPKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LIFXHTTPKit.h; sourceTree = "<group>"; };
+		5D5898AD1B1887530024D47B /* LIFXHTTPKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LIFXHTTPKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D5898B31B1887530024D47B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5D5898B41B1887530024D47B /* LIFXHTTPKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LIFXHTTPKitTests.swift; sourceTree = "<group>"; };
+		5D5898BE1B1887650024D47B /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5D58989E1B1887530024D47B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5D5898AA1B1887530024D47B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D5898AE1B1887530024D47B /* LIFXHTTPKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5D5898981B1887530024D47B = {
+			isa = PBXGroup;
+			children = (
+				5D5898A41B1887530024D47B /* LIFXHTTPKit */,
+				5D5898B11B1887530024D47B /* LIFXHTTPKitTests */,
+				5D5898A31B1887530024D47B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5D5898A31B1887530024D47B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */,
+				5D5898AD1B1887530024D47B /* LIFXHTTPKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5D5898A41B1887530024D47B /* LIFXHTTPKit */ = {
+			isa = PBXGroup;
+			children = (
+				5D5898A71B1887530024D47B /* LIFXHTTPKit.h */,
+				5D5898A51B1887530024D47B /* Supporting Files */,
+				5D5898BE1B1887650024D47B /* Client.swift */,
+			);
+			path = LIFXHTTPKit;
+			sourceTree = "<group>";
+		};
+		5D5898A51B1887530024D47B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5D5898A61B1887530024D47B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5D5898B11B1887530024D47B /* LIFXHTTPKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				5D5898B41B1887530024D47B /* LIFXHTTPKitTests.swift */,
+				5D5898B21B1887530024D47B /* Supporting Files */,
+			);
+			path = LIFXHTTPKitTests;
+			sourceTree = "<group>";
+		};
+		5D5898B21B1887530024D47B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5D5898B31B1887530024D47B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		5D58989F1B1887530024D47B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D5898A81B1887530024D47B /* LIFXHTTPKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		5D5898A11B1887530024D47B /* LIFXHTTPKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5D5898B81B1887530024D47B /* Build configuration list for PBXNativeTarget "LIFXHTTPKit" */;
+			buildPhases = (
+				5D58989D1B1887530024D47B /* Sources */,
+				5D58989E1B1887530024D47B /* Frameworks */,
+				5D58989F1B1887530024D47B /* Headers */,
+				5D5898A01B1887530024D47B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LIFXHTTPKit;
+			productName = LIFXHTTPKit;
+			productReference = 5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5D5898AC1B1887530024D47B /* LIFXHTTPKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5D5898BB1B1887530024D47B /* Build configuration list for PBXNativeTarget "LIFXHTTPKitTests" */;
+			buildPhases = (
+				5D5898A91B1887530024D47B /* Sources */,
+				5D5898AA1B1887530024D47B /* Frameworks */,
+				5D5898AB1B1887530024D47B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5D5898B01B1887530024D47B /* PBXTargetDependency */,
+			);
+			name = LIFXHTTPKitTests;
+			productName = LIFXHTTPKitTests;
+			productReference = 5D5898AD1B1887530024D47B /* LIFXHTTPKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5D5898991B1887530024D47B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Tate Johnson";
+				TargetAttributes = {
+					5D5898A11B1887530024D47B = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					5D5898AC1B1887530024D47B = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+				};
+			};
+			buildConfigurationList = 5D58989C1B1887530024D47B /* Build configuration list for PBXProject "LIFXHTTPKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5D5898981B1887530024D47B;
+			productRefGroup = 5D5898A31B1887530024D47B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5D5898A11B1887530024D47B /* LIFXHTTPKit */,
+				5D5898AC1B1887530024D47B /* LIFXHTTPKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5D5898A01B1887530024D47B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5D5898AB1B1887530024D47B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5D58989D1B1887530024D47B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D5898BF1B1887650024D47B /* Client.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5D5898A91B1887530024D47B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D5898B51B1887530024D47B /* LIFXHTTPKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5D5898B01B1887530024D47B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5D5898A11B1887530024D47B /* LIFXHTTPKit */;
+			targetProxy = 5D5898AF1B1887530024D47B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5D5898B61B1887530024D47B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5D5898B71B1887530024D47B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5D5898B91B1887530024D47B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = LIFXHTTPKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5D5898BA1B1887530024D47B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = LIFXHTTPKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		5D5898BC1B1887530024D47B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LIFXHTTPKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5D5898BD1B1887530024D47B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LIFXHTTPKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5D58989C1B1887530024D47B /* Build configuration list for PBXProject "LIFXHTTPKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5D5898B61B1887530024D47B /* Debug */,
+				5D5898B71B1887530024D47B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5D5898B81B1887530024D47B /* Build configuration list for PBXNativeTarget "LIFXHTTPKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5D5898B91B1887530024D47B /* Debug */,
+				5D5898BA1B1887530024D47B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5D5898BB1B1887530024D47B /* Build configuration list for PBXNativeTarget "LIFXHTTPKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5D5898BC1B1887530024D47B /* Debug */,
+				5D5898BD1B1887530024D47B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5D5898991B1887530024D47B /* Project object */;
+}
