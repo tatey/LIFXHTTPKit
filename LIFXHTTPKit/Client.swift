@@ -113,7 +113,31 @@ public class HTTPSession {
 	}
 
 	private func dataToLights(data: NSData) -> (lights: [Light], error: NSError?) {
-		return ([], nil)
+		var error: NSError?
+		let rootJSONObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: .allZeros, error: &error)
+
+		if error != nil {
+			return ([], error)
+		}
+
+		var lightJSONObjects: [NSDictionary] = []
+		if let dictionary = rootJSONObject as? NSDictionary {
+			lightJSONObjects = [dictionary]
+		} else if let array = rootJSONObject as? [NSDictionary] {
+			lightJSONObjects = array
+		}
+
+		var lights: [Light] = []
+		for lightJSONObject in lightJSONObjects {
+			if let id = lightJSONObject["id"] as? String, label = lightJSONObject["label"] as? String, power = lightJSONObject["power"] as? Bool, brightness = lightJSONObject["brightness"] as? Float {
+				let light = Light(id: id, label: label, power: power, brightness: brightness)
+				lights.append(light)
+			} else {
+				// TODO: Return meaningful error
+				return ([], NSError(domain: "", code: 0, userInfo: nil))
+			}
+		}
+		return (lights, nil)
 	}
 
 	private func dataToResults(data: NSData) -> (results: [Result], error: NSError?) {
