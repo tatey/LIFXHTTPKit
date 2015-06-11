@@ -56,7 +56,7 @@ public class LightTarget {
 	public var power: Bool
 	public var brightness: Float
 
-	private unowned var client: Client
+	private unowned let client: Client
 	private let filter: Filter
 	private var lights: [Light]
 
