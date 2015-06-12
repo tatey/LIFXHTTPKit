@@ -8,9 +8,9 @@
 
 import Cocoa
 import XCTest
+import LIFXHTTPKit
 
 class LIFXHTTPKitTests: XCTestCase {
-    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -32,5 +32,17 @@ class LIFXHTTPKitTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
+
+	func testClient() {
+		let expectation = expectationWithDescription("")
+		let client = Client(accessToken: "")
+		client.discover()
+		let lights = client.allLights()
+		lights.addObserver {
+			if lights.count > 0 {
+				expectation.fulfill()
+			}
+		}
+		waitForExpectationsWithTimeout(5.0, handler: nil)
+	}
 }

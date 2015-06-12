@@ -8,10 +8,20 @@
 
 import Foundation
 
+internal class ClientObserver {
+	internal typealias Closure = (lights: [Light]) -> Void
+
+	internal let closure: Closure
+
+	init(closure: Closure) {
+		self.closure = closure
+	}
+}
+
 public class Client {
 	private let session: HTTPSession
 	private var lights: [Light]
-	private var observers: [LightTarget]
+	private var observers: [ClientObserver]
 
 	public init(accessToken: String) {
 		session = HTTPSession(accessToken: accessToken)
@@ -19,20 +29,36 @@ public class Client {
 		observers = []
 	}
 
-	internal func addObserver(observer: LightTarget) {
-		for other in observers {
-			if other === observer {
-				return
-			}
-		}
+	internal func addObserver(closure: ClientObserver.Closure) -> ClientObserver {
+		let observer = ClientObserver(closure: closure)
 		observers.append(observer)
+		observer.closure(lights: lights)
+		return observer
 	}
 
-	internal func removeObserver(observer: LightTarget) {
+	internal func removeObserver(observer: ClientObserver) {
 		for (index, other) in enumerate(observers) {
 			if other === observer {
 				observers.removeAtIndex(index)
 				break
+			}
+		}
+	}
+
+	public func discover() {
+		session.lights(selector: "all") { [unowned self] (request, response, lights, error) in
+			if error != nil {
+				// TODO
+				return
+			}
+
+			let oldLights = self.lights
+			let newLights = lights
+			if oldLights != newLights {
+				for observer in self.observers {
+					observer.closure(lights: lights)
+				}
+				self.lights = newLights
 			}
 		}
 	}
@@ -50,15 +76,27 @@ public class Client {
 	}
 }
 
+public class LightTargetObserver {
+	public typealias Closure = () -> Void
+
+	private let closure: Closure
+
+	init(closure: Closure) {
+		self.closure = closure
+	}
+}
+
 public class LightTarget {
 	public typealias Filter = (light: Light) -> Bool
 
 	public var power: Bool
 	public var brightness: Float
 
-	private unowned let client: Client
+	private unowned let client: Client // TODO: Make observers remove themselves
+	private weak var observer: ClientObserver?
 	private let filter: Filter
 	private var lights: [Light]
+	private var observers: [LightTargetObserver]
 
 	init(client: Client, filter: Filter) {
 		power = false
@@ -66,16 +104,49 @@ public class LightTarget {
 		self.client = client
 		self.filter = filter
 		lights = []
-
-		client.addObserver(self)
+		observers = []
+		observer = client.addObserver { (lights) in
+			self.setLightsByApplyingFilter(lights)
+		}
 	}
 
 	deinit {
-		client.removeObserver(self)
+		if let observer = self.observer {
+			client.removeObserver(observer)
+		}
 	}
 
-	internal func setLights(lights: [Light]) {
-		self.lights = lights.filter(filter)
+	public var count: Int {
+		return lights.count
+	}
+
+	public func addObserver(closure: LightTargetObserver.Closure) -> LightTargetObserver {
+		let observer = LightTargetObserver(closure: closure)
+		observers.append(observer)
+		return observer
+	}
+
+	public func removeObserver(observer: LightTargetObserver) {
+		for (index, other) in enumerate(observers) {
+			if other === observer {
+				observers.removeAtIndex(index)
+			}
+		}
+	}
+
+	public func removeAllObservers() {
+		observers = []
+	}
+
+	internal func setLightsByApplyingFilter(lights: [Light]) {
+		let oldLights = self.lights
+		let newLights = lights.filter(filter)
+		if oldLights != newLights {
+			self.lights = newLights
+			for observer in observers {
+				observer.closure()
+			}
+		}
 	}
 
 	public func toLights() -> [Light] {
@@ -109,7 +180,7 @@ public class HTTPSession {
 				let deserialized = self.dataToLights(data)
 				completionHander(request: request, response: response, lights: deserialized.lights, error: deserialized.error)
 			}
-		}
+		}.resume()
 	}
 
 	private func dataToLights(data: NSData) -> (lights: [Light], error: NSError?) {
@@ -129,8 +200,8 @@ public class HTTPSession {
 
 		var lights: [Light] = []
 		for lightJSONObject in lightJSONObjects {
-			if let id = lightJSONObject["id"] as? String, label = lightJSONObject["label"] as? String, power = lightJSONObject["power"] as? Bool, brightness = lightJSONObject["brightness"] as? Float {
-				let light = Light(id: id, label: label, power: power, brightness: brightness)
+			if let id = lightJSONObject["id"] as? String, label = lightJSONObject["label"] as? String, power = lightJSONObject["power"] as? String, brightness = lightJSONObject["brightness"] as? Double {
+				let light = Light(id: id, label: label, power: power == "on", brightness: brightness)
 				lights.append(light)
 			} else {
 				// TODO: Return meaningful error
@@ -149,7 +220,7 @@ public struct Light: Equatable {
 	public let id: String
 	public let label: String
 	public let power: Bool
-	public let brightness: Float
+	public let brightness: Double
 }
 
 public func ==(lhs: Light, rhs: Light) -> Bool {
