@@ -224,7 +224,10 @@ public struct Light: Equatable {
 }
 
 public func ==(lhs: Light, rhs: Light) -> Bool {
-	return lhs.id == rhs.id
+	return lhs.id == rhs.id &&
+		lhs.label == rhs.label &&
+		lhs.power == rhs.power &&
+		lhs.brightness == rhs.brightness
 }
 
 public struct Result: Equatable {
