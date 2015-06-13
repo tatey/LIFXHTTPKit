@@ -39,7 +39,7 @@ class LIFXHTTPKitTests: XCTestCase {
 		client.discover()
 		let lights = client.allLights()
 		lights.addObserver {
-			if lights.count > 0 {
+			if lights.toLights().count > 0 {
 				expectation.fulfill()
 			}
 		}

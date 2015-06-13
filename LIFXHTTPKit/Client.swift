@@ -9,12 +9,12 @@
 import Foundation
 
 internal class ClientObserver {
-	internal typealias Closure = (lights: [Light]) -> Void
+	internal typealias LightsDidUpdate = (lights: [Light]) -> Void
 
-	internal let closure: Closure
+	internal let lightsDidUpdate: LightsDidUpdate
 
-	init(closure: Closure) {
-		self.closure = closure
+	init(closure: LightsDidUpdate) {
+		self.lightsDidUpdate = closure
 	}
 }
 
@@ -29,10 +29,9 @@ public class Client {
 		observers = []
 	}
 
-	internal func addObserver(closure: ClientObserver.Closure) -> ClientObserver {
+	internal func addObserver(closure: ClientObserver.LightsDidUpdate) -> ClientObserver {
 		let observer = ClientObserver(closure: closure)
 		observers.append(observer)
-		observer.closure(lights: lights)
 		return observer
 	}
 
@@ -55,10 +54,10 @@ public class Client {
 			let oldLights = self.lights
 			let newLights = lights
 			if oldLights != newLights {
-				for observer in self.observers {
-					observer.closure(lights: lights)
-				}
 				self.lights = newLights
+				for observer in self.observers {
+					observer.lightsDidUpdate(lights: lights)
+				}
 			}
 		}
 	}
@@ -77,12 +76,12 @@ public class Client {
 }
 
 public class LightTargetObserver {
-	public typealias Closure = () -> Void
+	public typealias StateDidUpdate = () -> Void
 
-	private let closure: Closure
+	internal let stateDidUpdate: StateDidUpdate
 
-	init(closure: Closure) {
-		self.closure = closure
+	init(closure: StateDidUpdate) {
+		self.stateDidUpdate = closure
 	}
 }
 
@@ -92,35 +91,32 @@ public class LightTarget {
 	public var power: Bool
 	public var brightness: Float
 
-	private unowned let client: Client // TODO: Make observers remove themselves
-	private weak var observer: ClientObserver?
 	private let filter: Filter
 	private var lights: [Light]
 	private var observers: [LightTargetObserver]
 
+	private unowned let client: Client
+	private var clientObserver: ClientObserver!
+
 	init(client: Client, filter: Filter) {
 		power = false
 		brightness = 0.0
-		self.client = client
+
 		self.filter = filter
 		lights = []
 		observers = []
-		observer = client.addObserver { (lights) in
+
+		self.client = client
+		clientObserver = client.addObserver { [unowned self] (lights) in
 			self.setLightsByApplyingFilter(lights)
 		}
 	}
 
 	deinit {
-		if let observer = self.observer {
-			client.removeObserver(observer)
-		}
+		client.removeObserver(clientObserver)
 	}
 
-	public var count: Int {
-		return lights.count
-	}
-
-	public func addObserver(closure: LightTargetObserver.Closure) -> LightTargetObserver {
+	public func addObserver(closure: LightTargetObserver.StateDidUpdate) -> LightTargetObserver {
 		let observer = LightTargetObserver(closure: closure)
 		observers.append(observer)
 		return observer
@@ -138,19 +134,19 @@ public class LightTarget {
 		observers = []
 	}
 
-	internal func setLightsByApplyingFilter(lights: [Light]) {
+	public func toLights() -> [Light] {
+		return lights
+	}
+
+	private func setLightsByApplyingFilter(lights: [Light]) {
 		let oldLights = self.lights
 		let newLights = lights.filter(filter)
 		if oldLights != newLights {
 			self.lights = newLights
 			for observer in observers {
-				observer.closure()
+				observer.stateDidUpdate()
 			}
 		}
-	}
-
-	public func toLights() -> [Light] {
-		return lights
 	}
 }
 
