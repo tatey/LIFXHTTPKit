@@ -6,10 +6,10 @@
 import Foundation
 
 public struct Result: Equatable {
-	public enum Status {
-		case OK
-		case TimedOut
-		case Offline
+	public enum Status: String {
+		case OK       = "ok"
+		case TimedOut = "timed_out"
+		case Offline  = "offline"
 	}
 
 	public let id: String

@@ -6,7 +6,7 @@
 import Foundation
 
 public class Client {
-	private let session: HTTPSession
+	internal let session: HTTPSession
 	private var lights: [Light]
 	private var observers: [ClientObserver]
 
@@ -50,7 +50,7 @@ public class Client {
 	}
 
 	public func allLights() -> LightTarget {
-		return LightTarget(client: self, filter: { (light) in return true })
+		return LightTarget(client: self, selector: "all", filter: { (light) in return true })
 	}
 
 	public func allGroups() -> [LightTarget] {
