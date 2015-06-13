@@ -11,6 +11,13 @@
 		5D5898AE1B1887530024D47B /* LIFXHTTPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */; };
 		5D5898B51B1887530024D47B /* LIFXHTTPKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5898B41B1887530024D47B /* LIFXHTTPKitTests.swift */; };
 		5D5898BF1B1887650024D47B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5898BE1B1887650024D47B /* Client.swift */; };
+		5DB41F401B2BD4CA0006F2A5 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F3F1B2BD4CA0006F2A5 /* Errors.swift */; };
+		5DB41F441B2BD5370006F2A5 /* ClientObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F431B2BD5370006F2A5 /* ClientObserver.swift */; };
+		5DB41F461B2BD55C0006F2A5 /* LightTargetObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F451B2BD55C0006F2A5 /* LightTargetObserver.swift */; };
+		5DB41F481B2BD57C0006F2A5 /* LightTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F471B2BD57C0006F2A5 /* LightTarget.swift */; };
+		5DB41F4A1B2BD5B90006F2A5 /* HTTPSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F491B2BD5B90006F2A5 /* HTTPSession.swift */; };
+		5DB41F4C1B2BD5DD0006F2A5 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F4B1B2BD5DD0006F2A5 /* Light.swift */; };
+		5DB41F4E1B2BD5E50006F2A5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F4D1B2BD5E50006F2A5 /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +38,13 @@
 		5D5898B31B1887530024D47B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D5898B41B1887530024D47B /* LIFXHTTPKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LIFXHTTPKitTests.swift; sourceTree = "<group>"; };
 		5D5898BE1B1887650024D47B /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		5DB41F3F1B2BD4CA0006F2A5 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		5DB41F431B2BD5370006F2A5 /* ClientObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientObserver.swift; sourceTree = "<group>"; };
+		5DB41F451B2BD55C0006F2A5 /* LightTargetObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightTargetObserver.swift; sourceTree = "<group>"; };
+		5DB41F471B2BD57C0006F2A5 /* LightTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightTarget.swift; sourceTree = "<group>"; };
+		5DB41F491B2BD5B90006F2A5 /* HTTPSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPSession.swift; sourceTree = "<group>"; };
+		5DB41F4B1B2BD5DD0006F2A5 /* Light.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
+		5DB41F4D1B2BD5E50006F2A5 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +88,15 @@
 			isa = PBXGroup;
 			children = (
 				5D5898A71B1887530024D47B /* LIFXHTTPKit.h */,
-				5D5898A51B1887530024D47B /* Supporting Files */,
+				5DB41F3F1B2BD4CA0006F2A5 /* Errors.swift */,
 				5D5898BE1B1887650024D47B /* Client.swift */,
+				5DB41F431B2BD5370006F2A5 /* ClientObserver.swift */,
+				5DB41F471B2BD57C0006F2A5 /* LightTarget.swift */,
+				5DB41F451B2BD55C0006F2A5 /* LightTargetObserver.swift */,
+				5DB41F491B2BD5B90006F2A5 /* HTTPSession.swift */,
+				5DB41F4B1B2BD5DD0006F2A5 /* Light.swift */,
+				5DB41F4D1B2BD5E50006F2A5 /* Result.swift */,
+				5D5898A51B1887530024D47B /* Supporting Files */,
 			);
 			path = LIFXHTTPKit;
 			sourceTree = "<group>";
@@ -212,7 +233,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DB41F4A1B2BD5B90006F2A5 /* HTTPSession.swift in Sources */,
+				5DB41F401B2BD4CA0006F2A5 /* Errors.swift in Sources */,
+				5DB41F441B2BD5370006F2A5 /* ClientObserver.swift in Sources */,
+				5DB41F481B2BD57C0006F2A5 /* LightTarget.swift in Sources */,
 				5D5898BF1B1887650024D47B /* Client.swift in Sources */,
+				5DB41F4C1B2BD5DD0006F2A5 /* Light.swift in Sources */,
+				5DB41F4E1B2BD5E50006F2A5 /* Result.swift in Sources */,
+				5DB41F461B2BD55C0006F2A5 /* LightTargetObserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +435,7 @@
 				5D5898BA1B1887530024D47B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5D5898BB1B1887530024D47B /* Build configuration list for PBXNativeTarget "LIFXHTTPKitTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +444,7 @@
 				5D5898BD1B1887530024D47B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
