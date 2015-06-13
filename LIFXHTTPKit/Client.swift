@@ -16,8 +16,8 @@ public class Client {
 		observers = []
 	}
 
-	internal func addObserver(closure: ClientObserver.LightsDidUpdate) -> ClientObserver {
-		let observer = ClientObserver(closure: closure)
+	internal func addObserver(lightsDidUpdateHandler: ClientObserver.LightsDidUpdate) -> ClientObserver {
+		let observer = ClientObserver(lightsDidUpdateHandler: lightsDidUpdateHandler)
 		observers.append(observer)
 		return observer
 	}
@@ -43,7 +43,7 @@ public class Client {
 			if oldLights != newLights {
 				self.lights = newLights
 				for observer in self.observers {
-					observer.lightsDidUpdate(lights: lights)
+					observer.lightsDidUpdateHandler(lights: lights)
 				}
 			}
 		}

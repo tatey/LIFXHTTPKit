@@ -36,8 +36,8 @@ public class LightTarget {
 		client.removeObserver(clientObserver)
 	}
 
-	public func addObserver(closure: LightTargetObserver.StateDidUpdate) -> LightTargetObserver {
-		let observer = LightTargetObserver(closure: closure)
+	public func addObserver(stateDidUpdateHandler: LightTargetObserver.StateDidUpdate) -> LightTargetObserver {
+		let observer = LightTargetObserver(stateDidUpdateHandler: stateDidUpdateHandler)
 		observers.append(observer)
 		return observer
 	}
@@ -64,7 +64,7 @@ public class LightTarget {
 		if oldLights != newLights {
 			self.lights = newLights
 			for observer in observers {
-				observer.stateDidUpdate()
+				observer.stateDidUpdateHandler()
 			}
 		}
 	}

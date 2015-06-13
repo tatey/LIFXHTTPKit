@@ -8,9 +8,9 @@ import Foundation
 internal class ClientObserver {
 	internal typealias LightsDidUpdate = (lights: [Light]) -> Void
 
-	internal let lightsDidUpdate: LightsDidUpdate
+	internal let lightsDidUpdateHandler: LightsDidUpdate
 
-	init(closure: LightsDidUpdate) {
-		self.lightsDidUpdate = closure
+	init(lightsDidUpdateHandler: LightsDidUpdate) {
+		self.lightsDidUpdateHandler = lightsDidUpdateHandler
 	}
 }
