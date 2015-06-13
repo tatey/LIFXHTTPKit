@@ -8,6 +8,12 @@
 
 import Foundation
 
+public let ErrorDomain: String = "LIFXHTTPKitErrorDomain"
+
+public enum ErrorCode: Int {
+	case JSONInvalid
+}
+
 internal class ClientObserver {
 	internal typealias LightsDidUpdate = (lights: [Light]) -> Void
 
@@ -47,7 +53,7 @@ public class Client {
 	public func discover() {
 		session.lights(selector: "all") { [unowned self] (request, response, lights, error) in
 			if error != nil {
-				// TODO
+				println("Client: Discovery did fail. See \(error)")
 				return
 			}
 
@@ -200,8 +206,7 @@ public class HTTPSession {
 				let light = Light(id: id, label: label, power: power == "on", brightness: brightness)
 				lights.append(light)
 			} else {
-				// TODO: Return meaningful error
-				return ([], NSError(domain: "", code: 0, userInfo: nil))
+				return ([], NSError(domain: ErrorDomain, code: ErrorCode.JSONInvalid.rawValue, userInfo: [NSLocalizedDescriptionKey: "JSON object is missing required properties"]))
 			}
 		}
 		return (lights, nil)
