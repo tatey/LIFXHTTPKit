@@ -18,7 +18,7 @@ public class HTTPSession {
 		session = NSURLSession.sharedSession()
 	}
 
-	public func lights(selector: String = "all", completionHander: ((request: NSURLRequest, response: NSURLResponse?, lights: [Light], error: NSError?) -> Void)) {
+	public func lights(selector: String = "all", completionHandler: ((request: NSURLRequest, response: NSURLResponse?, lights: [Light], error: NSError?) -> Void)) {
 		let url = baseURL.URLByAppendingPathComponent("/lights/\(selector)")
 		let request = NSMutableURLRequest(URL: url)
 		request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
@@ -26,10 +26,10 @@ public class HTTPSession {
 		request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
 		session.dataTaskWithRequest(request) { (data, response, error) in
 			if error != nil {
-				completionHander(request: request, response: response, lights: [], error: error)
+				completionHandler(request: request, response: response, lights: [], error: error)
 			} else {
 				let deserialized = self.dataToLights(data)
-				completionHander(request: request, response: response, lights: deserialized.lights, error: deserialized.error)
+				completionHandler(request: request, response: response, lights: deserialized.lights, error: deserialized.error)
 			}
 			}.resume()
 	}
