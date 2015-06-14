@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct Result: Equatable {
+public struct Result: Equatable, Printable {
 	public enum Status: String {
 		case OK       = "ok"
 		case TimedOut = "timed_out"
@@ -14,6 +14,11 @@ public struct Result: Equatable {
 
 	public let id: String
 	public let status: Status
+
+	// MARK: Printable
+	public var description: String {
+		return "<Result id: \(id), status: \(status.rawValue)>"
+	}
 }
 
 public func ==(lhs: Result, rhs: Result) -> Bool {

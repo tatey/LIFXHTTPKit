@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct Light: Equatable {
+public struct Light: Equatable, Printable {
 	public let id: String
 	public let label: String
 	public let power: Bool
@@ -13,6 +13,11 @@ public struct Light: Equatable {
 
 	internal func lightWithPower(power: Bool) -> Light {
 		return Light(id: id, label: label, power: power, brightness: brightness)
+	}
+
+	// MARK: Printable
+	public var description: String {
+		return "<Light id: \(id), label: \(label), power: \(power), brightness: \(brightness)>"
 	}
 }
 
