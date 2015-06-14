@@ -31,9 +31,9 @@ public class HTTPSession {
 			}.resume()
 	}
 
-	public func setLightsPower(selector: String, on: Bool, duration: Float = 1.0, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
+	public func setLightsPower(selector: String, power: Bool, duration: Float, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
 		let request = requestWithBaseURLByAppendingPathComponent("/lights/\(selector)")
-		let parameters = ["state": on ? "on" : "off", "duration": duration]
+		let parameters = ["state": power ? "on" : "off", "duration": duration]
 		request.HTTPMethod = "PUT"
 		request.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: .allZeros, error: nil)
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")

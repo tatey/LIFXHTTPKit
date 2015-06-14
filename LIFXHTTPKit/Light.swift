@@ -10,6 +10,10 @@ public struct Light: Equatable {
 	public let label: String
 	public let power: Bool
 	public let brightness: Double
+
+	internal func lightWithPower(power: Bool) -> Light {
+		return Light(id: id, label: label, power: power, brightness: brightness)
+	}
 }
 
 public func ==(lhs: Light, rhs: Light) -> Bool {

@@ -16,21 +16,6 @@ public class Client {
 		observers = []
 	}
 
-	internal func addObserver(lightsDidUpdateHandler: ClientObserver.LightsDidUpdate) -> ClientObserver {
-		let observer = ClientObserver(lightsDidUpdateHandler: lightsDidUpdateHandler)
-		observers.append(observer)
-		return observer
-	}
-
-	internal func removeObserver(observer: ClientObserver) {
-		for (index, other) in enumerate(observers) {
-			if other === observer {
-				observers.removeAtIndex(index)
-				break
-			}
-		}
-	}
-
 	public func discover() {
 		session.lights(selector: "all") { [unowned self] (request, response, lights, error) in
 			if error != nil {
@@ -59,5 +44,42 @@ public class Client {
 
 	public func allLocations() -> [LightTarget] {
 		return []
+	}
+
+	internal func addObserver(lightsDidUpdateHandler: ClientObserver.LightsDidUpdate) -> ClientObserver {
+		let observer = ClientObserver(lightsDidUpdateHandler: lightsDidUpdateHandler)
+		observers.append(observer)
+		return observer
+	}
+
+	internal func removeObserver(observer: ClientObserver) {
+		for (index, other) in enumerate(observers) {
+			if other === observer {
+				observers.removeAtIndex(index)
+				break
+			}
+		}
+	}
+
+	internal func updateLightsWithLights(lights: [Light]) {
+		let oldLights = self.lights
+		let newLights = oldLights.map { (oldLight) -> Light in
+			for newLight in lights {
+				if oldLight.id == newLight.id && oldLight != newLight {
+					return newLight
+				}
+			}
+			return oldLight
+		}
+
+		if oldLights != newLights {
+			for observer in observers {
+				observer.lightsDidUpdateHandler(lights: self.lights)
+			}
+		}
+	}
+
+	internal func getLights() -> [Light] {
+		return lights
 	}
 }

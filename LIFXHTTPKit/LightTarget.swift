@@ -8,8 +8,8 @@ import Foundation
 public class LightTarget {
 	internal typealias Filter = (light: Light) -> Bool
 
-	public var power: Bool
-	public var brightness: Float
+	private(set) var power: Bool
+	private(set) var brightness: Double
 
 	public let selector: String
 	private let filter: Filter
@@ -34,6 +34,8 @@ public class LightTarget {
 		clientObserver = client.addObserver { [unowned self] (lights) in
 			self.setLightsByApplyingFilter(lights)
 		}
+
+		setLightsByApplyingFilter(client.getLights())
 	}
 
 	deinit {
@@ -62,24 +64,62 @@ public class LightTarget {
 		return lights
 	}
 
-	public func setOn(on: Bool, duration: Float = 1.0) {
-		setOn(on, duration: duration, completionHandler: nil)
+	public func setPower(power: Bool, duration: Float = 1.0) {
+		setPower(power, duration: duration, completionHandler: nil)
 	}
 
-	public func setOn(on: Bool, duration: Float = 1.0, completionHandler: ((results: [Result], error: NSError?) -> Void)?) {
-		client.session.setLightsPower(selector, on: on, duration: duration) { (request, response, results, error) in
+	public func setPower(power: Bool, duration: Float = 1.0, completionHandler: ((results: [Result], error: NSError?) -> Void)?) {
+		self.power = power
+		client.session.setLightsPower(selector, power: power, duration: duration) { [unowned self] (request, response, results, error) in
+			if error == nil {
+				self.client.updateLightsWithLights(self.lights.map { (light) in return light.lightWithPower(power) })
+			}
 			completionHandler?(results: results, error: error)
 		}
 	}
 
 	private func setLightsByApplyingFilter(lights: [Light]) {
-		let oldLights = self.lights
-		let newLights = lights.filter(filter)
-		if oldLights != newLights {
-			self.lights = newLights
+		self.lights = lights.filter(self.filter)
+		dirtyCheck()
+	}
+
+	private func dirtyCheck() {
+		var dirty = false
+
+		let newPower = derivePower()
+		if power != newPower {
+			power = newPower
+			dirty = true
+		}
+
+		let newBrightness = deriveBrightness()
+		if brightness != newBrightness {
+			brightness = newBrightness
+			dirty = true
+		}
+
+		if dirty {
 			for observer in observers {
 				observer.stateDidUpdateHandler()
 			}
+		}
+	}
+
+	private func derivePower() -> Bool {
+		for light in lights {
+			if light.power {
+				return true
+			}
+		}
+		return false
+	}
+
+	private func deriveBrightness() -> Double {
+		let count = lights.count
+		if count > 0 {
+			return lights.reduce(0.0) { (sum, light) in return light.brightness + sum } / Double(count)
+		} else {
+			return 0.0
 		}
 	}
 }
