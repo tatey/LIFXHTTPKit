@@ -8,8 +8,8 @@ import Foundation
 public class LightTarget {
 	internal typealias Filter = (light: Light) -> Bool
 
-	private(set) var power: Bool
-	private(set) var brightness: Double
+	public private(set) var power: Bool
+	public private(set) var brightness: Double
 
 	public let selector: String
 	private let filter: Filter
@@ -64,11 +64,7 @@ public class LightTarget {
 		return lights
 	}
 
-	public func setPower(power: Bool, duration: Float = 1.0) {
-		setPower(power, duration: duration, completionHandler: nil)
-	}
-
-	public func setPower(power: Bool, duration: Float = 1.0, completionHandler: ((results: [Result], error: NSError?) -> Void)?) {
+	public func setPower(power: Bool, duration: Float = 1.0, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		self.power = power
 		client.session.setLightsPower(selector, power: power, duration: duration) { [unowned self] (request, response, results, error) in
 			if error == nil {

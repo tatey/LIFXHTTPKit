@@ -16,10 +16,10 @@ public class Client {
 		observers = []
 	}
 
-	public func discover() {
+	public func fetch(completionHandler: ((error: NSError?) -> Void)? = nil) {
 		session.lights(selector: "all") { [unowned self] (request, response, lights, error) in
 			if error != nil {
-				println("Client: Discovery did fail. See \(error)")
+				completionHandler?(error: error)
 				return
 			}
 
@@ -31,6 +31,8 @@ public class Client {
 					observer.lightsDidUpdateHandler(lights: lights)
 				}
 			}
+
+			completionHandler?(error: nil)
 		}
 	}
 

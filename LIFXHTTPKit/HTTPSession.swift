@@ -32,7 +32,7 @@ public class HTTPSession {
 	}
 
 	public func setLightsPower(selector: String, power: Bool, duration: Float, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
-		let request = requestWithBaseURLByAppendingPathComponent("/lights/\(selector)")
+		let request = requestWithBaseURLByAppendingPathComponent("/lights/\(selector)/power")
 		let parameters = ["state": power ? "on" : "off", "duration": duration]
 		request.HTTPMethod = "PUT"
 		request.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: .allZeros, error: nil)
