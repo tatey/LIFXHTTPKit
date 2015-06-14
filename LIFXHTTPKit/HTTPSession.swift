@@ -31,7 +31,7 @@ public class HTTPSession {
 				let deserialized = self.dataToLights(data)
 				completionHandler(request: request, response: response, lights: deserialized.lights, error: deserialized.error)
 			}
-			}.resume()
+		}.resume()
 	}
 
 	public func setLightsPower(selector: String, power: Bool, duration: Float, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
