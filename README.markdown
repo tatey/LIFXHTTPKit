@@ -30,6 +30,23 @@ let observer = all.addObserver {
 all.removeObserver(observer)
 ```
 
+There are a few key points that make this SDK nice to use:
+
+1. Everything is a collection. If you're dealing with one light, it's just a
+   collection with one element. If you're dealing with many lights, it's a
+   collection with many elements. A collection is known as a `LightTarget`.
+2. Messages are sent optimistically. If you tell a light target to power on
+   then the cached property is updated and observers are notified. In the
+   instance of a failure the property reverts back to its original value.
+   Requests are processed in order.
+3. Observers are a closure based interface. It's light weight and non-magical.
+4. Core state is immutable and shared between all instances of `LightTarget`.
+   If you power on one light target than all light targets which share the same
+   underlying light are notified of the change.
+5. Low-level API is available. If you're not interested in `LightTarget` then
+   you can use `HTTPSession` for interacting directly with the HTTP API. You
+   still get type safety.
+
 ## Contributing
 
 All patches and feedback welcome.
