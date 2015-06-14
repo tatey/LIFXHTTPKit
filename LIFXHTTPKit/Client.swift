@@ -72,9 +72,11 @@ public class Client {
 
 		if oldLights != newLights {
 			for observer in observers {
-				observer.lightsDidUpdateHandler(lights: self.lights)
+				observer.lightsDidUpdateHandler(lights: newLights)
 			}
 		}
+
+		self.lights = newLights
 	}
 
 	internal func getLights() -> [Light] {

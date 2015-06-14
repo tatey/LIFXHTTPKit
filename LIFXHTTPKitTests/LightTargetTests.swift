@@ -20,17 +20,19 @@ class LightTargetTests: XCTestCase {
 		waitForExpectationsWithTimeout(3.0, handler: nil)
 	}
 
-	func testSetPowerTurnsLightTargetOn() {
+	func testSetPowerTogglesPower() {
 		let expectation = expectationWithDescription("setPower")
 		let client = Client(accessToken: "")
-		let lightTarget = client.allLightTarget()
-
-		lightTarget.setPower(true, duration: 1.0) { (results, error) in
-			XCTAssertNil(error, "expected error to be nil")
-			XCTAssertTrue(lightTarget.power, "expected power to be true after completion")
-			expectation.fulfill()
+		client.fetch { (error) in
+			let lightTarget = client.allLightTarget().toLightTargets().first!
+			let power = !lightTarget.power
+			lightTarget.setPower(power, duration: 0.5) { (results, error) in
+				XCTAssertNil(error, "expected error to be nil")
+				XCTAssertEqual(power, lightTarget.power, "expected light target's power to be given power after completion")
+				expectation.fulfill()
+			}
+			XCTAssertEqual(power, lightTarget.power, "expected light target's power to be given power before completion")
 		}
-		XCTAssertTrue(lightTarget.power, "expected power to be true before completion")
 		waitForExpectationsWithTimeout(3.0, handler: nil)
 	}
 }
