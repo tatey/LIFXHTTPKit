@@ -78,6 +78,7 @@ public class LightTarget {
 
 	public func setPower(power: Bool, duration: Float = 1.0, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		self.power = power
+		notifyObservers()
 		client.session.setLightsPower(selector.toString(), power: power, duration: duration) { [unowned self] (request, response, results, error) in
 			if error == nil {
 				self.client.updateLightsWithLights(self.lights.map { (light) in return light.lightWithPower(power) })
@@ -119,9 +120,7 @@ public class LightTarget {
 		}
 
 		if dirty {
-			for observer in observers {
-				observer.stateDidUpdateHandler()
-			}
+			notifyObservers()
 		}
 	}
 
@@ -154,5 +153,11 @@ public class LightTarget {
 
 	private func deriveCount() -> Int {
 		return lights.count
+	}
+
+	private func notifyObservers() {
+		for observer in observers {
+			observer.stateDidUpdateHandler()
+		}
 	}
 }
