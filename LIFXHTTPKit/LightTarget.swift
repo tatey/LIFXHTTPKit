@@ -10,6 +10,7 @@ public class LightTarget {
 
 	public private(set) var power: Bool
 	public private(set) var brightness: Double
+	public private(set) var count: Int
 
 	public let selector: String
 	private let filter: Filter
@@ -23,6 +24,7 @@ public class LightTarget {
 	init(client: Client, selector: String, filter: Filter) {
 		power = false
 		brightness = 0.0
+		count = 0
 
 		self.selector = selector
 		self.filter = filter
@@ -94,6 +96,12 @@ public class LightTarget {
 			dirty = true
 		}
 
+		let newCount = deriveCount()
+		if count != newCount {
+			count = newCount
+			dirty = true
+		}
+
 		if dirty {
 			for observer in observers {
 				observer.stateDidUpdateHandler()
@@ -111,11 +119,15 @@ public class LightTarget {
 	}
 
 	private func deriveBrightness() -> Double {
-		let count = lights.count
+		let count = deriveCount()
 		if count > 0 {
 			return lights.reduce(0.0) { (sum, light) in return light.brightness + sum } / Double(count)
 		} else {
 			return 0.0
 		}
+	}
+
+	private func deriveCount() -> Int {
+		return lights.count
 	}
 }

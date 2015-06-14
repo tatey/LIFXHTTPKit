@@ -13,7 +13,8 @@ class LightTargetTests: XCTestCase {
 		let client = Client(accessToken: "")
 		let lights = client.allLights()
 		lights.addObserver {
-			XCTAssertTrue(lights.toLights().count > 0, "expected there to be lights")
+			XCTAssertTrue(lights.count > 0, "expected there to be at least one light")
+			expectation.fulfill()
 		}
 		client.fetch()
 		waitForExpectationsWithTimeout(3.0, handler: nil)
