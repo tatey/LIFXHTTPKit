@@ -8,6 +8,7 @@ import Foundation
 public class LightTarget {
 	public private(set) var power: Bool
 	public private(set) var brightness: Double
+	public private(set) var label: String
 	public private(set) var count: Int
 
 	public let selector: Selector
@@ -21,6 +22,7 @@ public class LightTarget {
 	init(client: Client, selector: Selector) {
 		power = false
 		brightness = 0.0
+		label = ""
 		count = 0
 
 		self.selector = selector
@@ -104,6 +106,12 @@ public class LightTarget {
 			dirty = true
 		}
 
+		let newLabel = deriveLabel()
+		if label != newLabel {
+			label = newLabel
+			dirty = true
+		}
+
 		let newCount = deriveCount()
 		if count != newCount {
 			count = newCount
@@ -132,6 +140,15 @@ public class LightTarget {
 			return lights.reduce(0.0) { (sum, light) in return light.brightness + sum } / Double(count)
 		} else {
 			return 0.0
+		}
+	}
+
+	private func deriveLabel() -> String {
+		switch selector.type {
+		case .All:
+			return "All"
+		case .ID, .Label:
+			return lights.first?.label ?? ""
 		}
 	}
 
