@@ -76,7 +76,7 @@ public class LightTarget {
 		return lights
 	}
 
-	public func setPower(power: Bool, duration: Float = 1.0, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
+	public func setPower(power: Bool, duration: Float = 0.5, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		self.power = power
 		notifyObservers()
 		client.session.setLightsPower(selector.toString(), power: power, duration: duration) { [unowned self] (request, response, results, error) in
