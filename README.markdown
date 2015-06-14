@@ -34,7 +34,8 @@ There are a few key points that make this SDK nice to use:
 
 1. Everything is a collection. If you're dealing with one light, it's just a
    collection with one element. If you're dealing with many lights, it's a
-   collection with many elements. A collection is known as a `LightTarget`.
+   collection with many elements. Collections can be sliced into smaller collections.
+   Each collection is a new instance and they're known as a `LightTarget`
 2. Messages are sent optimistically. If you tell a light target to power on
    then the cached property is updated and observers are notified. In the
    instance of a failure the property reverts back to its original value.
