@@ -36,16 +36,12 @@ public class Client {
 		}
 	}
 
-	public func allLights() -> LightTarget {
-		return LightTarget(client: self, selector: "all", filter: { (light) in return true })
+	public func allLightTarget() -> LightTarget {
+		return lightTargetWithSelector(Selector(type: .All))
 	}
 
-	public func allGroups() -> [LightTarget] {
-		return []
-	}
-
-	public func allLocations() -> [LightTarget] {
-		return []
+	public func lightTargetWithSelector(selector: Selector) -> LightTarget {
+		return LightTarget(client: self, selector: selector)
 	}
 
 	internal func addObserver(lightsDidUpdateHandler: ClientObserver.LightsDidUpdate) -> ClientObserver {

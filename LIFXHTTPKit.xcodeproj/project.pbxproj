@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D1BE8A91B2D602200198129 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1BE8A81B2D602200198129 /* Selector.swift */; };
 		5D5898A81B1887530024D47B /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D5898A71B1887530024D47B /* LIFXHTTPKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D5898AE1B1887530024D47B /* LIFXHTTPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */; };
 		5D5898B51B1887530024D47B /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5898B41B1887530024D47B /* ClientTests.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D1BE8A81B2D602200198129 /* Selector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
 		5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LIFXHTTPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5898A61B1887530024D47B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D5898A71B1887530024D47B /* LIFXHTTPKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LIFXHTTPKit.h; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				5DB41F3F1B2BD4CA0006F2A5 /* Errors.swift */,
 				5D5898BE1B1887650024D47B /* Client.swift */,
 				5DB41F431B2BD5370006F2A5 /* ClientObserver.swift */,
+				5D1BE8A81B2D602200198129 /* Selector.swift */,
 				5DB41F471B2BD57C0006F2A5 /* LightTarget.swift */,
 				5DB41F451B2BD55C0006F2A5 /* LightTargetObserver.swift */,
 				5DB41F491B2BD5B90006F2A5 /* HTTPSession.swift */,
@@ -238,6 +241,7 @@
 			files = (
 				5DB41F4A1B2BD5B90006F2A5 /* HTTPSession.swift in Sources */,
 				5DB41F401B2BD4CA0006F2A5 /* Errors.swift in Sources */,
+				5D1BE8A91B2D602200198129 /* Selector.swift in Sources */,
 				5DB41F441B2BD5370006F2A5 /* ClientObserver.swift in Sources */,
 				5DB41F481B2BD57C0006F2A5 /* LightTarget.swift in Sources */,
 				5D5898BF1B1887650024D47B /* Client.swift in Sources */,

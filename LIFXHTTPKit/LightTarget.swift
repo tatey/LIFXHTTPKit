@@ -6,14 +6,11 @@
 import Foundation
 
 public class LightTarget {
-	internal typealias Filter = (light: Light) -> Bool
-
 	public private(set) var power: Bool
 	public private(set) var brightness: Double
 	public private(set) var count: Int
 
-	public let selector: String
-	private let filter: Filter
+	public let selector: Selector
 
 	private var lights: [Light]
 	private var observers: [LightTargetObserver]
@@ -21,13 +18,12 @@ public class LightTarget {
 	private unowned let client: Client
 	private var clientObserver: ClientObserver!
 
-	init(client: Client, selector: String, filter: Filter) {
+	init(client: Client, selector: Selector) {
 		power = false
 		brightness = 0.0
 		count = 0
 
 		self.selector = selector
-		self.filter = filter
 
 		lights = []
 		observers = []
@@ -62,13 +58,25 @@ public class LightTarget {
 		observers = []
 	}
 
+	public func toLightTargets() -> [LightTarget] {
+		return lights.map { (light) in return self.client.lightTargetWithSelector(Selector(type: .ID, value: light.id)) }
+	}
+
+	public func toGroupLightTargets() -> [LightTarget] {
+		return []
+	}
+
+	public func toLocationLightTargets() -> [LightTarget] {
+		return []
+	}
+
 	public func toLights() -> [Light] {
 		return lights
 	}
 
 	public func setPower(power: Bool, duration: Float = 1.0, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		self.power = power
-		client.session.setLightsPower(selector, power: power, duration: duration) { [unowned self] (request, response, results, error) in
+		client.session.setLightsPower(selector.toString(), power: power, duration: duration) { [unowned self] (request, response, results, error) in
 			if error == nil {
 				self.client.updateLightsWithLights(self.lights.map { (light) in return light.lightWithPower(power) })
 			}
@@ -77,7 +85,7 @@ public class LightTarget {
 	}
 
 	private func setLightsByApplyingFilter(lights: [Light]) {
-		self.lights = lights.filter(self.filter)
+		self.lights = lights.filter(self.selector.toFilter())
 		dirtyCheck()
 	}
 

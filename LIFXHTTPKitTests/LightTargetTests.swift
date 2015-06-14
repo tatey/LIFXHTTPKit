@@ -11,9 +11,9 @@ class LightTargetTests: XCTestCase {
 	func testObserverIsInvokedAfterStateChange() {
 		let expectation = expectationWithDescription("observer")
 		let client = Client(accessToken: "")
-		let lights = client.allLights()
-		lights.addObserver {
-			XCTAssertTrue(lights.count > 0, "expected there to be at least one light")
+		let lightTarget = client.allLightTarget()
+		lightTarget.addObserver {
+			XCTAssertTrue(lightTarget.count > 0, "expected there to be at least one light")
 			expectation.fulfill()
 		}
 		client.fetch()
@@ -23,14 +23,14 @@ class LightTargetTests: XCTestCase {
 	func testSetPowerTurnsLightTargetOn() {
 		let expectation = expectationWithDescription("setPower")
 		let client = Client(accessToken: "")
-		let lights = client.allLights()
+		let lightTarget = client.allLightTarget()
 
-		lights.setPower(true, duration: 1.0) { (results, error) in
+		lightTarget.setPower(true, duration: 1.0) { (results, error) in
 			XCTAssertNil(error, "expected error to be nil")
-			XCTAssertTrue(lights.power, "expected power to be true after completion")
+			XCTAssertTrue(lightTarget.power, "expected power to be true after completion")
 			expectation.fulfill()
 		}
-		XCTAssertTrue(lights.power, "expected power to be true before completion")
+		XCTAssertTrue(lightTarget.power, "expected power to be true before completion")
 		waitForExpectationsWithTimeout(3.0, handler: nil)
 	}
 }

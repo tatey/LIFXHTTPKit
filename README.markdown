@@ -5,13 +5,29 @@
 A nice Mac OS X framework for the LIFX HTTP API that has no external dependencies.
 Generate a personal access token at https://cloud.lifx.com/settings.
 
-This is *not* an official LIFX project and exists only to scratch my own itch.
-
 ``` swift
+// Power on all the lights
 let client = Client(accessToken: "c87c73a896b554367fac61f71dd3656af8d93a525a4e87df5952c6078a89d192")
 client.fetch()
-let lights = client.allLights()
-lights.setPower(true, duration: 1.0)
+let all = client.allLightTarget()
+all.setPower(true)
+
+// Toggle power on one light
+if let one = all.toLightTargets().first() {
+  one.setPower(!one.power)
+}
+
+// Observe changes to one, many, or all lights
+let observer = all.addObserver {
+  if all.power {
+    button.titleLabel?.text = "Turn Off"
+  } else {
+    button.titleLabel?.text = "Turn On"
+  }
+}
+
+// ...and remove the observer when you're done
+all.removeObserver(observer)
 ```
 
 ## Contributing
