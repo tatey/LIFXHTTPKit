@@ -6,16 +6,19 @@
 import Foundation
 
 public class HTTPSession {
+	public static let defaultBaseURL: NSURL = NSURL(string: "https://api.lifx.com/v1beta1/")!
+	public static let defaultUserAgent: String = "LIFXHTTPKit/\(LIFXHTTPKitVersionNumber)"
+
 	private let accessToken: String
 	private let baseURL: NSURL
 	private let userAgent: String
 	private let session: NSURLSession
 
-	public init(accessToken: String, baseURL: NSURL = NSURL(string: "https://api.lifx.com/v1beta1/")!, userAgent: String = "LIFXHTTPKit/0.0.1") {
+	public init(accessToken: String, baseURL: NSURL = HTTPSession.defaultBaseURL, userAgent: String = HTTPSession.defaultUserAgent, session: NSURLSession = NSURLSession.sharedSession()) {
 		self.accessToken = accessToken
 		self.baseURL = baseURL
 		self.userAgent = userAgent
-		session = NSURLSession.sharedSession()
+		self.session = session
 	}
 
 	public func lights(selector: String = "all", completionHandler: ((request: NSURLRequest, response: NSURLResponse?, lights: [Light], error: NSError?) -> Void)) {
