@@ -77,11 +77,12 @@ public class LightTarget {
 	}
 
 	public func setPower(power: Bool, duration: Float = 0.5, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
-		self.power = power
-		notifyObservers()
-		client.session.setLightsPower(selector.toString(), power: power, duration: duration) { [unowned self] (request, response, results, error) in
-			if error == nil {
-				self.client.updateLightsWithLights(self.lights.map { (light) in return light.lightWithPower(power) })
+		let newPower = power
+		let oldPower = self.power
+		client.updateLightsWithLights(self.lights.map { (light) in return light.lightWithPower(newPower) })
+		client.session.setLightsPower(selector.toString(), power: newPower, duration: duration) { [unowned self] (request, response, results, error) in
+			if error != nil {
+				self.client.updateLightsWithLights(self.lights.map { (light) in return light.lightWithPower(oldPower) })
 			}
 			completionHandler?(results: results, error: error)
 		}
