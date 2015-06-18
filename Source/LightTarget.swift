@@ -152,7 +152,7 @@ public class LightTarget {
 	}
 
 	private func derivePower() -> Bool {
-		for light in lights {
+		for light in lights.filter({ $0.connected }) {
 			if light.power {
 				return true
 			}
@@ -163,7 +163,7 @@ public class LightTarget {
 	private func deriveBrightness() -> Double {
 		let count = deriveCount()
 		if count > 0 {
-			return lights.reduce(0.0) { (sum, light) in return light.brightness + sum } / Double(count)
+			return lights.filter({ $0.connected }).reduce(0.0) { (sum, light) in return light.brightness + sum } / Double(count)
 		} else {
 			return 0.0
 		}
