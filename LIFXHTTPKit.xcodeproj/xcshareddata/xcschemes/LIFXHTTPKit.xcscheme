@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5D5898AC1B1887530024D47B"
-               BuildableName = "LIFXHTTPKitTests.xctest"
-               BlueprintName = "LIFXHTTPKitTests"
+               BuildableName = "LIFXHTTPKit Tests.xctest"
+               BlueprintName = "LIFXHTTPKit Tests"
                ReferencedContainer = "container:LIFXHTTPKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,8 +47,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5D5898AC1B1887530024D47B"
-               BuildableName = "LIFXHTTPKitTests.xctest"
-               BlueprintName = "LIFXHTTPKitTests"
+               BuildableName = "LIFXHTTPKit Tests.xctest"
+               BlueprintName = "LIFXHTTPKit Tests"
                ReferencedContainer = "container:LIFXHTTPKit.xcodeproj">
             </BuildableReference>
          </TestableReference>

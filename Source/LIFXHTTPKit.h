@@ -5,8 +5,5 @@
 
 #import <Cocoa/Cocoa.h>
 
-//! Project version number for LIFXHTTPKit.
 FOUNDATION_EXPORT double LIFXHTTPKitVersionNumber;
-
-//! Project version string for LIFXHTTPKit.
 FOUNDATION_EXPORT const unsigned char LIFXHTTPKitVersionString[];
