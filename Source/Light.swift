@@ -11,7 +11,7 @@ public struct Light: Equatable, Printable {
 	public let power: Bool
 	public let brightness: Double
 
-	internal func lightWithPower(power: Bool) -> Light {
+	func lightWithPower(power: Bool) -> Light {
 		return Light(id: id, label: label, power: power, brightness: brightness)
 	}
 

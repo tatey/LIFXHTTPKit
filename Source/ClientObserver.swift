@@ -5,10 +5,10 @@
 
 import Foundation
 
-internal class ClientObserver {
-	internal typealias LightsDidUpdate = (lights: [Light]) -> Void
+class ClientObserver {
+	typealias LightsDidUpdate = (lights: [Light]) -> Void
 
-	internal let lightsDidUpdateHandler: LightsDidUpdate
+	let lightsDidUpdateHandler: LightsDidUpdate
 
 	init(lightsDidUpdateHandler: LightsDidUpdate) {
 		self.lightsDidUpdateHandler = lightsDidUpdateHandler

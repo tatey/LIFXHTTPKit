@@ -6,7 +6,7 @@
 import Foundation
 
 public struct Selector: Equatable {
-	internal typealias Filter = (light: Light) -> Bool
+	typealias Filter = (light: Light) -> Bool
 
 	public enum Type: String {
 		case All   = "all"
@@ -30,7 +30,7 @@ public struct Selector: Equatable {
 		}
 	}
 
-	internal func toFilter() -> Filter {
+	func toFilter() -> Filter {
 		switch type {
 		case .All:
 			return { (light) in return true }

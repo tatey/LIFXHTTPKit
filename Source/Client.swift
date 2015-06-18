@@ -6,7 +6,7 @@
 import Foundation
 
 public class Client {
-	internal let session: HTTPSession
+	let session: HTTPSession
 	private var lights: [Light]
 	private var observers: [ClientObserver]
 
@@ -44,13 +44,13 @@ public class Client {
 		return LightTarget(client: self, selector: selector)
 	}
 
-	internal func addObserver(lightsDidUpdateHandler: ClientObserver.LightsDidUpdate) -> ClientObserver {
+	func addObserver(lightsDidUpdateHandler: ClientObserver.LightsDidUpdate) -> ClientObserver {
 		let observer = ClientObserver(lightsDidUpdateHandler: lightsDidUpdateHandler)
 		observers.append(observer)
 		return observer
 	}
 
-	internal func removeObserver(observer: ClientObserver) {
+	func removeObserver(observer: ClientObserver) {
 		for (index, other) in enumerate(observers) {
 			if other === observer {
 				observers.removeAtIndex(index)
@@ -59,7 +59,7 @@ public class Client {
 		}
 	}
 
-	internal func updateLightsWithLights(lights: [Light]) {
+	func updateLightsWithLights(lights: [Light]) {
 		let oldLights = self.lights
 		let newLights = oldLights.map { (oldLight) -> Light in
 			for newLight in lights {
@@ -79,7 +79,7 @@ public class Client {
 		self.lights = newLights
 	}
 
-	internal func getLights() -> [Light] {
+	func getLights() -> [Light] {
 		return lights
 	}
 }

@@ -8,7 +8,7 @@ import Foundation
 public class LightTargetObserver {
 	public typealias StateDidUpdate = () -> Void
 
-	internal let stateDidUpdateHandler: StateDidUpdate
+	let stateDidUpdateHandler: StateDidUpdate
 
 	init(stateDidUpdateHandler: StateDidUpdate) {
 		self.stateDidUpdateHandler = stateDidUpdateHandler
