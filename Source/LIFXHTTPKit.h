@@ -3,7 +3,7 @@
 //  Copyright (c) 2015 Tate Johnson. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 FOUNDATION_EXPORT double LIFXHTTPKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char LIFXHTTPKitVersionString[];

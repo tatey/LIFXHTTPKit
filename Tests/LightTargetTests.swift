@@ -3,7 +3,6 @@
 //  Copyright (c) 2015 Tate Johnson. All rights reserved.
 //
 
-import Cocoa
 import XCTest
 import LIFXHTTPKit
 
