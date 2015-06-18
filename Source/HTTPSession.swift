@@ -82,8 +82,8 @@ public class HTTPSession {
 
 		var lights: [Light] = []
 		for lightJSONObject in lightJSONObjects {
-			if let id = lightJSONObject["id"] as? String, label = lightJSONObject["label"] as? String, power = lightJSONObject["power"] as? String, brightness = lightJSONObject["brightness"] as? Double {
-				let light = Light(id: id, label: label, power: power == "on", brightness: brightness)
+			if let id = lightJSONObject["id"] as? String, label = lightJSONObject["label"] as? String, power = lightJSONObject["power"] as? String, brightness = lightJSONObject["brightness"] as? Double, connected = lightJSONObject["connected"] as? Bool {
+				let light = Light(id: id, label: label, power: power == "on", brightness: brightness, connected: connected)
 				lights.append(light)
 			} else {
 				return ([], NSError(domain: ErrorDomain, code: ErrorCode.JSONInvalid.rawValue, userInfo: [NSLocalizedDescriptionKey: "JSON object is missing required properties"]))

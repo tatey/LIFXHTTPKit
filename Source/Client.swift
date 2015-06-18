@@ -59,7 +59,7 @@ public class Client {
 		}
 	}
 
-	func updateLightsWithLights(lights: [Light]) {
+	func setLightsByReplacingWithLights(lights: [Light]) {
 		let oldLights = self.lights
 		let newLights = oldLights.map { (oldLight) -> Light in
 			for newLight in lights {

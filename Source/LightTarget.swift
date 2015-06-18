@@ -9,6 +9,7 @@ public class LightTarget {
 	public private(set) var power: Bool
 	public private(set) var brightness: Double
 	public private(set) var label: String
+	public private(set) var connected: Bool
 	public private(set) var count: Int
 
 	public let selector: Selector
@@ -24,6 +25,7 @@ public class LightTarget {
 		brightness = 0.0
 		label = ""
 		count = 0
+		connected = false
 
 		self.selector = selector
 
@@ -32,10 +34,10 @@ public class LightTarget {
 
 		self.client = client
 		clientObserver = client.addObserver { [unowned self] (lights) in
-			self.setLightsByApplyingFilter(lights)
+			self.setLightsByApplyingFilterWithLights(lights)
 		}
 
-		setLightsByApplyingFilter(client.getLights())
+		setLightsByApplyingFilterWithLights(client.getLights())
 	}
 
 	deinit {
@@ -79,18 +81,36 @@ public class LightTarget {
 	public func setPower(power: Bool, duration: Float = 0.5, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		let newPower = power
 		let oldPower = self.power
-		client.updateLightsWithLights(self.lights.map { (light) in return light.lightWithPower(newPower) })
+		client.setLightsByReplacingWithLights(self.lights.map { (light) in return light.lightWithPower(newPower) })
 		client.session.setLightsPower(selector.toString(), power: newPower, duration: duration) { [unowned self] (request, response, results, error) in
+			var newLights = self.lights(self.lights, byDeterminingConnectivityWithResults: results)
 			if error != nil {
-				self.client.updateLightsWithLights(self.lights.map { (light) in return light.lightWithPower(oldPower) })
+				newLights = newLights.map { (light) in return light.lightWithPower(oldPower) }
 			}
+			self.client.setLightsByReplacingWithLights(newLights)
 			completionHandler?(results: results, error: error)
 		}
 	}
 
-	private func setLightsByApplyingFilter(lights: [Light]) {
+	private func setLightsByApplyingFilterWithLights(lights: [Light]) {
 		self.lights = lights.filter(self.selector.toFilter())
 		dirtyCheck()
+	}
+
+	private func lights(lights: [Light], byDeterminingConnectivityWithResults results: [Result]) -> [Light] {
+		return lights.map { (light) in
+			for result in results {
+				if result.id == light.id {
+					switch result.status {
+					case .OK:
+						return light.lightWithConnected(true)
+					case .TimedOut, .Offline:
+						return light.lightWithConnected(false)
+					}
+				}
+			}
+			return light
+		}
 	}
 
 	private func dirtyCheck() {
@@ -111,6 +131,12 @@ public class LightTarget {
 		let newLabel = deriveLabel()
 		if label != newLabel {
 			label = newLabel
+			dirty = true
+		}
+
+		let newConnected = deriveConnected()
+		if connected != newConnected {
+			connected = newConnected
 			dirty = true
 		}
 
@@ -150,6 +176,15 @@ public class LightTarget {
 		case .ID, .Label:
 			return lights.first?.label ?? ""
 		}
+	}
+
+	private func deriveConnected() -> Bool {
+		for light in lights {
+			if light.connected {
+				return true
+			}
+		}
+		return false
 	}
 
 	private func deriveCount() -> Int {
