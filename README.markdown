@@ -7,19 +7,38 @@ Generate a personal access token at https://cloud.lifx.com/settings.
 
 ## Quick Usage
 
+Power on all the lights.
+
 ``` swift
-// Power on all the lights
 let client = Client(accessToken: "c87c73a896b554367fac61f71dd3656af8d93a525a4e87df5952c6078a89d192")
 client.fetch()
 let all = client.allLightTarget()
 all.setPower(true)
+```
 
-// Toggle power on one light
+Toggle power on one light.
+
+``` swift
 if let one = all.toLightTargets().first() {
   one.setPower(!one.power)
 }
+```
 
-// Observe changes to one, many, or all lights
+Use a closure to find out when the request completes.
+
+``` swift
+one.setPower(!one.power) { (results, error) in
+  if error != nil {
+    println(error)
+  } else {
+    println(results)
+  }
+}
+```
+
+Use a closure to observer changes to lights.
+
+``` swift
 let observer = all.addObserver {
   if all.power {
     button.titleLabel?.text = "Turn Off"
@@ -27,8 +46,11 @@ let observer = all.addObserver {
     button.titleLabel?.text = "Turn On"
   }
 }
+```
 
-// ...and remove the observer when you're done
+And remove the observer when you're done.
+
+``` swift
 all.removeObserver(observer)
 ```
 
