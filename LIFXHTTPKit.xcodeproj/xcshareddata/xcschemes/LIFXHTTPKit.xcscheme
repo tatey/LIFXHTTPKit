@@ -51,6 +51,11 @@
                BlueprintName = "LIFXHTTPKit Tests"
                ReferencedContainer = "container:LIFXHTTPKit.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "LightTargetTests/testSetPowerTogglesPower()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

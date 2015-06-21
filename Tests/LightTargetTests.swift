@@ -9,7 +9,7 @@ import LIFXHTTPKit
 class LightTargetTests: XCTestCase {
 	func testObserverIsInvokedAfterStateChange() {
 		let expectation = expectationWithDescription("observer")
-		let client = Client(accessToken: "")
+		let client = Client(accessToken: Secrets.accessToken)
 		let lightTarget = client.allLightTarget()
 		lightTarget.addObserver {
 			XCTAssertTrue(lightTarget.count > 0, "expected there to be at least one light")
@@ -21,7 +21,7 @@ class LightTargetTests: XCTestCase {
 
 	func testSetPowerTogglesPower() {
 		let expectation = expectationWithDescription("setPower")
-		let client = Client(accessToken: "")
+		let client = Client(accessToken: Secrets.accessToken)
 		client.fetch { (error) in
 			let lightTarget = client.allLightTarget().toLightTargets().first!
 			let power = !lightTarget.power

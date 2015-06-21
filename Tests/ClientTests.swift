@@ -9,7 +9,7 @@ import LIFXHTTPKit
 class ClientTests: XCTestCase {
 	func testFetchWithCompletionHandlerGetsInvoked() {
 		let expectation = expectationWithDescription("fetch")
-		let client = Client(accessToken: "")
+		let client = Client(accessToken: Secrets.accessToken)
 		client.fetch { (error) in
 			XCTAssertNil(error, "expected error to be nil")
 			expectation.fulfill()
