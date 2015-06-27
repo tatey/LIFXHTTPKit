@@ -7,22 +7,23 @@ import Foundation
 
 public struct Light: Equatable, Printable {
 	public let id: String
-	public let label: String
 	public let power: Bool
 	public let brightness: Double
+	public let color: Color
+	public let label: String
 	public let connected: Bool
 
 	func lightWithConnected(connected: Bool) -> Light {
-		return Light(id: id, label: label, power: power, brightness: brightness, connected: connected)
+		return Light(id: id, power: power, brightness: brightness, color: color, label: label, connected: connected)
 	}
 
 	func lightWithPower(power: Bool) -> Light {
-		return Light(id: id, label: label, power: power, brightness: brightness, connected: connected)
+		return Light(id: id, power: power, brightness: brightness, color: color, label: label, connected: connected)
 	}
 
 	// MARK: Printable
 	public var description: String {
-		return "<Light id: \(id), label: \(label), power: \(power), brightness: \(brightness), connected: \(connected)>"
+		return "<Light id: \(id), label: \(label), power: \(power), brightness: \(brightness), color: \(color), connected: \(connected)>"
 	}
 }
 

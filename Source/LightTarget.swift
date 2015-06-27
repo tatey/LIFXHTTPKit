@@ -8,6 +8,7 @@ import Foundation
 public class LightTarget {
 	public private(set) var power: Bool
 	public private(set) var brightness: Double
+	public private(set) var color: Color
 	public private(set) var label: String
 	public private(set) var connected: Bool
 	public private(set) var count: Int
@@ -23,9 +24,10 @@ public class LightTarget {
 	init(client: Client, selector: Selector) {
 		power = false
 		brightness = 0.0
+		color = Color(hue: 0, saturation: 0, kelvin: Color.defaultKelvin)
 		label = ""
-		count = 0
 		connected = false
+		count = 0
 
 		self.selector = selector
 
@@ -128,6 +130,12 @@ public class LightTarget {
 			dirty = true
 		}
 
+		let newColor = derviceColor()
+		if color != newColor {
+			color = newColor
+			dirty = true
+		}
+
 		let newLabel = deriveLabel()
 		if label != newLabel {
 			label = newLabel
@@ -166,6 +174,34 @@ public class LightTarget {
 			return lights.filter({ $0.connected }).reduce(0.0) { (sum, light) in return light.brightness + sum } / Double(count)
 		} else {
 			return 0.0
+		}
+	}
+
+	private func derviceColor() -> Color {
+		if count > 1 {
+			var hueXTotal: Double = 0.0
+			var hueYTotal: Double = 0.0
+			var saturationTotal: Double = 0.0
+			var kelvinTotal: Int = 0
+			for light in lights {
+				let color = light.color
+				hueXTotal += sin(color.hue * 2.0 * M_PI / Color.maxHue)
+				hueYTotal += cos(color.hue * 2.0 * M_PI / Color.maxHue)
+				saturationTotal += color.saturation
+				kelvinTotal += color.kelvin
+			}
+			var hue: Double = atan2(hueXTotal, hueYTotal) / (2.0 * M_PI);
+			if hue < 0.0 {
+				hue += 1.0
+			}
+			hue *= Color.maxHue
+			let saturation = saturationTotal / Double(count)
+			let kelvin = kelvinTotal / count
+			return Color(hue: hue, saturation: saturation, kelvin: kelvin)
+		} else if let light = lights.first where count == 1 {
+			return light.color
+		} else {
+			return Color(hue: 0, saturation: 0, kelvin: Color.defaultKelvin)
 		}
 	}
 
