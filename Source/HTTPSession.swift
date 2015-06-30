@@ -35,8 +35,8 @@ public class HTTPSession {
 			if error != nil {
 				completionHandler(request: request, response: response, lights: [], error: error)
 			} else {
-				let deserialized = self.dataToLights(data)
-				completionHandler(request: request, response: response, lights: deserialized.lights, error: deserialized.error)
+				let (lights, error) = self.dataToLights(data)
+				completionHandler(request: request, response: response, lights: lights, error: error)
 			}
 		}.resume()
 	}
@@ -51,8 +51,24 @@ public class HTTPSession {
 			if error != nil {
 				completionHandler(request: request, response: response, results: [], error: error)
 			} else {
-				let deserialized = self.dataToResults(data)
-				completionHandler(request: request, response: response, results: deserialized.results, error: deserialized.error)
+				let (results, error) = self.dataToResults(data)
+				completionHandler(request: request, response: response, results: results, error: error)
+			}
+		}.resume()
+	}
+
+	public func setLightsColor(selector: String, color: String, duration: Float, power_on: Bool, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
+		let request = requestWithBaseURLByAppendingPathComponent("/lights/\(selector)/color")
+		let parameters = ["color": color, "duration": duration, "power_on": power_on]
+		request.HTTPMethod = "PUT"
+		request.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: .allZeros, error: nil)
+		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+		session.dataTaskWithRequest(request) { (data, response, error) in
+			if error != nil {
+				completionHandler(request: request, response: response, results: [], error: error)
+			} else {
+				let (results, error) = self.dataToResults(data)
+				completionHandler(request: request, response: response, results: results, error: error)
 			}
 		}.resume()
 	}

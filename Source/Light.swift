@@ -13,11 +13,15 @@ public struct Light: Equatable, Printable {
 	public let label: String
 	public let connected: Bool
 
-	func lightWithConnected(connected: Bool) -> Light {
+	func lightWithPower(power: Bool) -> Light {
 		return Light(id: id, power: power, brightness: brightness, color: color, label: label, connected: connected)
 	}
 
-	func lightWithPower(power: Bool) -> Light {
+	func lightWithBrightness(brightness: Double) -> Light {
+		return Light(id: id, power: power, brightness: brightness, color: color, label: label, connected: connected)
+	}
+
+	func lightWithConnected(connected: Bool) -> Light {
 		return Light(id: id, power: power, brightness: brightness, color: color, label: label, connected: connected)
 	}
 
