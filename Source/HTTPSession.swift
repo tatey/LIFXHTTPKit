@@ -8,17 +8,24 @@ import Foundation
 public class HTTPSession {
 	public static let defaultBaseURL: NSURL = NSURL(string: "https://api.lifx.com/v1beta1/")!
 	public static let defaultUserAgent: String = "LIFXHTTPKit/\(LIFXHTTPKitVersionNumber)"
+	public static let defaultTimeoutIntervalForRequest: NSTimeInterval = 5.0
 
 	private let accessToken: String
 	private let baseURL: NSURL
 	private let userAgent: String
 	private let session: NSURLSession
 
-	public init(accessToken: String, baseURL: NSURL = HTTPSession.defaultBaseURL, userAgent: String = HTTPSession.defaultUserAgent, session: NSURLSession = NSURLSession.sharedSession()) {
+	public init(accessToken: String, baseURL: NSURL = HTTPSession.defaultBaseURL, userAgent: String = HTTPSession.defaultUserAgent) {
 		self.accessToken = accessToken
 		self.baseURL = baseURL
 		self.userAgent = userAgent
-		self.session = session
+
+		let underlyingQueue = dispatch_queue_create("com.tatey.lifx-http-kit.http-session", DISPATCH_QUEUE_SERIAL)
+		let operationQueue = NSOperationQueue()
+		operationQueue.underlyingQueue = underlyingQueue
+		let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+		config.timeoutIntervalForRequest = HTTPSession.defaultTimeoutIntervalForRequest
+		session = NSURLSession(configuration: config, delegate: nil, delegateQueue: operationQueue)
 	}
 
 	public func lights(selector: String = "all", completionHandler: ((request: NSURLRequest, response: NSURLResponse?, lights: [Light], error: NSError?) -> Void)) {
