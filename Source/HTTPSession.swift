@@ -32,13 +32,11 @@ public class HTTPSession {
 		let request = requestWithBaseURLByAppendingPathComponent("/lights/\(selector)")
 		request.HTTPMethod = "GET"
 		session.dataTaskWithRequest(request) { (data, response, error) in
-			dispatch_async(dispatch_get_main_queue()) {
-				if error != nil {
-					completionHandler(request: request, response: response, lights: [], error: error)
-				} else {
-					let deserialized = self.dataToLights(data)
-					completionHandler(request: request, response: response, lights: deserialized.lights, error: deserialized.error)
-				}
+			if error != nil {
+				completionHandler(request: request, response: response, lights: [], error: error)
+			} else {
+				let deserialized = self.dataToLights(data)
+				completionHandler(request: request, response: response, lights: deserialized.lights, error: deserialized.error)
 			}
 		}.resume()
 	}
@@ -50,13 +48,11 @@ public class HTTPSession {
 		request.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: .allZeros, error: nil)
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 		session.dataTaskWithRequest(request) { (data, response, error) in
-			dispatch_async(dispatch_get_main_queue()) {
-				if error != nil {
-					completionHandler(request: request, response: response, results: [], error: error)
-				} else {
-					let deserialized = self.dataToResults(data)
-					completionHandler(request: request, response: response, results: deserialized.results, error: deserialized.error)
-				}
+			if error != nil {
+				completionHandler(request: request, response: response, results: [], error: error)
+			} else {
+				let deserialized = self.dataToResults(data)
+				completionHandler(request: request, response: response, results: deserialized.results, error: deserialized.error)
 			}
 		}.resume()
 	}
