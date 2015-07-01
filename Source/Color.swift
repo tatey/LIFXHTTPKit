@@ -13,7 +13,18 @@ public struct Color: Equatable, Printable {
 	public let saturation: Double
 	public let kelvin: Int
 
+	public init(hue: Double, saturation: Double, kelvin: Int) {
+		self.hue = hue
+		self.saturation = saturation
+		self.kelvin = kelvin
+	}
+
+	func toQueryStringValue(brightness: Double) -> String {
+		return "hue:\(hue) saturation:\(saturation) kelvin:\(kelvin) brightness:\(brightness)"
+	}
+
 	// MARK: Printable
+
 	public var description: String {
 		return "<Color hue: \(hue), saturation: \(saturation), kelvin: \(kelvin)>"
 	}

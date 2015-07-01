@@ -22,7 +22,7 @@ public struct Selector: Equatable {
 		self.value = value
 	}
 
-	public func toString() -> String {
+	func toQueryStringValue() -> String {
 		if type == .All {
 			return type.rawValue
 		} else {

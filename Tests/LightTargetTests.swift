@@ -50,4 +50,20 @@ class LightTargetTests: XCTestCase {
 		}
 		waitForExpectationsWithTimeout(3.0, handler: nil)
 	}
+
+	func testSetColorOnSuccess() {
+		let expectation = expectationWithDescription("setColor")
+		let client = Client(accessToken: Secrets.accessToken)
+		client.fetch { (error) in
+			let lightTarget = client.allLightTarget().toLightTargets().first!
+			let color = Color(hue: 180.0, saturation: 1.0, kelvin: 3500)
+			lightTarget.setColor(color, duration: 0.0) { (results, error) in
+				XCTAssertNil(error, "expected error to be nil")
+				XCTAssertEqual(color, lightTarget.color, "expected light target's color to be given color after completion")
+				expectation.fulfill()
+			}
+			XCTAssertEqual(color, lightTarget.color, "expected light target's color to be given color before completion")
+		}
+		waitForExpectationsWithTimeout(3.0, handler: nil)
+	}
 }

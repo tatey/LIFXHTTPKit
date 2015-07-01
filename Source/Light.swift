@@ -17,7 +17,7 @@ public struct Light: Equatable, Printable {
 		return Light(id: id, power: power, brightness: brightness, color: color, label: label, connected: connected)
 	}
 
-	func lightWithBrightness(brightness: Double) -> Light {
+	func lightWithColor(color: Color, andBrightness brightness: Double) -> Light {
 		return Light(id: id, power: power, brightness: brightness, color: color, label: label, connected: connected)
 	}
 
