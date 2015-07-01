@@ -193,15 +193,16 @@ public class LightTarget {
 	}
 
 	private func deriveBrightness() -> Double {
-		let count = deriveCount()
+		let count = lights.count
 		if count > 0 {
-			return lights.filter({ $0.connected }).reduce(0.0) { (sum, light) in return light.brightness + sum } / Double(count)
+			return lights.filter({ $0.connected }).reduce(0.0, combine: { $1.brightness + $0 }) / Double(count)
 		} else {
 			return 0.0
 		}
 	}
 
 	private func derviceColor() -> Color {
+		let count = lights.count
 		if count > 1 {
 			var hueXTotal: Double = 0.0
 			var hueYTotal: Double = 0.0
