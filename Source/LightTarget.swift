@@ -18,7 +18,7 @@ public class LightTarget {
 	private var lights: [Light]
 	private var observers: [LightTargetObserver]
 
-	private unowned let client: Client
+	private let client: Client
 	private var clientObserver: ClientObserver!
 
 	init(client: Client, selector: Selector) {
