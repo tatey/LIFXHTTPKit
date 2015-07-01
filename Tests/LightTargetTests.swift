@@ -56,17 +56,15 @@ class LightTargetTests: XCTestCase {
 		let client = Client(accessToken: Secrets.accessToken)
 		client.fetch { (error) in
 			let lightTarget = client.allLightTarget().toLightTargets().first!
-			let color = Color(hue: 180.0, saturation: 1.0, kelvin: 3500)
+			let color = Color.color(180.0, saturation: 1.0)
 			lightTarget.setColor(color, duration: 0.0) { (results, error) in
 				XCTAssertNil(error, "expected error to be nil")
 				XCTAssertEqualWithAccuracy(color.hue, lightTarget.color.hue, 0.1, "")
 				XCTAssertEqualWithAccuracy(color.saturation, lightTarget.color.saturation, 0.1, "")
-				XCTAssertEqual(color.kelvin, lightTarget.color.kelvin, "")
 				expectation.fulfill()
 			}
 			XCTAssertEqualWithAccuracy(color.hue, lightTarget.color.hue, 0.1, "")
 			XCTAssertEqualWithAccuracy(color.saturation, lightTarget.color.saturation, 0.1, "")
-			XCTAssertEqual(color.kelvin, lightTarget.color.kelvin, "")
 		}
 		waitForExpectationsWithTimeout(3.0, handler: nil)
 	}

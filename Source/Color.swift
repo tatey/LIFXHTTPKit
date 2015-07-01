@@ -19,8 +19,31 @@ public struct Color: Equatable, Printable {
 		self.kelvin = kelvin
 	}
 
+	public static func color(hue: Double, saturation: Double) -> Color {
+		return Color(hue: hue, saturation: saturation, kelvin: Color.defaultKelvin)
+	}
+
+	public static func white(kelvin: Int) -> Color {
+		return Color(hue: 0.0, saturation: 0.0, kelvin: kelvin)
+	}
+
+	public var isColor: Bool {
+		return !isWhite
+	}
+
+	public var isWhite: Bool {
+		return saturation == 0.0
+	}
+
 	func toQueryStringValue(brightness: Double) -> String {
-		return "hue:\(hue) saturation:\(saturation) kelvin:\(kelvin) brightness:\(brightness)"
+		var components: [String] = ["brightness:\(brightness)"]
+		if isWhite {
+			components.append("kelvin:\(kelvin)")
+		} else {
+			components.append("hue:\(hue)")
+			components.append("saturation:\(saturation)")
+		}
+		return join(" ", components)
 	}
 
 	// MARK: Printable
