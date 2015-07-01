@@ -59,10 +59,14 @@ class LightTargetTests: XCTestCase {
 			let color = Color(hue: 180.0, saturation: 1.0, kelvin: 3500)
 			lightTarget.setColor(color, duration: 0.0) { (results, error) in
 				XCTAssertNil(error, "expected error to be nil")
-				XCTAssertEqual(color, lightTarget.color, "expected light target's color to be given color after completion")
+				XCTAssertEqualWithAccuracy(color.hue, lightTarget.color.hue, 0.1, "")
+				XCTAssertEqualWithAccuracy(color.saturation, lightTarget.color.saturation, 0.1, "")
+				XCTAssertEqual(color.kelvin, lightTarget.color.kelvin, "")
 				expectation.fulfill()
 			}
-			XCTAssertEqual(color, lightTarget.color, "expected light target's color to be given color before completion")
+			XCTAssertEqualWithAccuracy(color.hue, lightTarget.color.hue, 0.1, "")
+			XCTAssertEqualWithAccuracy(color.saturation, lightTarget.color.saturation, 0.1, "")
+			XCTAssertEqual(color.kelvin, lightTarget.color.kelvin, "")
 		}
 		waitForExpectationsWithTimeout(3.0, handler: nil)
 	}
