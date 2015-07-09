@@ -154,7 +154,7 @@ public class LightTarget {
 			dirty = true
 		}
 
-		let newColor = derviceColor()
+		let newColor = deriveColor()
 		if color != newColor {
 			color = newColor
 			dirty = true
@@ -201,7 +201,7 @@ public class LightTarget {
 		}
 	}
 
-	private func derviceColor() -> Color {
+	private func deriveColor() -> Color {
 		let count = lights.count
 		if count > 1 {
 			var hueXTotal: Double = 0.0
