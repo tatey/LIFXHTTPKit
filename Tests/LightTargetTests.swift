@@ -40,7 +40,7 @@ class LightTargetTests: XCTestCase {
 		let client = Client(accessToken: Secrets.accessToken)
 		client.fetch { (error) in
 			let lightTarget = client.allLightTarget().toLightTargets().first!
-			let brightness = 0.75
+			let brightness = Double(arc4random_uniform(100)) / 100.0
 			lightTarget.setBrightness(brightness, duration: 0.0) { (results, error) in
 				XCTAssertNil(error, "expected error to be nil")
 				XCTAssertEqual(brightness, lightTarget.brightness, "expected light target's brightness to be given brightness after completion")
@@ -56,7 +56,7 @@ class LightTargetTests: XCTestCase {
 		let client = Client(accessToken: Secrets.accessToken)
 		client.fetch { (error) in
 			let lightTarget = client.allLightTarget().toLightTargets().first!
-			let color = Color.color(180.0, saturation: 1.0)
+			let color = Color.color(Double(arc4random_uniform(359)) + 1.0, saturation: 1.0)
 			lightTarget.setColor(color, duration: 0.0) { (results, error) in
 				XCTAssertNil(error, "expected error to be nil")
 				XCTAssertEqualWithAccuracy(color.hue, lightTarget.color.hue, 0.1, "")
