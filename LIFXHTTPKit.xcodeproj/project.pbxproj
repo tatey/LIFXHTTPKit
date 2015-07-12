@@ -12,8 +12,9 @@
 		5D5898AE1B1887530024D47B /* LIFXHTTPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */; };
 		5D5898B51B1887530024D47B /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5898B41B1887530024D47B /* ClientTests.swift */; };
 		5D5898BF1B1887650024D47B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5898BE1B1887650024D47B /* Client.swift */; };
+		5DA745151B52493500BBC2D1 /* ClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA745131B52492E00BBC2D1 /* ClientHelper.swift */; };
 		5DA7AB311B3695F3008A8130 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DA7AB2F1B3695BF008A8130 /* Secrets.plist */; };
-		5DA7AB341B369640008A8130 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7AB321B369608008A8130 /* Secrets.swift */; };
+		5DA7AB341B369640008A8130 /* SecretsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7AB321B369608008A8130 /* SecretsHelper.swift */; };
 		5DA7AB441B377ACA008A8130 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7AB431B377ACA008A8130 /* Color.swift */; };
 		5DB41F401B2BD4CA0006F2A5 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F3F1B2BD4CA0006F2A5 /* Errors.swift */; };
 		5DB41F441B2BD5370006F2A5 /* ClientObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F431B2BD5370006F2A5 /* ClientObserver.swift */; };
@@ -44,8 +45,9 @@
 		5D5898B31B1887530024D47B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D5898B41B1887530024D47B /* ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
 		5D5898BE1B1887650024D47B /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		5DA745131B52492E00BBC2D1 /* ClientHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientHelper.swift; sourceTree = "<group>"; };
 		5DA7AB2F1B3695BF008A8130 /* Secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
-		5DA7AB321B369608008A8130 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		5DA7AB321B369608008A8130 /* SecretsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretsHelper.swift; sourceTree = "<group>"; };
 		5DA7AB431B377ACA008A8130 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		5DB41F3F1B2BD4CA0006F2A5 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		5DB41F431B2BD5370006F2A5 /* ClientObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientObserver.swift; sourceTree = "<group>"; };
@@ -124,7 +126,6 @@
 		5D5898B11B1887530024D47B /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				5DA7AB321B369608008A8130 /* Secrets.swift */,
 				5D5898B41B1887530024D47B /* ClientTests.swift */,
 				5DF649D81B2D436A0006EE03 /* LightTargetTests.swift */,
 				5D5898B21B1887530024D47B /* Supporting Files */,
@@ -135,6 +136,8 @@
 		5D5898B21B1887530024D47B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5DA745131B52492E00BBC2D1 /* ClientHelper.swift */,
+				5DA7AB321B369608008A8130 /* SecretsHelper.swift */,
 				5D5898B31B1887530024D47B /* Info.plist */,
 				5DA7AB2F1B3695BF008A8130 /* Secrets.plist */,
 			);
@@ -266,9 +269,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DA745151B52493500BBC2D1 /* ClientHelper.swift in Sources */,
 				5D5898B51B1887530024D47B /* ClientTests.swift in Sources */,
 				5DF649D91B2D436A0006EE03 /* LightTargetTests.swift in Sources */,
-				5DA7AB341B369640008A8130 /* Secrets.swift in Sources */,
+				5DA7AB341B369640008A8130 /* SecretsHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

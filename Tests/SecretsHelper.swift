@@ -5,9 +5,9 @@
 
 import Foundation
 
-class Secrets {
+class SecretsHelper {
 	private static let dictionary: NSDictionary	= {
-		if let path = NSBundle(forClass: Secrets.self).pathForResource("Secrets", ofType: "plist"), dictionary = NSDictionary(contentsOfFile: path) {
+		if let path = NSBundle(forClass: SecretsHelper.self).pathForResource("Secrets", ofType: "plist"), dictionary = NSDictionary(contentsOfFile: path) {
 			return dictionary
 		} else {
 			fatalError("Missing secrets.plist. See README.")

@@ -7,19 +7,9 @@ import XCTest
 import LIFXHTTPKit
 
 class LightTargetTests: XCTestCase {
-	lazy var client: Client = {
-		let c = Client(accessToken: Secrets.accessToken)
-		let s = dispatch_semaphore_create(0)
-		c.fetch { (error) in
-			dispatch_semaphore_signal(s)
-		}
-		dispatch_semaphore_wait(s, DISPATCH_TIME_FOREVER)
-		return c
-	}()
-
 	func testSetPower() {
 		let expectation = expectationWithDescription("setPower")
-		if let lightTarget = client.allLightTarget().toLightTargets().first {
+		if let lightTarget = ClientHelper.sharedClient.allLightTarget().toLightTargets().first {
 			let newPower = !lightTarget.power
 			lightTarget.setPower(newPower, duration: 0.0, completionHandler: { (results, error) in
 				dispatch_async(dispatch_get_main_queue()) {
@@ -34,7 +24,7 @@ class LightTargetTests: XCTestCase {
 
 	func testSetColor() {
 		let expectation = expectationWithDescription("setColor")
-		if let lightTarget = client.allLightTarget().toLightTargets().first {
+		if let lightTarget = ClientHelper.sharedClient.allLightTarget().toLightTargets().first {
 			let newColor = Color.color(Double(arc4random_uniform(360)), saturation: 0.5)
 			lightTarget.setColor(newColor, duration: 0.0, completionHandler: { (results, error) in
 				dispatch_async(dispatch_get_main_queue()) {

@@ -7,16 +7,6 @@ import XCTest
 import LIFXHTTPKit
 
 class ClientTests: XCTestCase {
-	func testFetchWithCompletionHandlerGetsInvoked() {
-		let expectation = expectationWithDescription("fetch")
-		let client = Client(accessToken: Secrets.accessToken)
-		client.fetch { (error) in
-			XCTAssertNil(error, "expected error to be nil")
-			expectation.fulfill()
-		}
-		waitForExpectationsWithTimeout(3.0, handler: nil)
-	}
-
 	func testAllLightsReturnsLightTargetConfiguredWithAllSelector() {
 		let client = Client(accessToken: "")
 		let lightTarget = client.allLightTarget()
