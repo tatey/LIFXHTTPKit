@@ -119,11 +119,11 @@ collection of lights. In fact, a selector which addresses a collection of lights
 will always be more efficient than addressing individual lights yourself.
 
 Don't worry, you can still get fine grained control over individual lights by
-slicing a big light target into lots of little light targets. Here's how to get
+slicing a big light target into little light targets. Here's how to get
 a light target for all the lights associated with the account.
 
 ``` swift
-let lightTarget = all.toLightTargets()
+let lightTargets = all.toLightTargets()
 for lightTarget in lightTarget {
   lightTarget.powerOn(true)
 }
