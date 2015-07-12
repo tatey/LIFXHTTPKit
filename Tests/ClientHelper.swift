@@ -8,7 +8,6 @@ import LIFXHTTPKit
 
 class ClientHelper {
 	static let sharedClient: Client = {
-		println("default")
 		let client = Client(accessToken: SecretsHelper.accessToken)
 		let semaphore = dispatch_semaphore_create(0)
 		client.fetch { (error) in
