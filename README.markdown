@@ -82,7 +82,8 @@ Keep these concepts in the back of your mind when using LIFXHTTPKit:
 ## Detailed Usage
 
 `Client` and `LightTarget` are the core classes of LIFXHTTPKit. Clients are
-configured with an access token and light targets represent addressable lights.
+configured with an access token and light targets represent one or many addressable
+lights.
 
 ``` swift
 let client = Client(accessToken: "c87c73a896b554367fac61f71dd3656af8d93a525a4e87df5952c6078a89d192")
@@ -91,9 +92,9 @@ client.fetch(completionHandler: { (error: NSError?) in -> Void
 })
 ```
 
-Light targets are instantiated using selectors. Selectors are identifiers
-for addressing one or many lights. They are a first class concept in
-LIFXHTTPKit and several convenience methods offer quick access.
+Light targets are instantiated using selectors which are identifiers for
+addressing lights. They are a first class concept in LIFXHTTPKit and several
+convenience methods offer quick access.
 
 The default light target is known as "all" and it addresses all of the
 lights associated with the client.
@@ -116,6 +117,7 @@ for lightTarget in lightTarget {
 Light targets can be inspected at any time based on in-memory cache.
 
 ``` swift
+lightTarget.selector // => <Selector type: "all", value: "">
 lightTarget.power // => true
 lightTarget.brightness // => 0.5
 lightTarget.color // => <Color hue: 180.0, saturation: 1.0, kelvin: 3500>
