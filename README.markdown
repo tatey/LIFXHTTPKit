@@ -277,13 +277,15 @@ Finally, run tests by selecting "Product > Tests" from the menu bar, or use the
 
 ## Contributing
 
-All patches and feedback welcome.
+iOS compatbility and effects API are yet to be implemented. All patches
+and feedback welcome.
 
 1. Fork it (https://github.com/tatey/LIFXHTTPKit/fork)
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
 5. Create a new Pull Request
+
 
 ## Copyright
 
