@@ -75,8 +75,9 @@ Keep these concepts in the back of your mind when using LIFXHTTPKit:
    If you power on one light target than all light targets which share the same
    underlying light are notified of the change.
 5. LIFXHTTPKit wraps the messiness of HTTP and JSON giving you type safety and
-   idiomatic APIs for interacting with the LIFX HTTP API. The library itself has
-   no external dependencies and wraps `NSURLSession`.
+   idiomatic APIs for interacting with the LIFX HTTP API. This framework has
+   no external dependencies and wraps `NSURLSession` making it a safe dependency
+   to add to your project.
 
 ## Client Usage
 
