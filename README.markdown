@@ -116,12 +116,12 @@ for lightTarget in lightTarget {
 Light targets can be inspected at any time based on in-memory cache.
 
 ``` swift
-lightTarget.power # => true
-lightTarget.brightness # => 0.5
-lightTarget.color # => <Color hue: 180.0, saturation: 1.0, kelvin: 3500>
-lightTarget.label # => "Lamp 1"
-lightTarget.connected # => true
-lightTarget.count # => 5
+lightTarget.power // => true
+lightTarget.brightness // => 0.5
+lightTarget.color // => <Color hue: 180.0, saturation: 1.0, kelvin: 3500>
+lightTarget.label // => "Lamp 1"
+lightTarget.connected // => true
+lightTarget.count // => 5
 ```
 
 Cache is updated when the client fetches, or an operation is performed.
