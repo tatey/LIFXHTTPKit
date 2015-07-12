@@ -15,6 +15,16 @@ class LightTargetTests: XCTestCase {
 		}
 	}()
 
+	func testObserver() {
+		let expectation = expectationWithDescription("observer")
+		let observer = lightTarget.addObserver {
+			expectation.fulfill()
+		}
+		lightTarget.setPower(true, duration: 0.0, completionHandler: nil)
+		waitForExpectationsWithTimeout(3.0, handler: nil)
+		lightTarget.removeObserver(observer)
+	}
+
 	func testSetPower() {
 		let expectation = expectationWithDescription("setPower")
 		let newPower = !lightTarget.power
