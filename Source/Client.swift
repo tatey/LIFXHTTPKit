@@ -7,6 +7,7 @@ import Foundation
 
 public class Client {
 	let session: HTTPSession
+
 	private var lights: [Light]
 	private var observers: [ClientObserver]
 
@@ -61,22 +62,14 @@ public class Client {
 
 	func setLightsByReplacingWithLights(lights: [Light]) {
 		let oldLights = self.lights
-		let newLights = oldLights.map { (oldLight) -> Light in
-			for newLight in lights {
-				if oldLight.id == newLight.id && oldLight != newLight {
-					return newLight
-				}
-			}
-			return oldLight
-		}
+		let newLights = lights
 
 		if oldLights != newLights {
 			for observer in observers {
 				observer.lightsDidUpdateHandler(lights: newLights)
 			}
+			self.lights = newLights
 		}
-
-		self.lights = newLights
 	}
 
 	func getLights() -> [Light] {
