@@ -5,6 +5,8 @@
 A nice Mac OS X framework for the [LIFX HTTP API](http://api.developer.lifx.com/docs)
 that has no external dependencies. Generate a personal access token at https://cloud.lifx.com/settings.
 
+*Note*: This is not an official LIFX project and the API is a work-in-progress.
+
 ## Quick Usage
 
 Power on all the lights.
@@ -77,7 +79,7 @@ Keep these concepts in the back of your mind when using LIFXHTTPKit:
    instances of `LightTarget`. If you power on one light target then all light
    targets which share the same underline light are notified of the change.
 
-## Client and LightTarget Usage
+## Detailed Usage
 
 `Client` and `LightTarget` are the core classes of LIFXHTTPKit. Clients are
 configured with an access token and light targets represent addressable lights.
