@@ -56,27 +56,124 @@ all.removeObserver(observer)
 
 ## Concepts
 
+LIFXHTTPKit has been built with Mac OS X and iOS apps in mind. We encourage you
+to use these high level APIs which make it easy to consume the LIFX HTTP API
+without worrying about the specifics of HTTP and managing state.
+
+Keep these concepts in the back of your mind when using LIFXHTTPKit:
+
 1. Everything is a collection. If you're dealing with one light, it's just a
    collection with one element. If you're dealing with many lights, it's a
    collection with many elements. Collections can be sliced into smaller collections.
-   Each collection is a new instance and they're known as a `LightTarget`
+   Each collection is a new instance and they're known as a `LightTarget`.
 2. Everything is asynchronous and optimistic. If you tell a light target to power on
    then the cached property is updated and observers are notified. In the
    instance of failure the property reverts back to its original value.
-   Requests are handled in order.
-3. Observers use a closure based interface. It's light weight and non-magical.
+   Requests are queued and handled in-order.
+3. Observers use a closure based interface. It's fast, light weight and non-magical.
 4. Core state is immutable and shared between all instances of `LightTarget`.
    If you power on one light target than all light targets which share the same
    underlying light are notified of the change.
-5. Low-level API is available. If you're not interested in `LightTarget` then
-   you can use `HTTPSession` for interacting directly with the HTTP API while
-   still benefiting from type safety.
+5. LIFXHTTPKit wraps the messiness of HTTP and JSON giving you type safety and
+   idiomatic APIs for interacting with the LIFX HTTP API. The library itself has
+   no external dependencies and wraps NSURLSession.
+
+## Client Usage
+
+Keep these assumptions in the back of your mind reading reading examples:
+
+* All operations are asynchronous and these examples demonstrate how to
+  use the completion handler. The completion handler is completely optional
+  and can be safely omitted.
+* Closures use verbose syntax for clarity when reading. We encourage you to
+  use the shorthand syntax in Xcode where you'll get inline errors and type
+  inferencing.
+* `Client` and `LightTarget` are the bread and butter of using LIFXHTTPKit.
+  All examples will assume a configured client and light target.
+* Only a subset of the LIFX HTTP API is implemented. We've built this to
+  scratch our own itch and we don't need effects. Patches are welcome.
+
+### Setup
+
+Configure the client and seed it with lights.
+
+``` swift
+let client = Client(accessToken: "c87c73a896b554367fac61f71dd3656af8d93a525a4e87df5952c6078a89d192")
+client.fetch(completionHandler: { (error: NSError?) in -> Void
+  // Error is nil if everything is A-OK.
+})
+```
+
+Then get a light target using a selector. Selectors are identifiers for
+addressing lights and are a first class concept in LIFXHTTPKit. By default
+you get a `LightTarget` which addresses all the lights associated with
+the account.
+
+``` swift
+let allLightTarget = client.allLightTarget()
+```
+
+This is the most efficient way to quickly perform operations on an entire
+collection of lights. In fact, a selector which addresses a collection of lights
+will always be more efficient than addressing individual lights yourself.
+
+Don't worry, you can still get fine grained control over individual lights by
+slicing a big light target into lots of little light targets. Here's how to get
+a light target for all the lights associated with the account.
+
+``` swift
+let lightTarget = all.toLightTargets()
+for lightTarget in lightTarget {
+  lightTarget.powerOn(true)
+}
+```
+
+### Light
+
+TODO: Document
+
+### Result
+
+TODO: Document
+
+### Observers
+
+TODO: Document
+
+### Set Power
+
+Turn lights on or off. `true` to turn on, `false` to turn off. The `duration`
+is optional and defaults to `0.5`.
+
+``` swift
+lightTarget.setPower(true, duration: 0.5, completionHandler: { (results: [Result], error: NSError?) -> Void
+  // println(results)
+})
+```
+
+Toggle power based on the cached state of the light.
+
+``` swift
+lightTarget.setPower(!light.power)
+```
+
+### Set Brightness
+
+TODO: Document
+
+### Set Color
+
+TODO: Document
+
+### Set Color and Brightness
+
+TODO: Document
 
 ## Testing
 
 First, copy the example configuration file.
 
-    $ copy Tests/Secrets.example.plist Tests/Secrets.plist
+    $ cp Tests/Secrets.example.plist Tests/Secrets.plist
 
 Then, paste a personal access token into the copied configuration file. The
 access token must belong to an account that has at least one connected light.
