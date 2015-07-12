@@ -5,7 +5,7 @@
 A nice Mac OS X framework for the [LIFX HTTP API](http://api.developer.lifx.com/docs)
 that has no external dependencies. Generate a personal access token at https://cloud.lifx.com/settings.
 
-*Note: This is not an official LIFX project and the API may continue to change*
+*Note: This is not an official LIFX project and the API may continue to change.*
 
 ## Quick Usage
 
