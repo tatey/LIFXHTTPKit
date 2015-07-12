@@ -98,14 +98,14 @@ public class LightTarget {
 	}
 
 	public func setBrightness(brightness: Double, duration: Float = LightTarget.defaultDuration, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
-		setColor(color, andBrightness: brightness, duration: duration, powerOn: true, completionHandler: completionHandler)
+		setColor(color, brightness: brightness, duration: duration, completionHandler: completionHandler)
 	}
 
 	public func setColor(color: Color, duration: Float = LightTarget.defaultDuration, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
-		setColor(color, andBrightness: brightness, duration: duration, powerOn: true, completionHandler: completionHandler)
+		setColor(color, brightness: brightness, duration: duration, completionHandler: completionHandler)
 	}
 
-	public func setColor(color: Color, andBrightness brightness: Double, duration: Float = LightTarget.defaultDuration, powerOn: Bool = LightTarget.defaultPowerOn, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
+	public func setColor(color: Color, brightness: Double, duration: Float = LightTarget.defaultDuration, powerOn: Bool = LightTarget.defaultPowerOn, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		let newBrightness = brightness
 		let oldBrightness = self.brightness
 		let newColor = color

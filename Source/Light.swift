@@ -33,8 +33,9 @@ public struct Light: Equatable, Printable {
 
 public func ==(lhs: Light, rhs: Light) -> Bool {
 	return lhs.id == rhs.id &&
-		lhs.label == rhs.label &&
 		lhs.power == rhs.power &&
 		lhs.brightness == rhs.brightness &&
+		lhs.color == rhs.color &&
+		lhs.label == rhs.label &&
 		lhs.connected == rhs.connected
 }
