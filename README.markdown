@@ -2,8 +2,8 @@
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-A nice Mac OS X framework for the LIFX HTTP API that has no external dependencies.
-Generate a personal access token at https://cloud.lifx.com/settings.
+A nice Mac OS X framework for the [LIFX HTTP API](http://api.developer.lifx.com/docs)
+that has no external dependencies. Generate a personal access token at https://cloud.lifx.com/settings.
 
 ## Quick Usage
 
@@ -19,15 +19,15 @@ all.setPower(true)
 Toggle power on one light.
 
 ``` swift
-if let one = all.toLightTargets().first() {
-  one.setPower(!one.power)
+if let lightTarget = all.toLightTargets().first() {
+  lightTarget.setPower(!one.power)
 }
 ```
 
 Use a closure to find out when the request completes.
 
 ``` swift
-one.setPower(true) { (results, error) in
+lightTarget.setPower(true) { (results, error) in
   if error != nil {
     println(error)
   } else {
@@ -54,7 +54,7 @@ And remove the observer when you're done.
 all.removeObserver(observer)
 ```
 
-## Concepts
+## Core Concepts
 
 LIFXHTTPKit has been built with Mac OS X and iOS apps in mind. We encourage you
 to use these high level APIs which make it easy to consume the LIFX HTTP API
@@ -76,11 +76,11 @@ Keep these concepts in the back of your mind when using LIFXHTTPKit:
    underlying light are notified of the change.
 5. LIFXHTTPKit wraps the messiness of HTTP and JSON giving you type safety and
    idiomatic APIs for interacting with the LIFX HTTP API. The library itself has
-   no external dependencies and wraps NSURLSession.
+   no external dependencies and wraps `NSURLSession`.
 
 ## Client Usage
 
-Keep these assumptions in the back of your mind reading reading examples:
+Keep these assumptions in the back of your mind reading reading client usage:
 
 * All operations are asynchronous and these examples demonstrate how to
   use the completion handler. The completion handler is completely optional
@@ -89,7 +89,7 @@ Keep these assumptions in the back of your mind reading reading examples:
   use the shorthand syntax in Xcode where you'll get inline errors and type
   inferencing.
 * `Client` and `LightTarget` are the bread and butter of using LIFXHTTPKit.
-  All examples will assume a configured client and light target.
+  All examples assume a configured client and light target.
 * Only a subset of the LIFX HTTP API is implemented. We've built this to
   scratch our own itch and we don't need effects. Patches are welcome.
 
@@ -110,7 +110,7 @@ you get a `LightTarget` which addresses all the lights associated with
 the account.
 
 ``` swift
-let allLightTarget = client.allLightTarget()
+let all = client.allLightTarget()
 ```
 
 This is the most efficient way to quickly perform operations on an entire
