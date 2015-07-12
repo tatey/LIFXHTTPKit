@@ -27,7 +27,7 @@ if let one = all.toLightTargets().first() {
 Use a closure to find out when the request completes.
 
 ``` swift
-one.setPower(!one.power) { (results, error) in
+one.setPower(true) { (results, error) in
   if error != nil {
     println(error)
   } else {
