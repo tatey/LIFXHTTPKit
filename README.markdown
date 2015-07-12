@@ -66,10 +66,10 @@ Keep these concepts in the back of your mind when using LIFXHTTPKit:
    collection with one element. If you're dealing with many lights, it's a
    collection with many elements. Collections can be sliced into smaller collections.
    Each collection is a new instance and they're known as a `LightTarget`.
-2. Everything is asynchronous and optimistic. If you tell a light target to power on
+2. Everything is asynchronous and optimistic. If you tell a light target to power on,
    then the cached property is immediately updated and observers are notified.
    If there is a failure the property reverts back to is original value. Operations
-   are handled serially and in-order in a background thread.
+   are handled serially, in-order, and in a background queue.
 3. Observers are closure based and notify listeners when state changes. Binding views
    to state using observers means you can consolidate your view logic into discrete
    methods that respond to network and local changes.
@@ -128,10 +128,10 @@ disconnected are marked appropriately.
 
 ### Observers
 
-Use observers to opt-in to light target state changes. Observers are
-triggered as the result of remote network responses or locally initiated
-operations. Either way, it's a good place to put all your logic for updating
-a view.
+Use observers to opt-in to light target state changes. State may change
+as the result of a network response, or a locally initiated operation.
+Either way, you're less likely to have bugs if you place your logic
+for updating views here.
 
 ``` swift
 class LightView: NSView {
@@ -158,11 +158,13 @@ class LightView: NSView {
 }
 ```
 
-Observers are triggered in the background queue of the client. Use `dispatch_async()`
-to jump back onto the main thread.
+Keep these things in the back of your mind when using observers:
 
-Lastly, observers must be explicitly removed to prevent memory leaks. The destructor
-is a good place to remove an observer.
+* Observers may be notified in the background queue of the client. You can use
+  `dispatch_async` to jump to a different queue.
+* Observers must be explicitly removed to prevent memory leaks. The destructor
+  is a good place to remove an observer in the object lifecycle. You can
+  add as many observers as you want as long as you remove them when you're done.
 
 ### Get Power
 
@@ -187,8 +189,9 @@ lightTarget.setPower(true, duration: 0.5, completionHandler: { (results: [Result
 
 ### Get Brightness
 
-Returns the average of the brightness if the light target contains mixed
-brightnesses. A brightness of 0% is `0.0` and a brightness of 100% is `1.0`.
+Returns the average of the brightness for connected lights if the light target
+contains mixed brightnesses. A brightness of 0% is `0.0` and a brightness of
+100% is `1.0`.
 
 ``` swift
 lightTarget.brightness // => 0.5
@@ -196,7 +199,7 @@ lightTarget.brightness // => 0.5
 
 ### Set Brightness
 
-Set the brightness of the lights. A brightness of 50% is `0.5`. The `duration`
+Set the brightness of the lights. A brightness of 75% is `0.75`. The `duration`
 is optional and defaults to `0.5`. `powerOn` is optional and defaults to
 `true`. If `powerOn` is false then the operation has no physical effect
 on the lights until it is powered on.
@@ -209,15 +212,15 @@ lightTarget.setBrightness(1.0, duration: 0.5, powerOn: true, completionHandler: 
 
 ### Get Color
 
-Returns the average of the colors if the light target contains mixed
-colors.
+Returns the average of the colors for connected lights if the light target
+contains mixed colors.
 
 ``` swift
 lightTarget.color // => <Color hue: 180.0, saturation: 1.0, kelvin: 3500>
 ```
 
 LIFX lights represent color using hue/saturation and whites using kelvin.
-Determine if a light is white or color using the predicate properties.
+Determine if a light is white or color using these predicates.
 
 ``` swift
 let color = lightTarget.color
