@@ -7,64 +7,42 @@ import XCTest
 import LIFXHTTPKit
 
 class LightTargetTests: XCTestCase {
-	func testObserverIsInvokedAfterStateChange() {
-		let expectation = expectationWithDescription("observer")
-		let client = Client(accessToken: Secrets.accessToken)
-		let lightTarget = client.allLightTarget()
-		lightTarget.addObserver {
-			XCTAssertTrue(lightTarget.count > 0, "expected there to be at least one light")
-			expectation.fulfill()
+	lazy var client: Client = {
+		let c = Client(accessToken: Secrets.accessToken)
+		let s = dispatch_semaphore_create(0)
+		c.fetch { (error) in
+			dispatch_semaphore_signal(s)
 		}
-		client.fetch()
-		waitForExpectationsWithTimeout(3.0, handler: nil)
-	}
+		dispatch_semaphore_wait(s, DISPATCH_TIME_FOREVER)
+		return c
+	}()
 
-	func testSetPowerOnSucess() {
+	func testSetPower() {
 		let expectation = expectationWithDescription("setPower")
-		let client = Client(accessToken: Secrets.accessToken)
-		client.fetch { (error) in
-			let lightTarget = client.allLightTarget().toLightTargets().first!
-			let power = !lightTarget.power
-			lightTarget.setPower(power, duration: 0.0) { (results, error) in
-				XCTAssertNil(error, "expected error to be nil")
-				XCTAssertEqual(power, lightTarget.power, "expected light target's power to be given power after completion")
-				expectation.fulfill()
-			}
-			XCTAssertEqual(power, lightTarget.power, "expected light target's power to be given power before completion")
+		if let lightTarget = client.allLightTarget().toLightTargets().first {
+			let newPower = !lightTarget.power
+			lightTarget.setPower(newPower, duration: 0.0, completionHandler: { (results, error) in
+				dispatch_async(dispatch_get_main_queue()) {
+					XCTAssertEqual(newPower, lightTarget.power, "power is new value after operation is completed")
+					expectation.fulfill()
+				}
+			})
+			XCTAssertEqual(newPower, lightTarget.power, "power is optimstically set to new value")
 		}
 		waitForExpectationsWithTimeout(3.0, handler: nil)
 	}
 
-	func testSetBrightnessOnSuccess() {
-		let expectation = expectationWithDescription("setBrightness")
-		let client = Client(accessToken: Secrets.accessToken)
-		client.fetch { (error) in
-			let lightTarget = client.allLightTarget().toLightTargets().first!
-			let brightness = Double(arc4random_uniform(100)) / 100.0
-			lightTarget.setBrightness(brightness, duration: 0.0) { (results, error) in
-				XCTAssertNil(error, "expected error to be nil")
-				XCTAssertEqual(brightness, lightTarget.brightness, "expected light target's brightness to be given brightness after completion")
-				expectation.fulfill()
-			}
-			XCTAssertEqual(brightness, lightTarget.brightness, "expected light target's brightness to be given brightness before completion")
-		}
-		waitForExpectationsWithTimeout(3.0, handler: nil)
-	}
-
-	func testSetColorOnSuccess() {
+	func testSetColor() {
 		let expectation = expectationWithDescription("setColor")
-		let client = Client(accessToken: Secrets.accessToken)
-		client.fetch { (error) in
-			let lightTarget = client.allLightTarget().toLightTargets().first!
-			let color = Color.color(Double(arc4random_uniform(359)) + 1.0, saturation: 1.0)
-			lightTarget.setColor(color, duration: 0.0) { (results, error) in
-				XCTAssertNil(error, "expected error to be nil")
-				XCTAssertEqualWithAccuracy(color.hue, lightTarget.color.hue, 0.1, "")
-				XCTAssertEqualWithAccuracy(color.saturation, lightTarget.color.saturation, 0.1, "")
-				expectation.fulfill()
-			}
-			XCTAssertEqualWithAccuracy(color.hue, lightTarget.color.hue, 0.1, "")
-			XCTAssertEqualWithAccuracy(color.saturation, lightTarget.color.saturation, 0.1, "")
+		if let lightTarget = client.allLightTarget().toLightTargets().first {
+			let newColor = Color.color(Double(arc4random_uniform(360)), saturation: 0.5)
+			lightTarget.setColor(newColor, duration: 0.0, completionHandler: { (results, error) in
+				dispatch_async(dispatch_get_main_queue()) {
+					XCTAssertEqual(newColor.hue, lightTarget.color.hue, "hue is new value after operation is completed")
+					expectation.fulfill()
+				}
+			})
+			XCTAssertEqual(newColor.hue, lightTarget.color.hue, "hue is optimsitically set to new value")
 		}
 		waitForExpectationsWithTimeout(3.0, handler: nil)
 	}
