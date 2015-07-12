@@ -6,6 +6,9 @@
 import Foundation
 
 public class LightTarget {
+	public static let defaultDuration: Float = 0.5
+	public static let defaultPowerOn: Bool = true
+
 	public private(set) var power: Bool
 	public private(set) var brightness: Double
 	public private(set) var color: Color
@@ -80,7 +83,7 @@ public class LightTarget {
 		return lights
 	}
 
-	public func setPower(power: Bool, duration: Float = 0.5, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
+	public func setPower(power: Bool, duration: Float = LightTarget.defaultDuration, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		let newPower = power
 		let oldPower = self.power
 		client.setLightsByReplacingWithLights(lights.map({ $0.lightWithPower(newPower) }))
@@ -94,15 +97,15 @@ public class LightTarget {
 		}
 	}
 
-	public func setBrightness(brightness: Double, duration: Float = 0.5, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
+	public func setBrightness(brightness: Double, duration: Float = LightTarget.defaultDuration, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		setColor(color, andBrightness: brightness, duration: duration, powerOn: true, completionHandler: completionHandler)
 	}
 
-	public func setColor(color: Color, duration: Float = 0.5, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
+	public func setColor(color: Color, duration: Float = LightTarget.defaultDuration, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		setColor(color, andBrightness: brightness, duration: duration, powerOn: true, completionHandler: completionHandler)
 	}
 
-	public func setColor(color: Color, andBrightness brightness: Double, duration: Float = 0.5, powerOn: Bool = true, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
+	public func setColor(color: Color, andBrightness brightness: Double, duration: Float = LightTarget.defaultDuration, powerOn: Bool = LightTarget.defaultPowerOn, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		let newBrightness = brightness
 		let oldBrightness = self.brightness
 		let newColor = color
