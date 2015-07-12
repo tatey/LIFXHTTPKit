@@ -17,6 +17,12 @@ public class Client {
 		observers = []
 	}
 
+	public init(session: HTTPSession) {
+		self.session = session
+		lights = []
+		observers = []
+	}
+
 	public func fetch(completionHandler: ((error: NSError?) -> Void)? = nil) {
 		session.lights(selector: "all") { [unowned self] (request, response, lights, error) in
 			if error != nil {
