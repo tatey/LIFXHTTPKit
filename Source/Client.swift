@@ -11,10 +11,9 @@ public class Client {
 	private var lights: [Light]
 	private var observers: [ClientObserver]
 
-	public init(accessToken: String) {
-		session = HTTPSession(accessToken: accessToken)
-		lights = []
-		observers = []
+	public convenience init(accessToken: String) {
+		let session = HTTPSession(accessToken: accessToken)
+		self.init(session: session)
 	}
 
 	public init(session: HTTPSession) {
