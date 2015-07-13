@@ -71,14 +71,6 @@ public class LightTarget {
 		return lights.map { (light) in return self.client.lightTargetWithSelector(Selector(type: .ID, value: light.id)) }
 	}
 
-	public func toGroupLightTargets() -> [LightTarget] {
-		return []
-	}
-
-	public func toLocationLightTargets() -> [LightTarget] {
-		return []
-	}
-
 	public func toLights() -> [Light] {
 		return lights
 	}
