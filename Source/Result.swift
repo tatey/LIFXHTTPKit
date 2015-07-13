@@ -16,8 +16,9 @@ public struct Result: Equatable, Printable {
 	public let status: Status
 
 	// MARK: Printable
+	
 	public var description: String {
-		return "<Result id: \(id), status: \(status.rawValue)>"
+		return "<Result id: \"\(id)\", status: \"\(status.rawValue)\">"
 	}
 }
 

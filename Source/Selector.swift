@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct Selector: Equatable {
+public struct Selector: Equatable, Printable {
 	typealias Filter = (light: Light) -> Bool
 
 	public enum Type: String {
@@ -39,6 +39,12 @@ public struct Selector: Equatable {
 		case .Label:
 			return { (light) in return light.label == self.value }
 		}
+	}
+
+	// MARK: Printable
+
+	public var description: String {
+		return "<Selector type: \"\(type)\", value: \"\(value)\">"
 	}
 }
 

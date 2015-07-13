@@ -26,8 +26,9 @@ public struct Light: Equatable, Printable {
 	}
 
 	// MARK: Printable
+	
 	public var description: String {
-		return "<Light id: \(id), label: \(label), power: \(power), brightness: \(brightness), color: \(color), connected: \(connected)>"
+		return "<Light id: \"\(id)\", label: \"\(label)\", power: \(power), brightness: \(brightness), color: \(color), connected: \(connected)>"
 	}
 }
 
