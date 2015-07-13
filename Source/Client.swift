@@ -67,7 +67,18 @@ public class Client {
 
 	func setLightsByReplacingWithLights(lights: [Light]) {
 		let oldLights = self.lights
-		let newLights = lights
+		var newLights: [Light] = []
+
+		for light in lights {
+			if !contains(newLights, { $0.id == light.id }) {
+				newLights.append(light)
+			}
+		}
+		for light in oldLights {
+			if !contains(newLights, { $0.id == light.id }) {
+				newLights.append(light)
+			}
+		}
 
 		if oldLights != newLights {
 			for observer in observers {
