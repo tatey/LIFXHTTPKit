@@ -8,7 +8,7 @@ import Foundation
 public class Client {
 	let session: HTTPSession
 
-	private var lights: [Light]
+	private(set) var lights: [Light]
 	private var observers: [ClientObserver]
 
 	public convenience init(accessToken: String) {
@@ -86,9 +86,5 @@ public class Client {
 			}
 			self.lights = newLights
 		}
-	}
-
-	func getLights() -> [Light] {
-		return lights
 	}
 }

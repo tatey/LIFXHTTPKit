@@ -42,7 +42,7 @@ public class LightTarget {
 			self.setLightsByApplyingFilterWithLights(lights)
 		}
 
-		setLightsByApplyingFilterWithLights(client.getLights())
+		setLightsByApplyingFilterWithLights(client.lights)
 	}
 
 	deinit {
