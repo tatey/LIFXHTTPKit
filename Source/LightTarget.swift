@@ -39,15 +39,17 @@ public class LightTarget {
 
 		self.client = client
 		clientObserver = client.addObserver { [unowned self] (lights) in
-			self.setLightsByApplyingFilterWithLights(lights)
+			self.updateLights(lights)
 		}
 
-		setLightsByApplyingFilterWithLights(client.lights)
+		updateLights(client.lights)
 	}
 
 	deinit {
 		client.removeObserver(clientObserver)
 	}
+
+	// MARK: Observers
 
 	public func addObserver(stateDidUpdateHandler: LightTargetObserver.StateDidUpdate) -> LightTargetObserver {
 		let observer = LightTargetObserver(stateDidUpdateHandler: stateDidUpdateHandler)
@@ -67,6 +69,14 @@ public class LightTarget {
 		observers = []
 	}
 
+	private func notifyObservers() {
+		for observer in observers {
+			observer.stateDidUpdateHandler()
+		}
+	}
+
+	// MARK: Slicing
+
 	public func toLightTargets() -> [LightTarget] {
 		return lights.map { (light) in return self.client.lightTargetWithSelector(Selector(type: .ID, value: light.id)) }
 	}
@@ -75,12 +85,14 @@ public class LightTarget {
 		return lights
 	}
 
+	// MARK: Lighting Operations
+
 	public func setPower(power: Bool, duration: Float = LightTarget.defaultDuration, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		let newPower = power
 		let oldPower = self.power
 		client.updateLights(lights.map({ $0.lightWithPower(newPower) }))
 		client.session.setLightsPower(selector.toQueryStringValue(), power: newPower, duration: duration) { [unowned self] (request, response, results, error) in
-			var newLights = self.lights(self.lights, byDeterminingConnectivityWithResults: results)
+			var newLights = self.lightsByDeterminingConnectivityWithResults(self.lights, results: results)
 			if error != nil {
 				newLights = newLights.map({ $0.lightWithPower(oldPower) })
 			}
@@ -104,7 +116,7 @@ public class LightTarget {
 		let oldColor = self.color
 		client.updateLights(lights.map({ $0.lightWithColor(newColor, andBrightness: newBrightness) }))
 		client.session.setLightsColor(selector.toQueryStringValue(), color: newColor.toQueryStringValue(newBrightness), duration: duration, powerOn: powerOn) { [unowned self] (request, response, results, error) in
-			var newLights = self.lights(self.lights, byDeterminingConnectivityWithResults: results)
+			var newLights = self.lightsByDeterminingConnectivityWithResults(self.lights, results: results)
 			if error != nil {
 				newLights = newLights.map({ $0.lightWithColor(oldColor, andBrightness: oldBrightness) })
 			}
@@ -113,12 +125,14 @@ public class LightTarget {
 		}
 	}
 
-	private func setLightsByApplyingFilterWithLights(lights: [Light]) {
+	// MARK: Helpers
+
+	private func updateLights(lights: [Light]) {
 		self.lights = lights.filter(self.selector.toFilter())
 		dirtyCheck()
 	}
 
-	private func lights(lights: [Light], byDeterminingConnectivityWithResults results: [Result]) -> [Light] {
+	private func lightsByDeterminingConnectivityWithResults(lights: [Light], results: [Result]) -> [Light] {
 		return lights.map { (light) in
 			for result in results {
 				if result.id == light.id {
@@ -133,6 +147,8 @@ public class LightTarget {
 			return light
 		}
 	}
+
+	// MARK: Dirty Checking
 
 	private func dirtyCheck() {
 		var dirty = false
@@ -245,11 +261,5 @@ public class LightTarget {
 
 	private func deriveCount() -> Int {
 		return lights.count
-	}
-
-	private func notifyObservers() {
-		for observer in observers {
-			observer.stateDidUpdateHandler()
-		}
 	}
 }
