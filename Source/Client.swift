@@ -65,7 +65,7 @@ public class Client {
 		}
 	}
 
-	func setLightsByReplacingWithLights(lights: [Light]) {
+	func updateLights(lights: [Light]) {
 		let oldLights = self.lights
 		var newLights: [Light] = []
 

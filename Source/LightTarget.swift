@@ -86,13 +86,13 @@ public class LightTarget {
 	public func setPower(power: Bool, duration: Float = LightTarget.defaultDuration, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		let newPower = power
 		let oldPower = self.power
-		client.setLightsByReplacingWithLights(lights.map({ $0.lightWithPower(newPower) }))
+		client.updateLights(lights.map({ $0.lightWithPower(newPower) }))
 		client.session.setLightsPower(selector.toQueryStringValue(), power: newPower, duration: duration) { [unowned self] (request, response, results, error) in
 			var newLights = self.lights(self.lights, byDeterminingConnectivityWithResults: results)
 			if error != nil {
 				newLights = newLights.map({ $0.lightWithPower(oldPower) })
 			}
-			self.client.setLightsByReplacingWithLights(newLights)
+			self.client.updateLights(newLights)
 			completionHandler?(results: results, error: error)
 		}
 	}
@@ -110,13 +110,13 @@ public class LightTarget {
 		let oldBrightness = self.brightness
 		let newColor = color
 		let oldColor = self.color
-		client.setLightsByReplacingWithLights(lights.map({ $0.lightWithColor(newColor, andBrightness: newBrightness) }))
+		client.updateLights(lights.map({ $0.lightWithColor(newColor, andBrightness: newBrightness) }))
 		client.session.setLightsColor(selector.toQueryStringValue(), color: newColor.toQueryStringValue(newBrightness), duration: duration, powerOn: powerOn) { [unowned self] (request, response, results, error) in
 			var newLights = self.lights(self.lights, byDeterminingConnectivityWithResults: results)
 			if error != nil {
 				newLights = newLights.map({ $0.lightWithColor(oldColor, andBrightness: oldBrightness) })
 			}
-			self.client.setLightsByReplacingWithLights(newLights)
+			self.client.updateLights(newLights)
 			completionHandler?(results: results, error: error)
 		}
 	}
