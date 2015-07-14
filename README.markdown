@@ -50,10 +50,20 @@ let observer = all.addObserver {
 }
 ```
 
-And remove the observer when you're done.
+...and remove the observer when you're done.
 
 ``` swift
 all.removeObserver(observer)
+```
+
+Get the light's state.
+
+``` swift
+lightTarget.selector // => <Selector type: "id", value: "d3b2f2d97452">
+lightTarget.power // => true
+lightTarget.brightness // => 0.5
+lightTarget.color // => <Color hue: 180.0, saturation: 1.0, kelvin: 3500>
+lightTarget.label // => "Lamp 1"
 ```
 
 ## Concepts
