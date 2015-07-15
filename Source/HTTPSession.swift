@@ -105,13 +105,31 @@ public class HTTPSession {
 				power = lightJSONObject["power"] as? String,
 				brightness = lightJSONObject["brightness"] as? Double,
 				colorJSONObject = lightJSONObject["color"] as? NSDictionary,
-				hue = colorJSONObject["hue"] as? Double,
-				saturation = colorJSONObject["saturation"] as? Double,
-				kelvin = colorJSONObject["kelvin"] as? Int,
+				colorHue = colorJSONObject["hue"] as? Double,
+				colorSaturation = colorJSONObject["saturation"] as? Double,
+				colorKelvin = colorJSONObject["kelvin"] as? Int,
 				label = lightJSONObject["label"] as? String,
 				connected = lightJSONObject["connected"] as? Bool {
-					let color = Color(hue: hue, saturation: saturation, kelvin: kelvin)
-					let light = Light(id: id, power: power == "on", brightness: brightness, color: color, label: label, connected: connected)
+					let group: Group?
+					if let groupJSONObject = lightJSONObject["group"] as? NSDictionary,
+						groupId = groupJSONObject["id"] as? String,
+						groupLabel = groupJSONObject["label"] as? String {
+							group = Group(id: groupId, label: groupLabel)
+					} else {
+						group = nil
+					}
+
+					let location: Location?
+					if let locationJSONObject = lightJSONObject["location"] as? NSDictionary,
+						locationId = locationJSONObject["id"] as? String,
+						locationLabel = locationJSONObject["label"] as? String {
+							location = Location(id: locationId, label: locationLabel)
+					} else {
+						location = nil
+					}
+
+					let color = Color(hue: colorHue, saturation: colorSaturation, kelvin: colorKelvin)
+					let light = Light(id: id, power: power == "on", brightness: brightness, color: color, label: label, connected: connected, group: group, location: location)
 					lights.append(light)
 			} else {
 				return ([], NSError(domain: ErrorDomain, code: ErrorCode.JSONInvalid.rawValue, userInfo: [NSLocalizedDescriptionKey: "JSON object is missing required properties"]))
