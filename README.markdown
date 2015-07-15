@@ -336,7 +336,7 @@ Determines if the lights are connected and reachable over the internet.
 `true` if at least one light addressed by the light target is reachable.
 `false` if all of the lights are unreachable.
 
-``` swit
+``` swift
 lightTarget.connected // => true
 ```
 
