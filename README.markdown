@@ -337,7 +337,7 @@ Determines if the lights are connected and reachable over the internet.
 `false` if all of the lights are unreachable.
 
 ``` swit
-lightTarget.connected
+lightTarget.connected // => true
 ```
 
 The connected property is updated each time an operation is performed
