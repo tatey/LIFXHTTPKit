@@ -7,6 +7,13 @@ that has no external dependencies. Generate a personal access token at https://c
 
 *Note: This is not an official LIFX project and the API may continue to change.*
 
+## System Dependencies
+
+* Xcode 6.4
+* Swift 1.3
+* Mac OS X 10.10
+* *iOS support is planned*
+
 ## Quick Usage
 
 Power on all the lights.
@@ -136,9 +143,47 @@ lightTarget.connected // => true
 lightTarget.count // => 5
 ```
 
-Cache is updated when the client fetches, or an operation is performed.
-The results of the operation are inspected and lights which have become
-disconnected are marked appropriately.
+The in-memory cache is updated when the client fetches, or an operation is
+performed. The results of the operation are inspected and lights which
+have become disconnected are marked appropriately.
+
+### Selectors
+
+Any light target can be sliced into a light, group or location light target
+using these convenience methods.
+
+``` swift
+// Get all lights associated with the account
+let all = client.allLightTarget()
+
+// Lights
+let lights = all.toLightTargets()
+for light in lights {
+  light.setBrightness(0.5)
+}
+
+// Groups
+let groups = all.toGroupTargets()
+for group in groups {
+  group.setBrightness(0.5)
+}
+
+// Locations
+let locations = all.toLocationTargets()
+for location in locations {
+  location.setBrightness(0.5)
+}
+```
+
+Alternatively instantiate a light target using a custom selector.
+
+``` swift
+let selector = Selector(type: .GroupID, value: "1c8de82b81f445e7cfaafae49b259c71")
+let lights = client.lightTargetWithSelector(selector)
+lights.setBrightness(0.5)
+```
+
+Supported types are `.All`, `.ID`, `.Label`, `.GroupID`, and `.LocationID`.
 
 ### Observers
 
@@ -272,6 +317,49 @@ let color = Color.color(hue: 180.0, saturation: 1.0)
 lightTarget.setColor(color, brightness: 0.75, duration: 0.5, powerOn: true, completionHandler: { (results: [Result], error: NSError?) -> Void
   // println(results)
 })
+```
+
+### Get Label
+
+Returns the label for the light target. If the light target is a group or
+location then the label will be derived from the group or location.
+
+``` swift
+lightTarget.label // => "Lamp 1"
+```
+
+The "all" light target will always return `"All"` as the label.
+
+### Get Connected
+
+Determines if the lights are connected and reachable over the internet.
+`true` if at least one light addressed by the light target is reachable.
+`false` if all of the lights are unreachable.
+
+``` swit
+lightTarget.connected
+```
+
+The connected property is updated each time an operation is performed
+using the results returned in the response.
+
+### Get Count
+
+Returns the number of known lights addressable by the light target.
+
+``` swift
+lightTarget.count // => 5
+```
+
+### Get Lights
+
+Inspect the lights addressable by the light target. If you're dealing
+with a mixed group you can inspect each light individually.
+
+``` swift
+for light in lightTarget.toLights() {
+  println(light.id)
+}
 ```
 
 ## Testing
