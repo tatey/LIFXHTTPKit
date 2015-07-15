@@ -81,6 +81,30 @@ public class LightTarget {
 		return lights.map { (light) in return self.client.lightTargetWithSelector(Selector(type: .ID, value: light.id)) }
 	}
 
+	public func toGroupTargets() -> [LightTarget] {
+		return lights.reduce([]) { (groups, light) -> [Group] in
+			if let group = light.group where !contains(groups, group) {
+				return groups + [group]
+			} else {
+				return groups
+			}
+		}.map { (group) in
+			return self.client.lightTargetWithSelector(Selector(type: .GroupID, value: group.id))
+		}
+	}
+
+	public func toLocationTargets() -> [LightTarget] {
+		return lights.reduce([]) { (locations, light) -> [Location] in
+			if let location = light.location where !contains(locations, location) {
+				return locations + [location]
+			} else {
+				return locations
+			}
+		}.map { (location) in
+			return self.client.lightTargetWithSelector(Selector(type: .LocationID, value: location.id))
+		}
+	}
+
 	public func toLights() -> [Light] {
 		return lights
 	}
@@ -247,6 +271,18 @@ public class LightTarget {
 			return "All"
 		case .ID, .Label:
 			return lights.first?.label ?? ""
+		case .GroupID:
+			if let group = lights.filter({ $0.group != nil }).first?.group {
+				return group.label
+			} else {
+				return ""
+			}
+		case .LocationID:
+			if let location = lights.filter({ $0.location != nil }).first?.location {
+				return location.label
+			} else {
+				return ""
+			}
 		}
 	}
 

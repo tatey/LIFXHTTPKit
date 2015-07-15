@@ -9,9 +9,11 @@ public struct Selector: Equatable, Printable {
 	typealias Filter = (light: Light) -> Bool
 
 	public enum Type: String {
-		case All   = "all"
-		case ID    = "id"
-		case Label = "label"
+		case All        = "all"
+		case ID         = "id"
+		case GroupID    = "group_id"
+		case LocationID = "location_id"
+		case Label      = "label"
 	}
 
 	public let type: Type
@@ -36,6 +38,10 @@ public struct Selector: Equatable, Printable {
 			return { (light) in return true }
 		case .ID:
 			return { (light) in return light.id == self.value }
+		case .GroupID:
+			return { (light) in return light.group?.id == self.value }
+		case .LocationID:
+			return { (light) in return light.location?.id == self.value }
 		case .Label:
 			return { (light) in return light.label == self.value }
 		}
