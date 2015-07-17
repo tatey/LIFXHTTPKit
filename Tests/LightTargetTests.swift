@@ -70,10 +70,12 @@ class LightTargetTests: XCTestCase {
 	func testToGroupTargets() {
 		let groups = lightTarget.toGroupTargets()
 		XCTAssertGreaterThan(groups.count, 0, "expected at least one group")
+		XCTAssertEqual(groups.first!.selector.type, Selector.Type.GroupID, "expected selector type to be GroupID")
 	}
 
 	func testToLocationTargets() {
 		let locations = lightTarget.toLocationTargets()
 		XCTAssertGreaterThan(locations.count, 0, "expected at least one location")
+		XCTAssertEqual(locations.first!.selector.type, Selector.Type.LocationID, "expected selector type to be LocationID")
 	}
 }
