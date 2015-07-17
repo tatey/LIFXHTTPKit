@@ -113,7 +113,7 @@ public class HTTPSession {
 					let group: Group?
 					if let groupJSONObject = lightJSONObject["group"] as? NSDictionary,
 						groupId = groupJSONObject["id"] as? String,
-						groupLabel = groupJSONObject["label"] as? String {
+						groupLabel = groupJSONObject["name"] as? String {
 							group = Group(id: groupId, label: groupLabel)
 					} else {
 						group = nil
@@ -122,7 +122,7 @@ public class HTTPSession {
 					let location: Location?
 					if let locationJSONObject = lightJSONObject["location"] as? NSDictionary,
 						locationId = locationJSONObject["id"] as? String,
-						locationLabel = locationJSONObject["label"] as? String {
+						locationLabel = locationJSONObject["name"] as? String {
 							location = Location(id: locationId, label: locationLabel)
 					} else {
 						location = nil

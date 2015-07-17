@@ -66,4 +66,14 @@ class LightTargetTests: XCTestCase {
 		XCTAssertEqual(newColor.hue, lightTarget.color.hue, "hue is optimsitically set to new value")
 		waitForExpectationsWithTimeout(3.0, handler: nil)
 	}
+
+	func testToGroupTargets() {
+		let groups = lightTarget.toGroupTargets()
+		XCTAssertGreaterThan(groups.count, 0, "expected at least one group")
+	}
+
+	func testToLocationTargets() {
+		let locations = lightTarget.toLocationTargets()
+		XCTAssertGreaterThan(locations.count, 0, "expected at least one location")
+	}
 }
