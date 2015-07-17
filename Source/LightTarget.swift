@@ -273,13 +273,13 @@ public class LightTarget {
 			return lights.first?.label ?? ""
 		case .GroupID:
 			if let group = lights.filter({ $0.group != nil }).first?.group {
-				return group.label
+				return group.name
 			} else {
 				return ""
 			}
 		case .LocationID:
 			if let location = lights.filter({ $0.location != nil }).first?.location {
-				return location.label
+				return location.name
 			} else {
 				return ""
 			}

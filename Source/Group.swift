@@ -7,15 +7,15 @@ import Foundation
 
 public struct Group: Equatable, Printable {
 	public let id: String
-	public let label: String
+	public let name: String
 
 	// MARK: Printable
 
 	public var description: String {
-		return "<Group id: \"\(id)\", label: \"\(label)\">"
+		return "<Group id: \"\(id)\", label: \"\(name)\">"
 	}
 }
 
 public func ==(lhs: Group, rhs: Group) -> Bool {
-	return lhs.id == rhs.id && lhs.label == rhs.label
+	return lhs.id == rhs.id && lhs.name == rhs.name
 }

@@ -7,15 +7,15 @@ import Foundation
 
 public struct Location: Equatable {
 	public let id: String
-	public let label: String
+	public let name: String
 
 	// MARK: Printable
 
 	public var description: String {
-		return "<Location id: \"\(id)\", label: \"\(label)\">"
+		return "<Location id: \"\(id)\", label: \"\(name)\">"
 	}
 }
 
 public func ==(lhs: Location, rhs: Location) -> Bool {
-	return lhs.id == rhs.id && lhs.label == rhs.label
+	return lhs.id == rhs.id && lhs.name == rhs.name
 }
