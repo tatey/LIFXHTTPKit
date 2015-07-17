@@ -375,18 +375,6 @@ You can generate a personal access tokens at https://cloud.lifx.com/settings.
 Finally, run tests by selecting "Product > Tests" from the menu bar, or use the
 "⌘ + U" shortcut.
 
-## Contributing
-
-All patches and feedback welcome. See the
-[issues](https://github.com/tatey/LIFXHTTPKit/issues) if you don't know where to
-start.
-
-1. Fork it (https://github.com/tatey/LIFXHTTPKit/fork)
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
-5. Create a new Pull Request
-
 ## Copyright
 
 Copyright (c) 2015 Tate Johnson. All rights reserved. Licensed under the MIT license.
