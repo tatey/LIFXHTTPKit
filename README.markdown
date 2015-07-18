@@ -258,6 +258,9 @@ contains mixed brightnesses. A brightness of 0% is `0.0` and a brightness of
 lightTarget.brightness // => 0.5
 ```
 
+You can inspect an individual light's brightness instead of using the average in
+mixed groups. See [Get Lights](#get-lights).
+
 ### Set Brightness
 
 Set the brightness of the lights. A brightness of 75% is `0.75`. The `duration`
@@ -270,9 +273,6 @@ lightTarget.setBrightness(1.0, duration: 0.5, powerOn: true, completionHandler: 
   // println(results)
 })
 ```
-
-You can inspect an individual light's brightness instead of using the average in
-mixed groups. See [Get Lights](#get-lights).
 
 ### Get Color
 
