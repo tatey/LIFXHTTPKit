@@ -9,6 +9,10 @@ public struct Location: Equatable {
 	public let id: String
 	public let name: String
 
+	public func toSelector() -> Selector {
+		return Selector(type: .LocationID, value: id)
+	}
+
 	// MARK: Printable
 
 	public var description: String {

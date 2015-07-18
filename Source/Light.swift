@@ -15,6 +15,10 @@ public struct Light: Equatable, Printable {
 	public let group: Group?
 	public let location: Location?
 
+	public func toSelector() -> Selector {
+		return Selector(type: .ID, value: id)
+	}
+
 	func lightWithPower(power: Bool) -> Light {
 		return Light(id: id, power: power, brightness: brightness, color: color, label: label, connected: connected, group: group, location: location)
 	}

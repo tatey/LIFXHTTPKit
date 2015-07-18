@@ -9,6 +9,10 @@ public struct Group: Equatable, Printable {
 	public let id: String
 	public let name: String
 
+	public func toSelector() -> Selector {
+		return Selector(type: .GroupID, value: id)
+	}
+
 	// MARK: Printable
 
 	public var description: String {

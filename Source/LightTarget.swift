@@ -89,7 +89,7 @@ public class LightTarget {
 				return groups
 			}
 		}.map { (group) in
-			return self.client.lightTargetWithSelector(Selector(type: .GroupID, value: group.id))
+			return self.client.lightTargetWithSelector(group.toSelector())
 		}
 	}
 
@@ -101,7 +101,7 @@ public class LightTarget {
 				return locations
 			}
 		}.map { (location) in
-			return self.client.lightTargetWithSelector(Selector(type: .LocationID, value: location.id))
+			return self.client.lightTargetWithSelector(location.toSelector())
 		}
 	}
 
