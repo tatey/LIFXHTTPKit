@@ -71,8 +71,6 @@ lightTarget.power // => true
 lightTarget.brightness // => 0.5
 lightTarget.color // => <Color hue: 180.0, saturation: 1.0, kelvin: 3500>
 lightTarget.label // => "Lamp 1"
-lightTarget.toLights().first?.group // => <Group id: "1c8de82b81f445e7cfaafae49b259c71", name: "Lounge">
-lightTarget.toLights().first?.location // => <Location id: "1d6fe8ef0fde4c6d77b0012dc736662c", name: "Home">
 ```
 
 ## Concepts
@@ -143,6 +141,8 @@ lightTarget.color // => <Color hue: 180.0, saturation: 1.0, kelvin: 3500>
 lightTarget.label // => "Lamp 1"
 lightTarget.connected // => true
 lightTarget.count // => 5
+lightTarget.toLights().first?.group // => <Group id: "1c8de82b81f445e7cfaafae49b259c71", name: "Lounge">
+lightTarget.toLights().first?.location // => <Location id: "1d6fe8ef0fde4c6d77b0012dc736662c", name: "Home">
 ```
 
 The in-memory cache is updated when the client fetches, or an operation is
@@ -365,10 +365,27 @@ Inspect the lights addressable by the light target. If you're dealing
 with a mixed group you can inspect each light individually.
 
 ``` swift
+
 for light in lightTarget.toLights() {
   println(light.id)
 }
 ```
+
+A light has the following properties:
+
+```
+light.id // => "d3b2f2d97452"
+light.power // => true
+light.brightness // => 0.5
+light.color // => <Color hue: 180.0, saturation: 1.0, kelvin: 3500>
+light.label // => "Lamp 1"
+light.connected // => true
+light.group // => <Group id: "1c8de82b81f445e7cfaafae49b259c71", name: "Lounge">
+light.location // => <Location id: "1d6fe8ef0fde4c6d77b0012dc736662c", name: "Home">
+```
+
+The `group` and `location` properties are optional as they are not required by
+the LIFX protocol. In practice these properties are always set.
 
 ## Testing
 
