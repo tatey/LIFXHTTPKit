@@ -71,6 +71,8 @@ lightTarget.power // => true
 lightTarget.brightness // => 0.5
 lightTarget.color // => <Color hue: 180.0, saturation: 1.0, kelvin: 3500>
 lightTarget.label // => "Lamp 1"
+lightTarget.toLights().first?.group // => <Group id: "1c8de82b81f445e7cfaafae49b259c71", name: "Lounge">
+lightTarget.toLights().first?.location // => <Location id: "1d6fe8ef0fde4c6d77b0012dc736662c", name: "Home">
 ```
 
 ## Concepts
@@ -269,6 +271,9 @@ lightTarget.setBrightness(1.0, duration: 0.5, powerOn: true, completionHandler: 
 })
 ```
 
+You can inspect an individual light's brightness instead of using the average in
+mixed groups. See [Get Lights](#get-lights).
+
 ### Get Color
 
 Returns the average of the colors for connected lights if the light target
@@ -286,6 +291,9 @@ let color = lightTarget.color
 color.isWhite // => false
 color.isColor // => true
 ```
+
+You can inspect an individual light's color instead of using the average in mixed
+groups. See [Get Lights](#get-lights).
 
 ### Set Color
 
