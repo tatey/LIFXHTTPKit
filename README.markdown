@@ -373,7 +373,7 @@ for light in lightTarget.toLights() {
 
 A light has the following properties:
 
-```
+``` swift
 light.id // => "d3b2f2d97452"
 light.power // => true
 light.brightness // => 0.5
