@@ -23,22 +23,24 @@ public class Client {
 	}
 
 	public func fetch(completionHandler: ((error: NSError?) -> Void)? = nil) {
-		session.lights(selector: "all") { [unowned self] (request, response, lights, error) in
-			if error != nil {
-				completionHandler?(error: error)
-				return
-			}
-
-			let oldLights = self.lights
-			let newLights = lights
-			if oldLights != newLights {
-				self.lights = newLights
-				for observer in self.observers {
-					observer.lightsDidUpdateHandler(lights: lights)
+		session.lights(selector: "all") { [weak self] (request, response, lights, error) in
+			if let strongSelf = self {
+				if error != nil {
+					completionHandler?(error: error)
+					return
 				}
-			}
 
-			completionHandler?(error: nil)
+				let oldLights = strongSelf.lights
+				let newLights = lights
+				if oldLights != newLights {
+					strongSelf.lights = newLights
+					for observer in strongSelf.observers {
+						observer.lightsDidUpdateHandler(lights: lights)
+					}
+				}
+
+				completionHandler?(error: nil)
+			}
 		}
 	}
 
