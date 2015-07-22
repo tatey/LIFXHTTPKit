@@ -115,13 +115,15 @@ public class LightTarget {
 		let newPower = power
 		let oldPower = self.power
 		client.updateLights(lights.map({ $0.lightWithPower(newPower) }))
-		client.session.setLightsPower(selector.toQueryStringValue(), power: newPower, duration: duration) { [unowned self] (request, response, results, error) in
-			var newLights = self.lightsByDeterminingConnectivityWithResults(self.lights, results: results)
-			if error != nil {
-				newLights = newLights.map({ $0.lightWithPower(oldPower) })
+		client.session.setLightsPower(selector.toQueryStringValue(), power: newPower, duration: duration) { [weak self] (request, response, results, error) in
+			if let strongSelf = self {
+				var newLights = strongSelf.lightsByDeterminingConnectivityWithResults(strongSelf.lights, results: results)
+				if error != nil {
+					newLights = newLights.map({ $0.lightWithPower(oldPower) })
+				}
+				strongSelf.client.updateLights(newLights)
+				completionHandler?(results: results, error: error)
 			}
-			self.client.updateLights(newLights)
-			completionHandler?(results: results, error: error)
 		}
 	}
 
@@ -139,13 +141,15 @@ public class LightTarget {
 		let newColor = color
 		let oldColor = self.color
 		client.updateLights(lights.map({ $0.lightWithColor(newColor, andBrightness: newBrightness) }))
-		client.session.setLightsColor(selector.toQueryStringValue(), color: newColor.toQueryStringValue(newBrightness), duration: duration, powerOn: powerOn) { [unowned self] (request, response, results, error) in
-			var newLights = self.lightsByDeterminingConnectivityWithResults(self.lights, results: results)
-			if error != nil {
-				newLights = newLights.map({ $0.lightWithColor(oldColor, andBrightness: oldBrightness) })
+		client.session.setLightsColor(selector.toQueryStringValue(), color: newColor.toQueryStringValue(newBrightness), duration: duration, powerOn: powerOn) { [weak self] (request, response, results, error) in
+			if let strongSelf = self {
+				var newLights = strongSelf.lightsByDeterminingConnectivityWithResults(strongSelf.lights, results: results)
+				if error != nil {
+					newLights = newLights.map({ $0.lightWithColor(oldColor, andBrightness: oldBrightness) })
+				}
+				strongSelf.client.updateLights(newLights)
+				completionHandler?(results: results, error: error)
 			}
-			self.client.updateLights(newLights)
-			completionHandler?(results: results, error: error)
 		}
 	}
 
