@@ -24,12 +24,12 @@ public class Client {
 
 	public func fetch(completionHandler: ((error: NSError?) -> Void)? = nil) {
 		session.lights(selector: "all") { [weak self] (request, response, lights, error) in
-			if let strongSelf = self {
-				if error != nil {
-					completionHandler?(error: error)
-					return
-				}
+			if error != nil {
+				completionHandler?(error: error)
+				return
+			}
 
+			if let strongSelf = self {
 				let oldLights = strongSelf.lights
 				let newLights = lights
 				if oldLights != newLights {
@@ -39,8 +39,9 @@ public class Client {
 					}
 				}
 
-				completionHandler?(error: nil)
 			}
+
+			completionHandler?(error: nil)
 		}
 	}
 

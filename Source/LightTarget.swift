@@ -122,8 +122,8 @@ public class LightTarget {
 					newLights = newLights.map({ $0.lightWithPower(oldPower) })
 				}
 				strongSelf.client.updateLights(newLights)
-				completionHandler?(results: results, error: error)
 			}
+			completionHandler?(results: results, error: error)
 		}
 	}
 
@@ -148,8 +148,8 @@ public class LightTarget {
 					newLights = newLights.map({ $0.lightWithColor(oldColor, andBrightness: oldBrightness) })
 				}
 				strongSelf.client.updateLights(newLights)
-				completionHandler?(results: results, error: error)
 			}
+			completionHandler?(results: results, error: error)
 		}
 	}
 
