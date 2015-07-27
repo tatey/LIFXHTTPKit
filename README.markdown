@@ -1,17 +1,15 @@
-# LIFXHTTPKit
-
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+# LIFXHTTPKit [![GitHub release](https://img.shields.io/github/release/tatey/LIFXHTTPKit.svg)](https://github.com/tatey/LIFXHTTPKit/releases/latest) [![GitHub license](https://img.shields.io/github/license/tatey/LIFXHTTPKit.svg)](https://raw.githubusercontent.com/tatey/LIFXHTTPKit/master/LICENSE.txt) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 A nice Mac OS X framework for the [LIFX HTTP API](http://api.developer.lifx.com/docs)
-that has no external dependencies. Generate a personal access token at https://cloud.lifx.com/settings.
+that has no external dependencies. Check out [Lighting](https://github.com/tatey/Lighting)
+if you want to see a real-world Mac app built on top of this framework.
 
 *Note: This is not an official LIFX project and the API may continue to change.*
 
-## System Dependencies
+## Build Dependencies
 
-* Xcode 6.4
-* Swift 1.3
-* Mac OS X 10.10
+* Swift 1.3 (Xcode 6.4)
+* Mac OS X 10.10 Yosemite
 * *iOS support is planned*
 
 ## Quick Usage
