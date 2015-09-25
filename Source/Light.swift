@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct Light: Equatable, Printable {
+public struct Light: Equatable, CustomStringConvertible {
 	public let id: String
 	public let power: Bool
 	public let brightness: Double

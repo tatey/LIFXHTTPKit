@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct Group: Equatable, Printable {
+public struct Group: Equatable, CustomStringConvertible {
 	public let id: String
 	public let name: String
 

@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct Selector: Equatable, Printable {
+public struct Selector: Equatable, CustomStringConvertible {
 	typealias Filter = (light: Light) -> Bool
 
 	public enum Type: String {

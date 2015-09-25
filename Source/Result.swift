@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct Result: Equatable, Printable {
+public struct Result: Equatable, CustomStringConvertible {
 	public enum Status: String {
 		case OK       = "ok"
 		case TimedOut = "timed_out"

@@ -58,7 +58,7 @@ public class LightTarget {
 	}
 
 	public func removeObserver(observer: LightTargetObserver) {
-		for (index, other) in enumerate(observers) {
+		for (index, other) in observers.enumerate() {
 			if other === observer {
 				observers.removeAtIndex(index)
 			}
@@ -83,7 +83,7 @@ public class LightTarget {
 
 	public func toGroupTargets() -> [LightTarget] {
 		return lights.reduce([]) { (groups, light) -> [Group] in
-			if let group = light.group where !contains(groups, group) {
+			if let group = light.group where !groups.contains(group) {
 				return groups + [group]
 			} else {
 				return groups
@@ -95,7 +95,7 @@ public class LightTarget {
 
 	public func toLocationTargets() -> [LightTarget] {
 		return lights.reduce([]) { (locations, light) -> [Location] in
-			if let location = light.location where !contains(locations, location) {
+			if let location = light.location where !locations.contains(location) {
 				return locations + [location]
 			} else {
 				return locations

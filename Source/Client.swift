@@ -23,7 +23,7 @@ public class Client {
 	}
 
 	public func fetch(completionHandler: ((error: NSError?) -> Void)? = nil) {
-		session.lights(selector: "all") { [weak self] (request, response, lights, error) in
+		session.lights("all") { [weak self] (request, response, lights, error) in
 			if error != nil {
 				completionHandler?(error: error)
 				return
@@ -60,7 +60,7 @@ public class Client {
 	}
 
 	func removeObserver(observer: ClientObserver) {
-		for (index, other) in enumerate(observers) {
+		for (index, other) in observers.enumerate() {
 			if other === observer {
 				observers.removeAtIndex(index)
 				break
@@ -73,12 +73,12 @@ public class Client {
 		var newLights: [Light] = []
 
 		for light in lights {
-			if !contains(newLights, { $0.id == light.id }) {
+			if !newLights.contains({ $0.id == light.id }) {
 				newLights.append(light)
 			}
 		}
 		for light in oldLights {
-			if !contains(newLights, { $0.id == light.id }) {
+			if !newLights.contains({ $0.id == light.id }) {
 				newLights.append(light)
 			}
 		}

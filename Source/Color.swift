@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct Color: Equatable, Printable {
+public struct Color: Equatable, CustomStringConvertible {
 	static let maxHue: Double = 360.0
 	static let defaultKelvin: Int = 3500
 
@@ -43,7 +43,7 @@ public struct Color: Equatable, Printable {
 			components.append("hue:\(hue)")
 			components.append("saturation:\(saturation)")
 		}
-		return join(" ", components)
+		return components.joinWithSeparator(" ")
 	}
 
 	// MARK: Printable

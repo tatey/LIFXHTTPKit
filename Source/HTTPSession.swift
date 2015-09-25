@@ -45,7 +45,7 @@ public class HTTPSession {
 		let request = requestWithBaseURLByAppendingPathComponent("/lights/\(selector)/power")
 		let parameters = ["state": power ? "on" : "off", "duration": duration]
 		request.HTTPMethod = "PUT"
-		request.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: .allZeros, error: nil)
+		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 		session.dataTaskWithRequest(request) { (data, response, error) in
 			if error != nil {
@@ -61,7 +61,7 @@ public class HTTPSession {
 		let request = requestWithBaseURLByAppendingPathComponent("/lights/\(selector)/color")
 		let parameters = ["color": color, "duration": duration, "power_on": powerOn]
 		request.HTTPMethod = "PUT"
-		request.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: .allZeros, error: nil)
+		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 		session.dataTaskWithRequest(request) { (data, response, error) in
 			if error != nil {
@@ -82,9 +82,19 @@ public class HTTPSession {
 		return request
 	}
 
-	private func dataToLights(data: NSData) -> (lights: [Light], error: NSError?) {
+	private func dataToLights(data: NSData?) -> (lights: [Light], error: NSError?) {
+		guard let data = data else {
+			return ([], NSError(domain: ErrorDomain, code: ErrorCode.JSONInvalid.rawValue, userInfo: [NSLocalizedDescriptionKey: "No Data"]))
+		}
+
 		var error: NSError?
-		let rootJSONObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: .allZeros, error: &error)
+		let rootJSONObject: AnyObject?
+		do {
+			rootJSONObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+		} catch let error1 as NSError {
+			error = error1
+			rootJSONObject = nil
+		}
 
 		if error != nil {
 			return ([], error)
@@ -138,9 +148,19 @@ public class HTTPSession {
 		return (lights, nil)
 	}
 
-	private func dataToResults(data: NSData) -> (results: [Result], error: NSError?) {
+	private func dataToResults(data: NSData?) -> (results: [Result], error: NSError?) {
+		guard let data = data else {
+			return ([], NSError(domain: ErrorDomain, code: ErrorCode.JSONInvalid.rawValue, userInfo: [NSLocalizedDescriptionKey: "No Data"]))
+		}
+
 		var error: NSError?
-		let rootJSONObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: .allZeros, error: &error)
+		let rootJSONObject: AnyObject?
+		do {
+			rootJSONObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+		} catch let error1 as NSError {
+			error = error1
+			rootJSONObject = nil
+		}
 
 		if error != nil {
 			return ([], error)
