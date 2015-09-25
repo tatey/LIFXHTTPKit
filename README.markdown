@@ -4,13 +4,30 @@ A nice Mac OS X framework for the [LIFX HTTP API](http://api.developer.lifx.com/
 that has no external dependencies. Check out [Lighting](https://github.com/tatey/Lighting)
 if you want to see a real-world Mac app built on top of this framework.
 
-*Note: This is not an official LIFX project and the API may continue to change.*
+*NOTE: For Swift 1.3 support use the versions tagged 0.0.x which you can read about in the [releases](https://github.com/tatey/LIFXHTTPKit/releases).*
+
+*NOTE: This is not an official LIFX project.*
 
 ## Build Dependencies
 
 * Swift 2.0 (Xcode 7.0+)
 * Mac OS X 10.10 Yosemite
 * *iOS support is planned*
+
+## Installation
+
+### [Carthage](https://github.com/Carthage/Carthage)
+
+Add the following to your Cartfile:
+
+```
+github "tatey/LIFXHTTPKit"
+```
+
+Then run `$ carthage update`.
+
+Follow the current instructions in [Carthage's README](https://github.com/Carthage/Carthage)
+for up to date installation instructions.
 
 ## Quick Usage
 
