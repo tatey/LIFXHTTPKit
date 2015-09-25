@@ -8,7 +8,7 @@ if you want to see a real-world Mac app built on top of this framework.
 
 ## Build Dependencies
 
-* Swift 1.3 (Xcode 6.4)
+* Swift 2.0 (Xcode 7.0+)
 * Mac OS X 10.10 Yosemite
 * *iOS support is planned*
 
