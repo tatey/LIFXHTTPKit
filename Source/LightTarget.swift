@@ -147,7 +147,7 @@ public class LightTarget {
 			if let strongSelf = self {
 				var newLights = strongSelf.lightsByDeterminingConnectivityWithResults(strongSelf.lights, results: results)
 				if error != nil {
-					newLights = newLights.map({ $0.lightWithPower(power, color: oldColor, brightness: oldBrightness) })
+					newLights = newLights.map({ $0.lightWithPower(oldPower, color: oldColor, brightness: oldBrightness) })
 				}
 				strongSelf.client.updateLights(newLights)
 			}
