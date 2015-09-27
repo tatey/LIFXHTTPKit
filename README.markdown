@@ -1,6 +1,6 @@
 # LIFXHTTPKit [![GitHub release](https://img.shields.io/github/release/tatey/LIFXHTTPKit.svg)](https://github.com/tatey/LIFXHTTPKit/releases/latest) [![GitHub license](https://img.shields.io/github/license/tatey/LIFXHTTPKit.svg)](https://raw.githubusercontent.com/tatey/LIFXHTTPKit/master/LICENSE.txt) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-A nice Mac OS X framework for the [LIFX HTTP API](http://api.developer.lifx.com/docs)
+A nice iOS/Mac OS X framework for interacting with the [LIFX HTTP API](http://api.developer.lifx.com/docs)
 that has no external dependencies. Check out [Lighting](https://github.com/tatey/Lighting)
 if you want to see a real-world Mac app built on top of this framework.
 
@@ -11,8 +11,8 @@ if you want to see a real-world Mac app built on top of this framework.
 ## Build Dependencies
 
 * Swift 2.0 (Xcode 7.0+)
-* Mac OS X 10.10 Yosemite
-* *iOS support is planned*
+* iOS 8.0+
+* Mac OS X 10.10
 
 ## Installation
 

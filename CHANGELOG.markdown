@@ -2,6 +2,7 @@
 
 ## Current
 
+* Add support for iOS 8.0+.
 * Add support for Swift 2/Xcode 7.0.
 
 ## 0.0.2 / 2015-09-02
