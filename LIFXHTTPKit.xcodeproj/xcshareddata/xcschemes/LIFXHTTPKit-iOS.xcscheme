@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5D5898A11B1887530024D47B"
+               BlueprintIdentifier = "5D8BF52E1BB524F400A5575C"
                BuildableName = "LIFXHTTPKit.framework"
-               BlueprintName = "LIFXHTTPKit"
+               BlueprintName = "LIFXHTTPKit-iOS"
                ReferencedContainer = "container:LIFXHTTPKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5D5898AC1B1887530024D47B"
-               BuildableName = "LIFXHTTPKit Tests.xctest"
-               BlueprintName = "LIFXHTTPKit Tests"
+               BlueprintIdentifier = "5D05E61A1BB5296E007B917D"
+               BuildableName = "LIFXHTTPKit-iOS-Tests.xctest"
+               BlueprintName = "LIFXHTTPKit-iOS-Tests"
                ReferencedContainer = "container:LIFXHTTPKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,24 +46,19 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5D5898AC1B1887530024D47B"
-               BuildableName = "LIFXHTTPKit Tests.xctest"
-               BlueprintName = "LIFXHTTPKit Tests"
+               BlueprintIdentifier = "5D05E61A1BB5296E007B917D"
+               BuildableName = "LIFXHTTPKit-iOS-Tests.xctest"
+               BlueprintName = "LIFXHTTPKit-iOS-Tests"
                ReferencedContainer = "container:LIFXHTTPKit.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "LightTargetTests/testSetPowerTogglesPower()">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5D5898A11B1887530024D47B"
+            BlueprintIdentifier = "5D8BF52E1BB524F400A5575C"
             BuildableName = "LIFXHTTPKit.framework"
-            BlueprintName = "LIFXHTTPKit"
+            BlueprintName = "LIFXHTTPKit-iOS"
             ReferencedContainer = "container:LIFXHTTPKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,9 +78,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5D5898A11B1887530024D47B"
+            BlueprintIdentifier = "5D8BF52E1BB524F400A5575C"
             BuildableName = "LIFXHTTPKit.framework"
-            BlueprintName = "LIFXHTTPKit"
+            BlueprintName = "LIFXHTTPKit-iOS"
             ReferencedContainer = "container:LIFXHTTPKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -101,9 +96,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5D5898A11B1887530024D47B"
+            BlueprintIdentifier = "5D8BF52E1BB524F400A5575C"
             BuildableName = "LIFXHTTPKit.framework"
-            BlueprintName = "LIFXHTTPKit"
+            BlueprintName = "LIFXHTTPKit-iOS"
             ReferencedContainer = "container:LIFXHTTPKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
