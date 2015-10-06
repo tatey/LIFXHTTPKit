@@ -89,6 +89,21 @@ public class HTTPSession {
 		}.resume()
 	}
 
+	public func setScenesActivate(selector: String, duration: Float, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
+		let request = requestWithBaseURLByAppendingPathComponent("/scenes/\(selector)/activate")
+		let parameters = ["duration", duration]
+		request.HTTPMethod = "PUT"
+		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
+		session.dataTaskWithRequest(request) { (data, response, error) in
+			if error != nil {
+				completionHandler(request: request, response: response, results: [], error: error)
+			} else {
+				let (results, error) = self.dataToResults(data)
+				completionHandler(request: request, response: response, results: results, error: error)
+			}
+		}.resume()
+	}
+
 	private func requestWithBaseURLByAppendingPathComponent(pathComponent: String) -> NSMutableURLRequest {
 		let url = baseURL.URLByAppendingPathComponent(pathComponent)
 		let request = NSMutableURLRequest(URL: url)
