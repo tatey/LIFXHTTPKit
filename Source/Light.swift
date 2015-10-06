@@ -27,6 +27,10 @@ public struct Light: Equatable, CustomStringConvertible {
 		return Light(id: id, power: power, brightness: brightness, color: color, label: label, connected: connected, group: group, location: location)
 	}
 
+	func lightWithColor(color: Color, brightness: Double) -> Light {
+		return Light(id: id, power: power, brightness: brightness, color: color, label: label, connected: connected, group: group, location: location)
+	}
+
 	func lightWithConnected(connected: Bool) -> Light {
 		return Light(id: id, power: power, brightness: brightness, color: color, label: label, connected: connected, group: group, location: location)
 	}

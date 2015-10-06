@@ -35,15 +35,12 @@ public struct Color: Equatable, CustomStringConvertible {
 		return saturation == 0.0
 	}
 
-	func toQueryStringValue(brightness: Double) -> String {
-		var components: [String] = ["brightness:\(brightness)"]
+	func toQueryStringValue() -> String {
 		if isWhite {
-			components.append("kelvin:\(kelvin)")
+			return "kelvin:\(kelvin)"
 		} else {
-			components.append("hue:\(hue)")
-			components.append("saturation:\(saturation)")
+			return "hue:\(hue) saturation:\(saturation)"
 		}
-		return components.joinWithSeparator(" ")
 	}
 
 	// MARK: Printable
