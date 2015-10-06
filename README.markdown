@@ -133,7 +133,7 @@ lights associated with the client.
 
 ``` swift
 let all = client.allLightTarget()
-all.powerOn(true)
+all.setPower(true)
 ```
 
 Light targets can be sliced into smaller light targets. The all light target
@@ -142,7 +142,7 @@ can be turned into many individual light targets for fine-grained control.
 ``` swift
 let lightTargets = all.toLightTargets()
 for lightTarget in lightTarget {
-  lightTarget.powerOn(true)
+  lightTarget.setPower(true)
 }
 ```
 
@@ -279,12 +279,10 @@ mixed groups. See [Get Lights](#get-lights).
 ### Set Brightness
 
 Set the brightness of the lights. A brightness of 75% is `0.75`. The `duration`
-is optional and defaults to `0.5`. `powerOn` is optional and defaults to
-`true`. If `powerOn` is false then the operation has no physical effect
-on the lights until it is powered on.
+is optional and defaults to `0.5`. 
 
 ``` swift
-lightTarget.setBrightness(1.0, duration: 0.5, powerOn: true, completionHandler: { (results: [Result], error: NSError?) -> Void
+lightTarget.setBrightness(1.0, duration: 0.5, completionHandler: { (results: [Result], error: NSError?) -> Void
   // println(results)
 })
 ```
@@ -313,31 +311,28 @@ groups. See [Get Lights](#get-lights).
 ### Set Color
 
 Sets the color of the lights. The `duration` is optional and defaults to `0.5`.
-`powerOn` is optional and defaults to `true`. If `powerOn` is false then the
-operation has no physical effect on the lights until it is powered on.
 
 ``` swift
 let color = Color.color(hue: 180.0, saturation: 1.0)
-lightTarget.setColor(color, duration: 0.5, powerOn: true, completionHandler: { (results: [Result], error: NSError?) -> Void
+lightTarget.setColor(color, duration: 0.5, completionHandler: { (results: [Result], error: NSError?) -> Void
   // println(results)
 })
 
 let white = Color.white(kelvin: 3500)
-lightTarget.setColor(color, duration: 0.5, powerOn: true, completionHandler: { (results: [Result], error: NSError?) -> Void
+lightTarget.setColor(color, duration: 0.5, completionHandler: { (results: [Result], error: NSError?) -> Void
   // println(results)
 })
 ```
 
-### Set Color and Brightness Simultaneously
+### Set State (Color, Brightness, and Power Simultaneously)
 
-Sets the color and brightness of the lights in one operation. The `duration` is
-optional and defaults to `0.5`.  `powerOn` is optional and defaults to `true`.
-If `powerOn` is false then the operation has no physical effect on the lights
-until it is powered on.
+Sets the color, brightness, and power of the lights in one operation. The `duration` is optional and defaults to `0.5`.
+All other arguments except are optional and default to `nil`. A `nil` value is the equivalent to leaving the
+value unchanged.
 
 ``` swift
 let color = Color.color(hue: 180.0, saturation: 1.0)
-lightTarget.setColor(color, brightness: 0.75, duration: 0.5, powerOn: true, completionHandler: { (results: [Result], error: NSError?) -> Void
+lightTarget.setState(color, brightness: 0.75, duration: 0.5, power: true, completionHandler: { (results: [Result], error: NSError?) -> Void
   // println(results)
 })
 ```
