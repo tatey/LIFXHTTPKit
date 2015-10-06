@@ -7,7 +7,6 @@ import Foundation
 
 public class LightTarget {
 	public static let defaultDuration: Float = 0.5
-	public static let defaultPower: Bool? = nil
 
 	public private(set) var power: Bool
 	public private(set) var brightness: Double
@@ -127,31 +126,45 @@ public class LightTarget {
 	}
 
 	public func setBrightness(brightness: Double, duration: Float = LightTarget.defaultDuration, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
-		setColor(color, brightness: brightness, duration: duration, completionHandler: completionHandler)
+		let oldBrightness = self.brightness
+		client.updateLights(lights.map({ $0.lightWithProperties(brightness: brightness) }))
+		client.session.setState(selector.toQueryStringValue(), brightness: brightness, duration: duration) { [weak self] (request, response, results, error) in
+			if let strongSelf = self {
+				var newLights = strongSelf.lightsByDeterminingConnectivityWithResults(strongSelf.lights, results: results)
+				if error != nil {
+					newLights = newLights.map({ $0.lightWithProperties(brightness: oldBrightness) })
+				}
+				strongSelf.client.updateLights(newLights)
+			}
+			completionHandler?(results: results, error: error)
+		}
 	}
 
 	public func setColor(color: Color, duration: Float = LightTarget.defaultDuration, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
-		setColor(color, brightness: brightness, duration: duration, completionHandler: completionHandler)
+		let oldColor = self.color
+		client.updateLights(lights.map({ $0.lightWithProperties(color: color) }))
+		client.session.setState(selector.toQueryStringValue(), color: color.toQueryStringValue(), duration: duration) { [weak self] (request, response, results, error) in
+			if let strongSelf = self {
+				var newLights = strongSelf.lightsByDeterminingConnectivityWithResults(strongSelf.lights, results: results)
+				if error != nil {
+					newLights = newLights.map({ $0.lightWithProperties(color: oldColor) })
+				}
+				strongSelf.client.updateLights(newLights)
+			}
+			completionHandler?(results: results, error: error)
+		}
 	}
 
-	public func setColor(color: Color, brightness: Double, duration: Float = LightTarget.defaultDuration, power: Bool? = LightTarget.defaultPower, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
+	public func setColor(color: Color, brightness: Double, duration: Float = LightTarget.defaultDuration, power: Bool, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		let oldBrightness = self.brightness
 		let oldColor = self.color
 		let oldPower = self.power
-		if let power = power {
-			client.updateLights(lights.map({ $0.lightWithProperties(power, color: color, brightness: brightness) }))
-		} else {
-			client.updateLights(lights.map({ $0.lightWithProperties(color: color, brightness: brightness) }))
-		}
+		client.updateLights(lights.map({ $0.lightWithProperties(power, color: color, brightness: brightness) }))
 		client.session.setState(selector.toQueryStringValue(), color: color.toQueryStringValue(), brightness: brightness, duration: duration) { [weak self] (request, response, results, error) in
 			if let strongSelf = self {
 				var newLights = strongSelf.lightsByDeterminingConnectivityWithResults(strongSelf.lights, results: results)
 				if error != nil {
-					if power != nil {
-						newLights = newLights.map({ $0.lightWithProperties(oldPower, color: oldColor, brightness: oldBrightness) })
-					} else {
-						newLights = newLights.map({ $0.lightWithProperties(color: oldColor, brightness: oldBrightness) })
-					}
+					newLights = newLights.map({ $0.lightWithProperties(oldPower, color: oldColor, brightness: oldBrightness) })
 				}
 				strongSelf.client.updateLights(newLights)
 			}
