@@ -13,6 +13,7 @@ public struct Selector: Equatable, CustomStringConvertible {
 		case ID         = "id"
 		case GroupID    = "group_id"
 		case LocationID = "location_id"
+		case SceneID    = "scene_id"
 		case Label      = "label"
 	}
 
@@ -59,6 +60,8 @@ public struct Selector: Equatable, CustomStringConvertible {
 			return { (light) in return light.group?.id == self.value }
 		case .LocationID:
 			return { (light) in return light.location?.id == self.value }
+		case .SceneID:
+			return { (light) in return true } // FIXME: Limit to lights in scene
 		case .Label:
 			return { (light) in return light.label == self.value }
 		}

@@ -311,6 +311,8 @@ public class LightTarget {
 			} else {
 				return ""
 			}
+		case .SceneID:
+			return "" // FIXME: Derive from the scene's name
 		}
 	}
 
