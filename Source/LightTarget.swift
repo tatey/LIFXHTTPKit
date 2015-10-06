@@ -113,12 +113,12 @@ public class LightTarget {
 
 	public func setPower(power: Bool, duration: Float = LightTarget.defaultDuration, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		let oldPower = self.power
-		client.updateLights(lights.map({ $0.lightWithPower(power) }))
+		client.updateLights(lights.map({ $0.lightWithProperties(power) }))
 		client.session.setState(selector.toQueryStringValue(), power: power, duration: duration) { [weak self] (request, response, results, error) in
 			if let strongSelf = self {
 				var newLights = strongSelf.lightsByDeterminingConnectivityWithResults(strongSelf.lights, results: results)
 				if error != nil {
-					newLights = newLights.map({ $0.lightWithPower(oldPower) })
+					newLights = newLights.map({ $0.lightWithProperties(oldPower) })
 				}
 				strongSelf.client.updateLights(newLights)
 			}
@@ -139,18 +139,18 @@ public class LightTarget {
 		let oldColor = self.color
 		let oldPower = self.power
 		if let power = power {
-			client.updateLights(lights.map({ $0.lightWithPower(power, color: color, brightness: brightness) }))
+			client.updateLights(lights.map({ $0.lightWithProperties(power, color: color, brightness: brightness) }))
 		} else {
-			client.updateLights(lights.map({ $0.lightWithColor(color, brightness: brightness) }))
+			client.updateLights(lights.map({ $0.lightWithProperties(color: color, brightness: brightness) }))
 		}
 		client.session.setState(selector.toQueryStringValue(), color: color.toQueryStringValue(), brightness: brightness, duration: duration) { [weak self] (request, response, results, error) in
 			if let strongSelf = self {
 				var newLights = strongSelf.lightsByDeterminingConnectivityWithResults(strongSelf.lights, results: results)
 				if error != nil {
 					if power != nil {
-						newLights = newLights.map({ $0.lightWithPower(oldPower, color: oldColor, brightness: oldBrightness) })
+						newLights = newLights.map({ $0.lightWithProperties(oldPower, color: oldColor, brightness: oldBrightness) })
 					} else {
-						newLights = newLights.map({ $0.lightWithColor(oldColor, brightness: oldBrightness) })
+						newLights = newLights.map({ $0.lightWithProperties(color: oldColor, brightness: oldBrightness) })
 					}
 				}
 				strongSelf.client.updateLights(newLights)
@@ -172,9 +172,9 @@ public class LightTarget {
 				if result.id == light.id {
 					switch result.status {
 					case .OK:
-						return light.lightWithConnected(true)
+						return light.lightWithProperties(connected: true)
 					case .TimedOut, .Offline:
-						return light.lightWithConnected(false)
+						return light.lightWithProperties(connected: false)
 					}
 				}
 			}

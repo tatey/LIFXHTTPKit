@@ -14,6 +14,8 @@
 		5D05E6231BB5296E007B917D /* LIFXHTTPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */; };
 		5D05E6251BB5296E007B917D /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DA7AB2F1B3695BF008A8130 /* Secrets.plist */; };
 		5D1BE8A91B2D602200198129 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1BE8A81B2D602200198129 /* Selector.swift */; };
+		5D5398121BC383BE0060AAED /* LightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5398041BC37FFA0060AAED /* LightTests.swift */; settings = {ASSET_TAGS = (); }; };
+		5D5398131BC383BF0060AAED /* LightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5398041BC37FFA0060AAED /* LightTests.swift */; settings = {ASSET_TAGS = (); }; };
 		5D5898A81B1887530024D47B /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D5898A71B1887530024D47B /* LIFXHTTPKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D5898AE1B1887530024D47B /* LIFXHTTPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */; };
 		5D5898B51B1887530024D47B /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5898B41B1887530024D47B /* ClientTests.swift */; };
@@ -67,6 +69,7 @@
 /* Begin PBXFileReference section */
 		5D05E6291BB5296E007B917D /* LIFXHTTPKit-iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LIFXHTTPKit-iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D1BE8A81B2D602200198129 /* Selector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
+		5D5398041BC37FFA0060AAED /* LightTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightTests.swift; sourceTree = "<group>"; };
 		5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LIFXHTTPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5898A61B1887530024D47B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D5898A71B1887530024D47B /* LIFXHTTPKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LIFXHTTPKit.h; sourceTree = "<group>"; };
@@ -179,6 +182,7 @@
 			children = (
 				5D5898B41B1887530024D47B /* ClientTests.swift */,
 				5DF649D81B2D436A0006EE03 /* LightTargetTests.swift */,
+				5D5398041BC37FFA0060AAED /* LightTests.swift */,
 				5D5898B21B1887530024D47B /* Supporting Files */,
 			);
 			path = Tests;
@@ -369,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D5398121BC383BE0060AAED /* LightTests.swift in Sources */,
 				5D05E61E1BB5296E007B917D /* ClientHelper.swift in Sources */,
 				5D05E61F1BB5296E007B917D /* ClientTests.swift in Sources */,
 				5D05E6201BB5296E007B917D /* LightTargetTests.swift in Sources */,
@@ -399,6 +404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D5398131BC383BF0060AAED /* LightTests.swift in Sources */,
 				5DA745151B52493500BBC2D1 /* ClientHelper.swift in Sources */,
 				5D5898B51B1887530024D47B /* ClientTests.swift in Sources */,
 				5DF649D91B2D436A0006EE03 /* LightTargetTests.swift in Sources */,

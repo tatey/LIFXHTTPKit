@@ -19,20 +19,8 @@ public struct Light: Equatable, CustomStringConvertible {
 		return Selector(type: .ID, value: id)
 	}
 
-	func lightWithPower(power: Bool) -> Light {
-		return Light(id: id, power: power, brightness: brightness, color: color, label: label, connected: connected, group: group, location: location)
-	}
-
-	func lightWithPower(power: Bool, color: Color, brightness: Double) -> Light {
-		return Light(id: id, power: power, brightness: brightness, color: color, label: label, connected: connected, group: group, location: location)
-	}
-
-	func lightWithColor(color: Color, brightness: Double) -> Light {
-		return Light(id: id, power: power, brightness: brightness, color: color, label: label, connected: connected, group: group, location: location)
-	}
-
-	func lightWithConnected(connected: Bool) -> Light {
-		return Light(id: id, power: power, brightness: brightness, color: color, label: label, connected: connected, group: group, location: location)
+	func lightWithProperties(power: Bool? = nil, brightness: Double? = nil, color: Color? = nil, connected: Bool? = nil) -> Light {
+		return Light(id: id, power: power ?? self.power, brightness: brightness ?? self.brightness, color: color ?? self.color, label: label, connected: connected ?? self.connected, group: group, location: location)
 	}
 
 	// MARK: Printable
