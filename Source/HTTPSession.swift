@@ -6,7 +6,7 @@
 import Foundation
 
 public class HTTPSession {
-	public static let defaultBaseURL: NSURL = NSURL(string: "https://api.lifx.com/v1beta1/")!
+	public static let defaultBaseURL: NSURL = NSURL(string: "https://api.lifx.com/v1/")!
 	public static let defaultUserAgent: String = "LIFXHTTPKit/\(LIFXHTTPKitVersionNumber)"
 	public static let defaultTimeoutIntervalForRequest: NSTimeInterval = 5.0
 
@@ -42,24 +42,27 @@ public class HTTPSession {
 	}
 
 	public func setLightsPower(selector: String, power: Bool, duration: Float, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
-		let request = requestWithBaseURLByAppendingPathComponent("/lights/\(selector)/power")
-		let parameters = ["state": power ? "on" : "off", "duration": duration]
-		request.HTTPMethod = "PUT"
-		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
-		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-		session.dataTaskWithRequest(request) { (data, response, error) in
-			if error != nil {
-				completionHandler(request: request, response: response, results: [], error: error)
-			} else {
-				let (results, error) = self.dataToResults(data)
-				completionHandler(request: request, response: response, results: results, error: error)
-			}
-		}.resume()
+		print("`setLightsPower` is deprecated and will be removed in a future version. Use `setState` instead.")
+		setState(selector, power: power, duration: duration, completionHandler: completionHandler)
 	}
 
 	public func setLightsColor(selector: String, color: String, duration: Float, powerOn: Bool, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
-		let request = requestWithBaseURLByAppendingPathComponent("/lights/\(selector)/color")
-		let parameters = ["color": color, "duration": duration, "power_on": powerOn]
+		print("`setLightsColor` is deprecated and will be removed in a future version. Use `setState` instead.")
+		setState(selector, color: color, power: powerOn, duration: duration, completionHandler: completionHandler)
+	}
+
+	public func setState(selector: String, power: Bool? = nil, color: String? = nil, brightness: Double? = nil, duration: Float, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
+		let request = requestWithBaseURLByAppendingPathComponent("/lights/\(selector)/state")
+		var parameters: [String : AnyObject] = ["duration": duration]
+		if let power = power {
+			parameters["power"] = power ? "on" : "off"
+		}
+		if let color = color {
+			parameters["color"] = color
+		}
+		if let brightness = brightness {
+			parameters["brightness"] = brightness
+		}
 		request.HTTPMethod = "PUT"
 		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -87,23 +90,15 @@ public class HTTPSession {
 			return ([], NSError(domain: ErrorDomain, code: ErrorCode.JSONInvalid.rawValue, userInfo: [NSLocalizedDescriptionKey: "No Data"]))
 		}
 
-		var error: NSError?
 		let rootJSONObject: AnyObject?
 		do {
 			rootJSONObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-		} catch let error1 as NSError {
-			error = error1
-			rootJSONObject = nil
-		}
-
-		if error != nil {
+		} catch let error as NSError {
 			return ([], error)
 		}
 
-		var lightJSONObjects: [NSDictionary]
-		if let dictionary = rootJSONObject as? NSDictionary {
-			lightJSONObjects = [dictionary]
-		} else if let array = rootJSONObject as? [NSDictionary] {
+		let lightJSONObjects: [NSDictionary]
+		if let array = rootJSONObject as? [NSDictionary] {
 			lightJSONObjects = array
 		} else {
 			lightJSONObjects = []
@@ -153,23 +148,15 @@ public class HTTPSession {
 			return ([], NSError(domain: ErrorDomain, code: ErrorCode.JSONInvalid.rawValue, userInfo: [NSLocalizedDescriptionKey: "No Data"]))
 		}
 
-		var error: NSError?
-		let rootJSONObject: AnyObject?
+		let rootJSONObject: AnyObject
 		do {
 			rootJSONObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-		} catch let error1 as NSError {
-			error = error1
-			rootJSONObject = nil
-		}
-
-		if error != nil {
+		} catch let error as NSError {
 			return ([], error)
 		}
 
-		var resultJSONObjects: [NSDictionary]
-		if let dictionary = rootJSONObject as? NSDictionary {
-			resultJSONObjects = [dictionary]
-		} else if let array = rootJSONObject as? [NSDictionary] {
+		let resultJSONObjects: [NSDictionary]
+		if let dictionary = rootJSONObject as? NSDictionary, array = dictionary["results"] as? [NSDictionary] {
 			resultJSONObjects = array
 		} else {
 			resultJSONObjects = []
