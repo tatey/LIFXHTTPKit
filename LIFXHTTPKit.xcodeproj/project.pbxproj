@@ -14,6 +14,10 @@
 		5D05E6231BB5296E007B917D /* LIFXHTTPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */; };
 		5D05E6251BB5296E007B917D /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DA7AB2F1B3695BF008A8130 /* Secrets.plist */; };
 		5D1BE8A91B2D602200198129 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1BE8A81B2D602200198129 /* Selector.swift */; };
+		5D50E0591BC3A21800AED146 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E0581BC3A21800AED146 /* Scene.swift */; settings = {ASSET_TAGS = (); }; };
+		5D50E05B1BC3A26A00AED146 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05A1BC3A26A00AED146 /* State.swift */; settings = {ASSET_TAGS = (); }; };
+		5D50E05C1BC3A39200AED146 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E0581BC3A21800AED146 /* Scene.swift */; settings = {ASSET_TAGS = (); }; };
+		5D50E05D1BC3A39500AED146 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05A1BC3A26A00AED146 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		5D50E0601BC3AD7A00AED146 /* SelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05E1BC3AD7500AED146 /* SelectorTests.swift */; settings = {ASSET_TAGS = (); }; };
 		5D50E0611BC3AD7B00AED146 /* SelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05E1BC3AD7500AED146 /* SelectorTests.swift */; settings = {ASSET_TAGS = (); }; };
 		5D5398121BC383BE0060AAED /* LightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5398041BC37FFA0060AAED /* LightTests.swift */; settings = {ASSET_TAGS = (); }; };
@@ -71,6 +75,8 @@
 /* Begin PBXFileReference section */
 		5D05E6291BB5296E007B917D /* LIFXHTTPKit-iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LIFXHTTPKit-iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D1BE8A81B2D602200198129 /* Selector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
+		5D50E0581BC3A21800AED146 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		5D50E05A1BC3A26A00AED146 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		5D50E05E1BC3AD7500AED146 /* SelectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectorTests.swift; sourceTree = "<group>"; };
 		5D5398041BC37FFA0060AAED /* LightTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightTests.swift; sourceTree = "<group>"; };
 		5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LIFXHTTPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,8 +167,10 @@
 				5DB41F471B2BD57C0006F2A5 /* LightTarget.swift */,
 				5DB41F451B2BD55C0006F2A5 /* LightTargetObserver.swift */,
 				5DB41F491B2BD5B90006F2A5 /* HTTPSession.swift */,
-				5DB41F4B1B2BD5DD0006F2A5 /* Light.swift */,
 				5DA7AB431B377ACA008A8130 /* Color.swift */,
+				5DB41F4B1B2BD5DD0006F2A5 /* Light.swift */,
+				5D50E0581BC3A21800AED146 /* Scene.swift */,
+				5D50E05A1BC3A26A00AED146 /* State.swift */,
 				5D94C6491B5671C300C0BCD2 /* Group.swift */,
 				5D94C64B1B56726200C0BCD2 /* Location.swift */,
 				5DB41F4D1B2BD5E50006F2A5 /* Result.swift */,
@@ -394,6 +402,8 @@
 				5DB41F4A1B2BD5B90006F2A5 /* HTTPSession.swift in Sources */,
 				5DB41F401B2BD4CA0006F2A5 /* Errors.swift in Sources */,
 				5D1BE8A91B2D602200198129 /* Selector.swift in Sources */,
+				5D50E05C1BC3A39200AED146 /* Scene.swift in Sources */,
+				5D50E05D1BC3A39500AED146 /* State.swift in Sources */,
 				5DA7AB441B377ACA008A8130 /* Color.swift in Sources */,
 				5DB41F441B2BD5370006F2A5 /* ClientObserver.swift in Sources */,
 				5DB41F481B2BD57C0006F2A5 /* LightTarget.swift in Sources */,
@@ -426,6 +436,8 @@
 				5D8BF5411BB5258000A5575C /* Location.swift in Sources */,
 				5D8BF53C1BB5257400A5575C /* LightTargetObserver.swift in Sources */,
 				5D8BF5391BB5256D00A5575C /* ClientObserver.swift in Sources */,
+				5D50E0591BC3A21800AED146 /* Scene.swift in Sources */,
+				5D50E05B1BC3A26A00AED146 /* State.swift in Sources */,
 				5D8BF5401BB5257D00A5575C /* Group.swift in Sources */,
 				5D8BF53B1BB5257200A5575C /* LightTarget.swift in Sources */,
 				5D8BF5421BB5258200A5575C /* Result.swift in Sources */,

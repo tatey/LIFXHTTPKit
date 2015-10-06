@@ -76,6 +76,19 @@ public class HTTPSession {
 		}.resume()
 	}
 
+	public func scenes(completionHandler: ((request: NSURLRequest, response: NSURLResponse?, scenes: [Scene], error: NSError?) -> Void)) {
+		let request = requestWithBaseURLByAppendingPathComponent("/scenes")
+		request.HTTPMethod = "GET"
+		session.dataTaskWithRequest(request) { (data, response, error) in
+			if error != nil {
+				completionHandler(request: request, response: response, scenes: [], error: error)
+			} else {
+				let (scenes, error) = self.dataToScenes(data)
+				completionHandler(request: request, response: response, scenes: scenes, error: error)
+			}
+		}.resume()
+	}
+
 	private func requestWithBaseURLByAppendingPathComponent(pathComponent: String) -> NSMutableURLRequest {
 		let url = baseURL.URLByAppendingPathComponent(pathComponent)
 		let request = NSMutableURLRequest(URL: url)
@@ -141,6 +154,61 @@ public class HTTPSession {
 			}
 		}
 		return (lights, nil)
+	}
+
+	private func dataToScenes(data: NSData?) -> (scenes: [Scene], error: NSError?) {
+		guard let data = data else {
+			return ([], NSError(domain: ErrorDomain, code: ErrorCode.JSONInvalid.rawValue, userInfo: [NSLocalizedDescriptionKey: "No Data"]))
+		}
+
+		let rootJSONObject: AnyObject?
+		do {
+			rootJSONObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
+		} catch let error as NSError {
+			return ([], error)
+		}
+
+		let sceneJSONObjects: [NSDictionary]
+		if let array = rootJSONObject as? [NSDictionary] {
+			sceneJSONObjects = array
+		} else {
+			sceneJSONObjects = []
+		}
+
+		var scenes: [Scene] = []
+		for sceneJSONObject in sceneJSONObjects {
+			if let uuid = sceneJSONObject["uuid"] as? String,
+				name = sceneJSONObject["name"] as? String,
+				stateJSONObjects = sceneJSONObject["states"] as? [NSDictionary] {
+				var states: [State] = []
+				for stateJSONObject in stateJSONObjects {
+					if let rawSelector = stateJSONObject["selector"] as? String,
+						selector = LIFXHTTPKit.Selector(rawSelector: rawSelector) {
+							let brightness = stateJSONObject["brightness"] as? Double ?? nil
+							let color: Color?
+							if let colorJSONObject = stateJSONObject["color"] as? NSDictionary,
+								colorHue = colorJSONObject["hue"] as? Double,
+								colorSaturation = colorJSONObject["saturation"] as? Double,
+								colorKelvin = colorJSONObject["kelvin"] as? Int {
+									color = Color(hue: colorHue, saturation: colorSaturation, kelvin: colorKelvin)
+							} else {
+								color = nil
+							}
+							let power: Bool?
+							if let powerJSONValue = stateJSONObject["power"] as? String {
+								power = powerJSONValue == "on"
+							} else {
+								power = nil
+							}
+							let state = State(selector: selector, brightness: brightness, color: color, power: power)
+							states.append(state)
+					}
+				}
+				let scene = Scene(uuid: uuid, name: name, states: states)
+				scenes.append(scene)
+			}
+		}
+		return (scenes, nil)
 	}
 
 	private func dataToResults(data: NSData?) -> (results: [Result], error: NSError?) {
