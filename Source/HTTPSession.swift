@@ -42,16 +42,16 @@ public class HTTPSession {
 	}
 
 	public func setLightsPower(selector: String, power: Bool, duration: Float, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
-		print("`setLightsPower:power:duration:completionHandler:` is deprecated and will be removed in a future version. Use `setState:power:color:brightness:duration:completionHandler:` instead.")
-		setState(selector, power: power, duration: duration, completionHandler: completionHandler)
+		print("`setLightsPower:power:duration:completionHandler:` is deprecated and will be removed in a future version. Use `setLightsState:power:color:brightness:duration:completionHandler:` instead.")
+		setLightsState(selector, power: power, duration: duration, completionHandler: completionHandler)
 	}
 
 	public func setLightsColor(selector: String, color: String, duration: Float, powerOn: Bool, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
-		print("`setLightsColor:color:duration:powerOn:completionHandler:` is deprecated and will be removed in a future version. Use `setState:power:color:brightness:duration:completionHandler:` instead.")
-		setState(selector, color: color, power: powerOn, duration: duration, completionHandler: completionHandler)
+		print("`setLightsColor:color:duration:powerOn:completionHandler:` is deprecated and will be removed in a future version. Use `setLightsState:power:color:brightness:duration:completionHandler:` instead.")
+		setLightsState(selector, color: color, power: powerOn, duration: duration, completionHandler: completionHandler)
 	}
 
-	public func setState(selector: String, power: Bool? = nil, color: String? = nil, brightness: Double? = nil, duration: Float, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
+	public func setLightsState(selector: String, power: Bool? = nil, color: String? = nil, brightness: Double? = nil, duration: Float, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
 		let request = requestWithBaseURLByAppendingPathComponent("/lights/\(selector)/state")
 		var parameters: [String : AnyObject] = ["duration": duration]
 		if let power = power {
