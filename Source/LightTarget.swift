@@ -155,12 +155,17 @@ public class LightTarget {
 		}
 	}
 
-	public func setColor(color: Color, brightness: Double, duration: Float = LightTarget.defaultDuration, power: Bool, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
+	public func setColor(color: Color, brightness: Double, power: Bool? = nil, duration: Float = LightTarget.defaultDuration, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
+		print("`setColor:brightness:power:duration:completionHandler: is deprecated and will be removed in a future version. Use `setState:brightness:power:duration:completionHandler:` instead.")
+		return setState(color, brightness: brightness, power: power, duration: duration, completionHandler: completionHandler)
+	}
+
+	public func setState(color: Color? = nil, brightness: Double? = nil, power: Bool? = nil, duration: Float = LightTarget.defaultDuration, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		let oldBrightness = self.brightness
 		let oldColor = self.color
 		let oldPower = self.power
 		client.updateLights(lights.map({ $0.lightWithProperties(power, color: color, brightness: brightness) }))
-		client.session.setState(selector.toQueryStringValue(), color: color.toQueryStringValue(), brightness: brightness, duration: duration) { [weak self] (request, response, results, error) in
+		client.session.setState(selector.toQueryStringValue(), color: color?.toQueryStringValue(), brightness: brightness, power: power, duration: duration) { [weak self] (request, response, results, error) in
 			if let strongSelf = self {
 				var newLights = strongSelf.lightsByDeterminingConnectivityWithResults(strongSelf.lights, results: results)
 				if error != nil {
