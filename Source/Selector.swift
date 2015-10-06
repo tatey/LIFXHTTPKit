@@ -24,6 +24,23 @@ public struct Selector: Equatable, CustomStringConvertible {
 		self.value = value
 	}
 
+	public init?(rawSelector: String) {
+		let components = rawSelector.componentsSeparatedByString(":")
+		if let type = Type(rawValue: components.first ?? "") {
+			if type == .All {
+				self.type = type
+				value = ""
+			} else if let value = components.last where value.characters.count > 0 {
+				self.type = type
+				self.value = value
+			} else {
+				return nil
+			}
+		} else {
+			return nil
+		}
+	}
+
 	func toQueryStringValue() -> String {
 		if type == .All {
 			return type.rawValue
