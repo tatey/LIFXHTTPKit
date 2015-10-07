@@ -6,16 +6,24 @@
 import Foundation
 
 public class Client {
-	let session: HTTPSession
-	var lights: [Light]
-	var scenes: [Scene]
+	public let session: HTTPSession
+
+	private(set) var lights: [Light]
+	private(set) var scenes: [Scene]
 
 	private var observers: [ClientObserver]
 	private let queue: dispatch_queue_t
 
-	public convenience init(accessToken: String) {
-		let session = HTTPSession(accessToken: accessToken)
-		self.init(session: session)
+	public convenience init(accessToken: String, lights: [Light]? = nil, scenes: [Scene]? = nil) {
+		self.init(session: HTTPSession(accessToken: accessToken))
+
+		if let lights = lights {
+			self.lights = lights
+		}
+
+		if let scenes = scenes {
+			self.scenes = scenes
+		}
 	}
 
 	public init(session: HTTPSession) {
