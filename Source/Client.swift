@@ -7,9 +7,11 @@ import Foundation
 
 public class Client {
 	let session: HTTPSession
+	var lights: [Light]
+	var scenes: [Scene]
 
-	private(set) var lights: [Light]
 	private var observers: [ClientObserver]
+	private let queue: dispatch_queue_t
 
 	public convenience init(accessToken: String) {
 		let session = HTTPSession(accessToken: accessToken)
@@ -19,10 +21,37 @@ public class Client {
 	public init(session: HTTPSession) {
 		self.session = session
 		lights = []
+		scenes = []
 		observers = []
+		queue = dispatch_queue_create("com.tatey.lifx-http-kit.client", DISPATCH_QUEUE_CONCURRENT)
 	}
 
-	public func fetch(completionHandler: ((error: NSError?) -> Void)? = nil) {
+	public func fetch(completionHandler: ((errors: [NSError]) -> Void)? = nil) {
+		let group = dispatch_group_create()
+		var errors: [NSError] = []
+
+		dispatch_group_enter(group)
+		fetchLights { (error) in
+			if let error = error {
+				errors.append(error)
+			}
+			dispatch_group_leave(group)
+		}
+
+		dispatch_group_enter(group)
+		fetchScenes { (error) in
+			if let error = error {
+				errors.append(error)
+			}
+			dispatch_group_leave(group)
+		}
+
+		dispatch_group_notify(group, queue) {
+			completionHandler?(errors: errors)
+		}
+	}
+
+	public func fetchLights(completionHandler: ((error: NSError?) -> Void)? = nil) {
 		session.lights("all") { [weak self] (request, response, lights, error) in
 			if error != nil {
 				completionHandler?(error: error)
@@ -40,6 +69,19 @@ public class Client {
 				}
 
 			}
+
+			completionHandler?(error: nil)
+		}
+	}
+
+	public func fetchScenes(completionHandler: ((error: NSError?) -> Void)? = nil) {
+		session.scenes { [weak self] (request, response, scenes, error) in
+			if error != nil {
+				completionHandler?(error: error)
+				return
+			}
+
+			self?.scenes = scenes
 
 			completionHandler?(error: nil)
 		}
