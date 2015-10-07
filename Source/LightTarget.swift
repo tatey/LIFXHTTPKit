@@ -181,6 +181,53 @@ public class LightTarget {
 		}
 	}
 
+	public func restoreState(duration: Float = LightTarget.defaultDuration, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
+		if selector.type != .SceneID {
+			// FIXME: Actually return a useful error
+			let error = NSError(domain: "", code: 0, userInfo: nil)
+			completionHandler?(results: [], error: error)
+			return
+		}
+
+		let states: [State]
+		if let index = client.scenes.indexOf({ $0.toSelector() == selector }) {
+			states = client.scenes[index].states
+		} else {
+			states = []
+		}
+		let oldLights = lights
+		let newLights = oldLights.map { (light) -> Light in
+			if let index = states.indexOf({ $0.selector == light.toSelector() }) {
+				let state = states[index]
+				let brightness = state.brightness ?? light.brightness
+				let color = state.color ?? light.color
+				let power = state.power ?? light.power
+				return light.lightWithProperties(power, brightness: brightness, color: color)
+			} else {
+				return light
+			}
+		}
+
+		client.updateLights(newLights)
+		client.session.setScenesActivate(selector.toQueryStringValue(), duration: duration) { [weak self] (request, response, results, error) in
+			if let strongSelf = self {
+				var newLights = strongSelf.lightsByDeterminingConnectivityWithResults(strongSelf.lights, results: results)
+				if error != nil {
+					newLights = newLights.map { (newLight) -> Light in
+						if let index = oldLights.indexOf({ $0.id == newLight.id }) {
+							let oldLight = oldLights[index]
+							return oldLight.lightWithProperties(connected: newLight.connected)
+						} else {
+							return newLight
+						}
+					}
+				}
+				strongSelf.client.updateLights(newLights)
+			}
+			completionHandler?(results: results, error: error)
+		}
+	}
+
 	// MARK: Helpers
 
 	private func updateLights(lights: [Light]) {
