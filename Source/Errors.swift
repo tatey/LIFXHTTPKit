@@ -9,4 +9,5 @@ public let ErrorDomain: String = "LIFXHTTPKitErrorDomain"
 
 public enum ErrorCode: Int {
 	case JSONInvalid
+	case UnacceptableSelector
 }

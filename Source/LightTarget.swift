@@ -183,8 +183,7 @@ public class LightTarget {
 
 	public func restoreState(duration: Float = LightTarget.defaultDuration, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		if selector.type != .SceneID {
-			// FIXME: Actually return a useful error
-			let error = NSError(domain: "", code: 0, userInfo: nil)
+			let error = NSError(domain: ErrorDomain, code: ErrorCode.UnacceptableSelector.rawValue, userInfo: [NSLocalizedDescriptionKey: "Unsupported Selector. Only `.SceneID` is supported."])
 			completionHandler?(results: [], error: error)
 			return
 		}
