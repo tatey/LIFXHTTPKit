@@ -48,6 +48,15 @@ if let lightTarget = all.toLightTargets().first() {
 }
 ```
 
+Restore a scene.
+
+``` swift
+if let scene = client.scenes.first {
+  let lightTarget = client.lightTargetWithSelector(scene.toSelector())
+  lightTarget.restoreState()
+}
+```
+
 Use a closure to find out when the request completes.
 
 ``` swift
@@ -200,7 +209,35 @@ let lights = client.lightTargetWithSelector(selector)
 lights.setBrightness(0.5)
 ```
 
-Supported types are `.All`, `.ID`, `.Label`, `.GroupID`, and `.LocationID`.
+Supported types are `.All`, `.ID`, `.GroupID`, `.LocationID`, and `.SceneID`.
+
+### Scenes
+
+Scenes are like a virtual group with a preset. Users create scenes with the official
+suite of LIFX apps.
+
+When used as a virtual group scenes let you address an arbitrary collection of lights.
+This works great for creating nested groups or combining groups beyond their physical
+location. You use them like normal light targets.
+
+``` swift
+if let scene = client.scenes.first {
+  let lightTarget = client.lightTargetWithSelector(scene.toSelector())
+  lightTarget.setPower(true)
+}
+```
+
+When used as a preset you can restore the state of the virtual group as intended by
+the creator of the scene. There is a special method called `restoreState` which
+optimistically updates the local in-memory cache as well as making the appropriate
+request to the LIFX HTTP API. All of this happens in a single operation.
+
+``` swift
+if let scene = client.scenes.first {
+  let lightTarget = client.lightTargetWithSelector(scene.toSelector())
+  lightTarget.restoreState()
+}
+```
 
 ### Observers
 
@@ -333,6 +370,17 @@ value unchanged.
 ``` swift
 let color = Color.color(hue: 180.0, saturation: 1.0)
 lightTarget.setState(color, brightness: 0.75, duration: 0.5, power: true, completionHandler: { (results: [Result], error: NSError?) -> Void
+  // println(results)
+})
+```
+
+## Restore State
+
+**Scenes Only**: Sets the state of the lights as defined by the backing scene. The `duration` is optional and
+defaults to `0.5`.
+
+``` swift
+lightTarget.restoreState(0.5, completionHandler: { (results: [Result], error: NSError?) -> Void
   // println(results)
 })
 ```
