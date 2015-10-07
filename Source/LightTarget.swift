@@ -6,6 +6,8 @@
 import Foundation
 
 public class LightTarget {
+	typealias Filter = (light: Light) -> Bool
+
 	public static let defaultDuration: Float = 0.5
 
 	public private(set) var power: Bool
@@ -16,6 +18,7 @@ public class LightTarget {
 	public private(set) var count: Int
 
 	public let selector: Selector
+	private let filter: Filter
 
 	private var lights: [Light]
 	private var observers: [LightTargetObserver]
@@ -23,7 +26,7 @@ public class LightTarget {
 	private let client: Client
 	private var clientObserver: ClientObserver!
 
-	init(client: Client, selector: Selector) {
+	init(client: Client, selector: Selector, filter: Filter) {
 		power = false
 		brightness = 0.0
 		color = Color(hue: 0, saturation: 0, kelvin: Color.defaultKelvin)
@@ -32,6 +35,7 @@ public class LightTarget {
 		count = 0
 
 		self.selector = selector
+		self.filter = filter
 
 		lights = []
 		observers = []
@@ -180,7 +184,7 @@ public class LightTarget {
 	// MARK: Helpers
 
 	private func updateLights(lights: [Light]) {
-		self.lights = lights.filter(self.selector.toFilter())
+		self.lights = lights.filter(filter)
 		dirtyCheck()
 	}
 

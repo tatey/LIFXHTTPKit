@@ -92,7 +92,7 @@ public class Client {
 	}
 
 	public func lightTargetWithSelector(selector: Selector) -> LightTarget {
-		return LightTarget(client: self, selector: selector)
+		return LightTarget(client: self, selector: selector, filter: selectorToFilter(selector))
 	}
 
 	func addObserver(lightsDidUpdateHandler: ClientObserver.LightsDidUpdate) -> ClientObserver {
@@ -130,6 +130,34 @@ public class Client {
 				observer.lightsDidUpdateHandler(lights: newLights)
 			}
 			self.lights = newLights
+		}
+	}
+
+	private func selectorToFilter(selector: Selector) -> LightTarget.Filter {
+		switch selector.type {
+		case .All:
+			return { (light) in return true }
+		case .ID:
+			return { (light) in return light.id == selector.value }
+		case .GroupID:
+			return { (light) in return light.group?.id == selector.value }
+		case .LocationID:
+			return { (light) in return light.location?.id == selector.value }
+		case .SceneID:
+			// FIXME: Holy reference count batman.
+			return { (light) in
+				if let index = self.scenes.indexOf({ $0.toSelector() == selector }) {
+					let scene = self.scenes[index]
+					return scene.states.contains { (state) in
+						let filter = self.selectorToFilter(state.selector)
+						return filter(light: light)
+					}
+				} else {
+					return false
+				}
+			}
+		case .Label:
+			return { (light) in return light.label == selector.value }
 		}
 	}
 }

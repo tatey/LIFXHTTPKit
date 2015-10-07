@@ -6,8 +6,6 @@
 import Foundation
 
 public struct Selector: Equatable, CustomStringConvertible {
-	typealias Filter = (light: Light) -> Bool
-
 	public enum Type: String {
 		case All        = "all"
 		case ID         = "id"
@@ -47,23 +45,6 @@ public struct Selector: Equatable, CustomStringConvertible {
 			return type.rawValue
 		} else {
 			return "\(type.rawValue):\(value)"
-		}
-	}
-
-	func toFilter() -> Filter {
-		switch type {
-		case .All:
-			return { (light) in return true }
-		case .ID:
-			return { (light) in return light.id == self.value }
-		case .GroupID:
-			return { (light) in return light.group?.id == self.value }
-		case .LocationID:
-			return { (light) in return light.location?.id == self.value }
-		case .SceneID:
-			return { (light) in return true } // FIXME: Limit to lights in scene
-		case .Label:
-			return { (light) in return light.label == self.value }
 		}
 	}
 

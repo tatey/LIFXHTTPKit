@@ -9,6 +9,10 @@ public struct Scene: Equatable {
 	public let uuid: String
 	public let name: String
 	public let states: [State]
+
+	public func toSelector() -> Selector {
+		return Selector(type: .SceneID, value: uuid)
+	}
 }
 
 public func ==(lhs: Scene, rhs: Scene) -> Bool {
