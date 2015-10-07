@@ -21,6 +21,10 @@ public struct Selector: Equatable, CustomStringConvertible {
 	public init(type: Type, value: String = "") {
 		self.type = type
 		self.value = value
+
+		if (type == .Label) {
+			print("Constructing selectors with `.Label` type is deprecated and will be removed in a future version.")
+		}
 	}
 
 	public init?(rawSelector: String) {

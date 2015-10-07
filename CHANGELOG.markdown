@@ -8,6 +8,7 @@
 * Add support for light target based scenes.
 * Changed convenience `Client -init` to optionally take cached lights and scenes for faster restore.
 * Exposed `session` as `public` on `Client` to easily get a configured session from the client.
+* Deprecated constructing selectors with `.Label` type.
 * Deprecated `HTTPSession -setLightsPower:power:duration:completionHandler:` and `HTTPSession -setLightsColor:color:duration:powerOn:completionHandler:`. Use `HTTPSession -setLightsState:power:color:brightness:duration:completionHandler:` instead.
 * Deprecated `LightTarget -setColor:brightness:power:duration:completionHandler:`. Use `LightTarget -setState:brightness:power:duration:completionHandler:` instead.
 
