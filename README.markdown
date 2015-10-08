@@ -90,7 +90,7 @@ all.removeObserver(observer)
 Get the light's state.
 
 ``` swift
-lightTarget.selector // => <Selector type: "id", value: "d3b2f2d97452">
+lightTarget.selector // => <LightTargetSelector type: "id", value: "d3b2f2d97452">
 lightTarget.power // => true
 lightTarget.brightness // => 0.5
 lightTarget.color // => <Color hue: 180.0, saturation: 1.0, kelvin: 3500>
@@ -158,7 +158,7 @@ for lightTarget in lightTarget {
 Light targets can be inspected at any time based on in-memory cache.
 
 ``` swift
-lightTarget.selector // => <Selector type: "all", value: "">
+lightTarget.selector // => <LightTargetSelector type: "all", value: "">
 lightTarget.power // => true
 lightTarget.brightness // => 0.5
 lightTarget.color // => <Color hue: 180.0, saturation: 1.0, kelvin: 3500>
@@ -204,7 +204,7 @@ for location in locations {
 Alternatively instantiate a light target using a custom selector.
 
 ``` swift
-let selector = Selector(type: .GroupID, value: "1c8de82b81f445e7cfaafae49b259c71")
+let selector = LightTargetSelector(type: .GroupID, value: "1c8de82b81f445e7cfaafae49b259c71")
 let lights = client.lightTargetWithSelector(selector)
 lights.setBrightness(0.5)
 ```

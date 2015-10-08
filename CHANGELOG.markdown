@@ -4,9 +4,10 @@
 
 * Migrate from v1beta to v1 of the LIFX HTTP API.
 * Add support for iOS 8.0+.
-* Add support for Swift 2. You must build with Xcode 7.0+.
+* **(Breaking)** Add support for Swift 2. You must build with Xcode 7.0+.
 * Add support for light target based scenes.
 * Changed convenience `Client -init` to optionally take cached lights and scenes for faster restore.
+* **(Breaking)** Renamed `Selector` to `LightTargetSelector` for better interoperability in Xcode 7. Unfortunately a breaking change was unavoidable.
 * Publicly exposed `session` on `Client` to easily get a configured session from the client.
 * Publicly exposed `lights` and `scenes` as read-only on `Client` making it possible to inspect the state of the client.
 * Publicly exposed `lights` as read-only on `LightTarget` in favour of calling `toLights()` to be consistent with `Client`.
