@@ -7,10 +7,13 @@
 * Add support for Swift 2. You must build with Xcode 7.0+.
 * Add support for light target based scenes.
 * Changed convenience `Client -init` to optionally take cached lights and scenes for faster restore.
-* Exposed `session` as `public` on `Client` to easily get a configured session from the client.
+* Publicly exposed `session` on `Client` to easily get a configured session from the client.
+* Publicly exposed `lights` and `scenes` as read-only on `Client` making it possible to inspect the state of the client.
+* Publicly exposed `lights` as read-only on `LightTarget` in favour of calling `toLights()` to be consistent with `Client`.
 * Deprecated constructing selectors with `.Label` type.
 * Deprecated `HTTPSession -setLightsPower:power:duration:completionHandler:` and `HTTPSession -setLightsColor:color:duration:powerOn:completionHandler:`. Use `HTTPSession -setLightsState:power:color:brightness:duration:completionHandler:` instead.
 * Deprecated `LightTarget -setColor:brightness:power:duration:completionHandler:`. Use `LightTarget -setState:brightness:power:duration:completionHandler:` instead.
+* Deprecated `LightTarget -toLights`. Use the `lights` property instead.
 
 ## 0.0.2 / 2015-09-02
 

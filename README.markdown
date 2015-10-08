@@ -165,8 +165,8 @@ lightTarget.color // => <Color hue: 180.0, saturation: 1.0, kelvin: 3500>
 lightTarget.label // => "Lamp 1"
 lightTarget.connected // => true
 lightTarget.count // => 5
-lightTarget.toLights().first?.group // => <Group id: "1c8de82b81f445e7cfaafae49b259c71", name: "Lounge">
-lightTarget.toLights().first?.location // => <Location id: "1d6fe8ef0fde4c6d77b0012dc736662c", name: "Home">
+lightTarget.lights.first?.group // => <Group id: "1c8de82b81f445e7cfaafae49b259c71", name: "Lounge">
+lightTarget.lights.first?.location // => <Location id: "1d6fe8ef0fde4c6d77b0012dc736662c", name: "Home">
 ```
 
 The in-memory cache is updated when the client fetches, or an operation is
@@ -427,7 +427,7 @@ with a mixed group you can inspect each light individually.
 
 ``` swift
 
-for light in lightTarget.toLights() {
+for light in lightTarget.lights {
   println(light.id)
 }
 ```
