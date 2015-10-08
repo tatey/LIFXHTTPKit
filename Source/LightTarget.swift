@@ -5,9 +5,9 @@
 
 import Foundation
 
-public class LightTarget {
-	typealias Filter = (light: Light) -> Bool
+typealias LightTargetFilter = (light: Light) -> Bool
 
+public class LightTarget {
 	public static let defaultDuration: Float = 0.5
 
 	public private(set) var power: Bool
@@ -19,13 +19,13 @@ public class LightTarget {
 
 	public let selector: LightTargetSelector
 	public private(set) var lights: [Light]
-	private let filter: Filter
+	private let filter: LightTargetFilter
 	private var observers: [LightTargetObserver]
 
 	private let client: Client
 	private var clientObserver: ClientObserver!
 
-	init(client: Client, selector: LightTargetSelector, filter: Filter) {
+	init(client: Client, selector: LightTargetSelector, filter: LightTargetFilter) {
 		power = false
 		brightness = 0.0
 		color = Color(hue: 0, saturation: 0, kelvin: Color.defaultKelvin)

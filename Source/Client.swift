@@ -140,7 +140,7 @@ public class Client {
 		}
 	}
 
-	private func selectorToFilter(selector: LightTargetSelector) -> LightTarget.Filter {
+	private func selectorToFilter(selector: LightTargetSelector) -> LightTargetFilter {
 		switch selector.type {
 		case .All:
 			return { (light) in return true }
