@@ -1,24 +1,24 @@
 //
-//  Created by Tate Johnson on 14/06/2015.
-//  Copyright (c) 2015 Tate Johnson. All rights reserved.
+//  Created by Tate Johnson on 8/10/2015.
+//  Copyright © 2015 Tate Johnson. All rights reserved.
 //
 
 import Foundation
 
-public struct Selector: Equatable, CustomStringConvertible {
-	public enum Type: String {
-		case All        = "all"
-		case ID         = "id"
-		case GroupID    = "group_id"
-		case LocationID = "location_id"
-		case SceneID    = "scene_id"
-		case Label      = "label"
-	}
+public enum LightTargetSelectorType: String {
+	case All        = "all"
+	case ID         = "id"
+	case GroupID    = "group_id"
+	case LocationID = "location_id"
+	case SceneID    = "scene_id"
+	case Label      = "label"
+}
 
-	public let type: Type
+public struct LightTargetSelector: Equatable, CustomStringConvertible {
+	public let type: LightTargetSelectorType
 	public let value: String
 
-	public init(type: Type, value: String = "") {
+	public init(type: LightTargetSelectorType, value: String = "") {
 		self.type = type
 		self.value = value
 
@@ -29,7 +29,7 @@ public struct Selector: Equatable, CustomStringConvertible {
 
 	public init?(rawSelector: String) {
 		let components = rawSelector.componentsSeparatedByString(":")
-		if let type = Type(rawValue: components.first ?? "") {
+		if let type = LightTargetSelectorType(rawValue: components.first ?? "") {
 			if type == .All {
 				self.type = type
 				value = ""
@@ -59,7 +59,7 @@ public struct Selector: Equatable, CustomStringConvertible {
 	}
 }
 
-public func ==(lhs: Selector, rhs: Selector) -> Bool {
+public func ==(lhs: LightTargetSelector, rhs: LightTargetSelector) -> Bool {
 	if lhs.type == .All {
 		return lhs.type == rhs.type
 	} else {

@@ -6,7 +6,7 @@
 import Foundation
 
 public struct State: Equatable {
-	public let selector: Selector
+	public let selector: LightTargetSelector
 	public let brightness: Double?
 	public let color: Color?
 	public let power: Bool?

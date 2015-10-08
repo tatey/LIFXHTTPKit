@@ -72,7 +72,7 @@ class LightTargetTests: XCTestCase {
 		if let scene = client.scenes.first {
 			let expectation = expectationWithDescription("restoreState")
 
-			let selector = LIFXHTTPKit.Selector(type: .SceneID, value: scene.uuid)
+			let selector = LightTargetSelector(type: .SceneID, value: scene.uuid)
 			let lightTarget = client.lightTargetWithSelector(selector)
 			XCTAssertEqual(scene.name, lightTarget.label)
 			lightTarget.restoreState(0.0) { (results, error) in
@@ -89,12 +89,12 @@ class LightTargetTests: XCTestCase {
 	func testToGroupTargets() {
 		let groups = lightTarget.toGroupTargets()
 		XCTAssertGreaterThan(groups.count, 0, "expected at least one group")
-		XCTAssertEqual(groups.first!.selector.type, Selector.Type.GroupID, "expected selector type to be GroupID")
+		XCTAssertEqual(groups.first!.selector.type, LightTargetSelectorType.GroupID, "expected selector type to be GroupID")
 	}
 
 	func testToLocationTargets() {
 		let locations = lightTarget.toLocationTargets()
 		XCTAssertGreaterThan(locations.count, 0, "expected at least one location")
-		XCTAssertEqual(locations.first!.selector.type, Selector.Type.LocationID, "expected selector type to be LocationID")
+		XCTAssertEqual(locations.first!.selector.type, LightTargetSelectorType.LocationID, "expected selector type to be LocationID")
 	}
 }

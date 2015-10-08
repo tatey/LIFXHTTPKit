@@ -198,7 +198,7 @@ public class HTTPSession {
 				var states: [State] = []
 				for stateJSONObject in stateJSONObjects {
 					if let rawSelector = stateJSONObject["selector"] as? String,
-						selector = LIFXHTTPKit.Selector(rawSelector: rawSelector) {
+						selector = LightTargetSelector(rawSelector: rawSelector) {
 							let brightness = stateJSONObject["brightness"] as? Double ?? nil
 							let color: Color?
 							if let colorJSONObject = stateJSONObject["color"] as? NSDictionary,

@@ -95,10 +95,10 @@ public class Client {
 	}
 
 	public func allLightTarget() -> LightTarget {
-		return lightTargetWithSelector(Selector(type: .All))
+		return lightTargetWithSelector(LightTargetSelector(type: .All))
 	}
 
-	public func lightTargetWithSelector(selector: Selector) -> LightTarget {
+	public func lightTargetWithSelector(selector: LightTargetSelector) -> LightTarget {
 		return LightTarget(client: self, selector: selector, filter: selectorToFilter(selector))
 	}
 
@@ -140,7 +140,7 @@ public class Client {
 		}
 	}
 
-	private func selectorToFilter(selector: Selector) -> LightTarget.Filter {
+	private func selectorToFilter(selector: LightTargetSelector) -> LightTarget.Filter {
 		switch selector.type {
 		case .All:
 			return { (light) in return true }

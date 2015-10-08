@@ -9,8 +9,8 @@ public struct Location: Equatable {
 	public let id: String
 	public let name: String
 
-	public func toSelector() -> Selector {
-		return Selector(type: .LocationID, value: id)
+	public func toSelector() -> LightTargetSelector {
+		return LightTargetSelector(type: .LocationID, value: id)
 	}
 
 	// MARK: Printable

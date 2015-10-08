@@ -13,13 +13,12 @@
 		5D05E6211BB5296E007B917D /* SecretsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7AB321B369608008A8130 /* SecretsHelper.swift */; };
 		5D05E6231BB5296E007B917D /* LIFXHTTPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */; };
 		5D05E6251BB5296E007B917D /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DA7AB2F1B3695BF008A8130 /* Secrets.plist */; };
-		5D1BE8A91B2D602200198129 /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1BE8A81B2D602200198129 /* Selector.swift */; };
 		5D50E0591BC3A21800AED146 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E0581BC3A21800AED146 /* Scene.swift */; settings = {ASSET_TAGS = (); }; };
 		5D50E05B1BC3A26A00AED146 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05A1BC3A26A00AED146 /* State.swift */; settings = {ASSET_TAGS = (); }; };
 		5D50E05C1BC3A39200AED146 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E0581BC3A21800AED146 /* Scene.swift */; settings = {ASSET_TAGS = (); }; };
 		5D50E05D1BC3A39500AED146 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05A1BC3A26A00AED146 /* State.swift */; settings = {ASSET_TAGS = (); }; };
-		5D50E0601BC3AD7A00AED146 /* SelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05E1BC3AD7500AED146 /* SelectorTests.swift */; settings = {ASSET_TAGS = (); }; };
-		5D50E0611BC3AD7B00AED146 /* SelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05E1BC3AD7500AED146 /* SelectorTests.swift */; settings = {ASSET_TAGS = (); }; };
+		5D50E0601BC3AD7A00AED146 /* LightTargetSelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05E1BC3AD7500AED146 /* LightTargetSelectorTests.swift */; settings = {ASSET_TAGS = (); }; };
+		5D50E0611BC3AD7B00AED146 /* LightTargetSelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05E1BC3AD7500AED146 /* LightTargetSelectorTests.swift */; settings = {ASSET_TAGS = (); }; };
 		5D5398121BC383BE0060AAED /* LightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5398041BC37FFA0060AAED /* LightTests.swift */; settings = {ASSET_TAGS = (); }; };
 		5D5398131BC383BF0060AAED /* LightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5398041BC37FFA0060AAED /* LightTests.swift */; settings = {ASSET_TAGS = (); }; };
 		5D5898A81B1887530024D47B /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D5898A71B1887530024D47B /* LIFXHTTPKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,7 +28,6 @@
 		5D8BF5371BB5256900A5575C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F3F1B2BD4CA0006F2A5 /* Errors.swift */; settings = {ASSET_TAGS = (); }; };
 		5D8BF5381BB5256B00A5575C /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5898BE1B1887650024D47B /* Client.swift */; settings = {ASSET_TAGS = (); }; };
 		5D8BF5391BB5256D00A5575C /* ClientObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F431B2BD5370006F2A5 /* ClientObserver.swift */; settings = {ASSET_TAGS = (); }; };
-		5D8BF53A1BB5257000A5575C /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1BE8A81B2D602200198129 /* Selector.swift */; settings = {ASSET_TAGS = (); }; };
 		5D8BF53B1BB5257200A5575C /* LightTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F471B2BD57C0006F2A5 /* LightTarget.swift */; settings = {ASSET_TAGS = (); }; };
 		5D8BF53C1BB5257400A5575C /* LightTargetObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F451B2BD55C0006F2A5 /* LightTargetObserver.swift */; settings = {ASSET_TAGS = (); }; };
 		5D8BF53D1BB5257600A5575C /* HTTPSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F491B2BD5B90006F2A5 /* HTTPSession.swift */; settings = {ASSET_TAGS = (); }; };
@@ -39,6 +37,8 @@
 		5D8BF5411BB5258000A5575C /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D94C64B1B56726200C0BCD2 /* Location.swift */; settings = {ASSET_TAGS = (); }; };
 		5D8BF5421BB5258200A5575C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F4D1B2BD5E50006F2A5 /* Result.swift */; settings = {ASSET_TAGS = (); }; };
 		5D8BF5431BB5258900A5575C /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D5898A71B1887530024D47B /* LIFXHTTPKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5D8C3D9E1BC5FC990059E05D /* LightTargetSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8C3D9D1BC5FC990059E05D /* LightTargetSelector.swift */; settings = {ASSET_TAGS = (); }; };
+		5D8C3D9F1BC5FC990059E05D /* LightTargetSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8C3D9D1BC5FC990059E05D /* LightTargetSelector.swift */; settings = {ASSET_TAGS = (); }; };
 		5D94C64A1B5671C300C0BCD2 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D94C6491B5671C300C0BCD2 /* Group.swift */; };
 		5D94C64C1B56726200C0BCD2 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D94C64B1B56726200C0BCD2 /* Location.swift */; };
 		5DA745151B52493500BBC2D1 /* ClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA745131B52492E00BBC2D1 /* ClientHelper.swift */; };
@@ -74,10 +74,9 @@
 
 /* Begin PBXFileReference section */
 		5D05E6291BB5296E007B917D /* LIFXHTTPKit-iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LIFXHTTPKit-iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5D1BE8A81B2D602200198129 /* Selector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
 		5D50E0581BC3A21800AED146 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		5D50E05A1BC3A26A00AED146 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		5D50E05E1BC3AD7500AED146 /* SelectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectorTests.swift; sourceTree = "<group>"; };
+		5D50E05E1BC3AD7500AED146 /* LightTargetSelectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightTargetSelectorTests.swift; sourceTree = "<group>"; };
 		5D5398041BC37FFA0060AAED /* LightTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightTests.swift; sourceTree = "<group>"; };
 		5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LIFXHTTPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5898A61B1887530024D47B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,6 +86,7 @@
 		5D5898B41B1887530024D47B /* ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
 		5D5898BE1B1887650024D47B /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		5D8BF52F1BB524F400A5575C /* LIFXHTTPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LIFXHTTPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D8C3D9D1BC5FC990059E05D /* LightTargetSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightTargetSelector.swift; sourceTree = "<group>"; };
 		5D94C6491B5671C300C0BCD2 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		5D94C64B1B56726200C0BCD2 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		5DA745131B52492E00BBC2D1 /* ClientHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientHelper.swift; sourceTree = "<group>"; };
@@ -163,8 +163,8 @@
 				5DB41F3F1B2BD4CA0006F2A5 /* Errors.swift */,
 				5D5898BE1B1887650024D47B /* Client.swift */,
 				5DB41F431B2BD5370006F2A5 /* ClientObserver.swift */,
-				5D1BE8A81B2D602200198129 /* Selector.swift */,
 				5DB41F471B2BD57C0006F2A5 /* LightTarget.swift */,
+				5D8C3D9D1BC5FC990059E05D /* LightTargetSelector.swift */,
 				5DB41F451B2BD55C0006F2A5 /* LightTargetObserver.swift */,
 				5DB41F491B2BD5B90006F2A5 /* HTTPSession.swift */,
 				5DA7AB431B377ACA008A8130 /* Color.swift */,
@@ -193,8 +193,8 @@
 			children = (
 				5D5898B41B1887530024D47B /* ClientTests.swift */,
 				5DF649D81B2D436A0006EE03 /* LightTargetTests.swift */,
+				5D50E05E1BC3AD7500AED146 /* LightTargetSelectorTests.swift */,
 				5D5398041BC37FFA0060AAED /* LightTests.swift */,
-				5D50E05E1BC3AD7500AED146 /* SelectorTests.swift */,
 				5D5898B21B1887530024D47B /* Supporting Files */,
 			);
 			path = Tests;
@@ -385,7 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D50E0611BC3AD7B00AED146 /* SelectorTests.swift in Sources */,
+				5D50E0611BC3AD7B00AED146 /* LightTargetSelectorTests.swift in Sources */,
 				5D5398121BC383BE0060AAED /* LightTests.swift in Sources */,
 				5D05E61E1BB5296E007B917D /* ClientHelper.swift in Sources */,
 				5D05E61F1BB5296E007B917D /* ClientTests.swift in Sources */,
@@ -401,7 +401,7 @@
 				5D94C64A1B5671C300C0BCD2 /* Group.swift in Sources */,
 				5DB41F4A1B2BD5B90006F2A5 /* HTTPSession.swift in Sources */,
 				5DB41F401B2BD4CA0006F2A5 /* Errors.swift in Sources */,
-				5D1BE8A91B2D602200198129 /* Selector.swift in Sources */,
+				5D8C3D9F1BC5FC990059E05D /* LightTargetSelector.swift in Sources */,
 				5D50E05C1BC3A39200AED146 /* Scene.swift in Sources */,
 				5D50E05D1BC3A39500AED146 /* State.swift in Sources */,
 				5DA7AB441B377ACA008A8130 /* Color.swift in Sources */,
@@ -419,7 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D50E0601BC3AD7A00AED146 /* SelectorTests.swift in Sources */,
+				5D50E0601BC3AD7A00AED146 /* LightTargetSelectorTests.swift in Sources */,
 				5D5398131BC383BF0060AAED /* LightTests.swift in Sources */,
 				5DA745151B52493500BBC2D1 /* ClientHelper.swift in Sources */,
 				5D5898B51B1887530024D47B /* ClientTests.swift in Sources */,
@@ -435,13 +435,13 @@
 				5D8BF5381BB5256B00A5575C /* Client.swift in Sources */,
 				5D8BF5411BB5258000A5575C /* Location.swift in Sources */,
 				5D8BF53C1BB5257400A5575C /* LightTargetObserver.swift in Sources */,
+				5D8C3D9E1BC5FC990059E05D /* LightTargetSelector.swift in Sources */,
 				5D8BF5391BB5256D00A5575C /* ClientObserver.swift in Sources */,
 				5D50E0591BC3A21800AED146 /* Scene.swift in Sources */,
 				5D50E05B1BC3A26A00AED146 /* State.swift in Sources */,
 				5D8BF5401BB5257D00A5575C /* Group.swift in Sources */,
 				5D8BF53B1BB5257200A5575C /* LightTarget.swift in Sources */,
 				5D8BF5421BB5258200A5575C /* Result.swift in Sources */,
-				5D8BF53A1BB5257000A5575C /* Selector.swift in Sources */,
 				5D8BF5371BB5256900A5575C /* Errors.swift in Sources */,
 				5D8BF53E1BB5257900A5575C /* Light.swift in Sources */,
 				5D8BF53D1BB5257600A5575C /* HTTPSession.swift in Sources */,

@@ -8,10 +8,10 @@ import Foundation
 import XCTest
 import LIFXHTTPKit
 
-class SelectorTests: XCTestCase {
+class LightTargetSelectorTests: XCTestCase {
 	func testNewSelectorWithRawSelectorHavingAll() {
-		if let selector = LIFXHTTPKit.Selector(rawSelector: "all") {
-			XCTAssertEqual(selector.type, Selector.Type.All)
+		if let selector = LightTargetSelector(rawSelector: "all") {
+			XCTAssertEqual(selector.type, LightTargetSelectorType.All)
 			XCTAssertEqual(selector.value, "")
 		} else {
 			XCTFail("Expected selector to be constructed.")
@@ -19,8 +19,8 @@ class SelectorTests: XCTestCase {
 	}
 
 	func testNewSelectorWithRawSelectorHavingIDAndValue() {
-		if let selector = LIFXHTTPKit.Selector(rawSelector: "id:d3b2f2d97452") {
-			XCTAssertEqual(selector.type, Selector.Type.ID)
+		if let selector = LightTargetSelector(rawSelector: "id:d3b2f2d97452") {
+			XCTAssertEqual(selector.type, LightTargetSelectorType.ID)
 			XCTAssertEqual(selector.value, "d3b2f2d97452")
 		} else {
 			XCTFail("Expected selector to be constructed.")
@@ -28,8 +28,8 @@ class SelectorTests: XCTestCase {
 	}
 
 	func testNewSelectorWithRawSelectorHavingBadCombinations() {
-		XCTAssertNil(LIFXHTTPKit.Selector(rawSelector: ""))
-		XCTAssertNil(LIFXHTTPKit.Selector(rawSelector: "id:"))
-		XCTAssertNil(LIFXHTTPKit.Selector(rawSelector: ":"))
+		XCTAssertNil(LightTargetSelector(rawSelector: ""))
+		XCTAssertNil(LightTargetSelector(rawSelector: "id:"))
+		XCTAssertNil(LightTargetSelector(rawSelector: ":"))
 	}
 }

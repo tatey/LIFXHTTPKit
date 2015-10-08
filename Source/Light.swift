@@ -15,8 +15,8 @@ public struct Light: Equatable, CustomStringConvertible {
 	public let group: Group?
 	public let location: Location?
 
-	public func toSelector() -> Selector {
-		return Selector(type: .ID, value: id)
+	public func toSelector() -> LightTargetSelector {
+		return LightTargetSelector(type: .ID, value: id)
 	}
 
 	func lightWithProperties(power: Bool? = nil, brightness: Double? = nil, color: Color? = nil, connected: Bool? = nil) -> Light {

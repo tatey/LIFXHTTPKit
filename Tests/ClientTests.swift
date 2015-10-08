@@ -10,6 +10,6 @@ class ClientTests: XCTestCase {
 	func testAllLightsReturnsLightTargetConfiguredWithAllSelector() {
 		let client = Client(accessToken: "")
 		let lightTarget = client.allLightTarget()
-		XCTAssertEqual(lightTarget.selector, Selector(type: .All), "expected selector to be `.All` type")
+		XCTAssertEqual(lightTarget.selector, LightTargetSelector(type: .All), "expected selector to be `.All` type")
 	}
 }

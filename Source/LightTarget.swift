@@ -17,7 +17,7 @@ public class LightTarget {
 	public private(set) var connected: Bool
 	public private(set) var count: Int
 
-	public let selector: Selector
+	public let selector: LightTargetSelector
 	public private(set) var lights: [Light]
 	private let filter: Filter
 	private var observers: [LightTargetObserver]
@@ -25,7 +25,7 @@ public class LightTarget {
 	private let client: Client
 	private var clientObserver: ClientObserver!
 
-	init(client: Client, selector: Selector, filter: Filter) {
+	init(client: Client, selector: LightTargetSelector, filter: Filter) {
 		power = false
 		brightness = 0.0
 		color = Color(hue: 0, saturation: 0, kelvin: Color.defaultKelvin)
@@ -79,7 +79,7 @@ public class LightTarget {
 	// MARK: Slicing
 
 	public func toLightTargets() -> [LightTarget] {
-		return lights.map { (light) in return self.client.lightTargetWithSelector(Selector(type: .ID, value: light.id)) }
+		return lights.map { (light) in return self.client.lightTargetWithSelector(LightTargetSelector(type: .ID, value: light.id)) }
 	}
 
 	public func toGroupTargets() -> [LightTarget] {

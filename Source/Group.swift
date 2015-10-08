@@ -9,8 +9,8 @@ public struct Group: Equatable, CustomStringConvertible {
 	public let id: String
 	public let name: String
 
-	public func toSelector() -> Selector {
-		return Selector(type: .GroupID, value: id)
+	public func toSelector() -> LightTargetSelector {
+		return LightTargetSelector(type: .GroupID, value: id)
 	}
 
 	// MARK: Printable
