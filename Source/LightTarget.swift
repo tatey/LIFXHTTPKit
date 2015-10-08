@@ -361,7 +361,11 @@ public class LightTarget {
 				return ""
 			}
 		case .SceneID:
-			return "" // FIXME: Derive from the scene's name
+			if let index = client.scenes.indexOf({ $0.toSelector() == selector }) {
+				return client.scenes[index].name
+			} else {
+				return ""
+			}
 		}
 	}
 

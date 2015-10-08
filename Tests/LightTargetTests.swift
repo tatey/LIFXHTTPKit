@@ -74,6 +74,7 @@ class LightTargetTests: XCTestCase {
 
 			let selector = LIFXHTTPKit.Selector(type: .SceneID, value: scene.uuid)
 			let lightTarget = client.lightTargetWithSelector(selector)
+			XCTAssertEqual(scene.name, lightTarget.label)
 			lightTarget.restoreState(0.0) { (results, error) in
 				XCTAssertNil(error, "expected error to be nil")
 				expectation.fulfill()
