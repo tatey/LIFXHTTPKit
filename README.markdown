@@ -118,7 +118,7 @@ Keep these concepts in the back of your mind when using LIFXHTTPKit:
    methods that respond to network and local changes.
 4. Light state is maintained by an instance of `Client` and shared between all
    instances of `LightTarget`. If you power on one light target then all light
-   targets which share the same underline light are notified of the change.
+   targets which share the same underlying light are notified of the change.
 
 ## Detailed Usage
 
