@@ -374,10 +374,13 @@ lightTarget.setState(color, brightness: 0.75, duration: 0.5, power: true, comple
 })
 ```
 
-## Restore State
+### Restore State
 
 **Scenes Only**: Sets the state of the lights as defined by the backing scene. The `duration` is optional and
 defaults to `0.5`.
+
+Calling this method on a non-scene based light target will set the error argument in the `completionHandler`
+callback.
 
 ``` swift
 lightTarget.restoreState(0.5, completionHandler: { (results: [Result], error: NSError?) -> Void
