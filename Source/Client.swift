@@ -151,12 +151,11 @@ public class Client {
 		case .LocationID:
 			return { (light) in return light.location?.id == selector.value }
 		case .SceneID:
-			// FIXME: Holy reference count batman.
-			return { (light) in
-				if let index = self.scenes.indexOf({ $0.toSelector() == selector }) {
-					let scene = self.scenes[index]
+			return { [weak self] (light) in
+				if let strongSelf = self, index = strongSelf.scenes.indexOf({ $0.toSelector() == selector }) {
+					let scene = strongSelf.scenes[index]
 					return scene.states.contains { (state) in
-						let filter = self.selectorToFilter(state.selector)
+						let filter = strongSelf.selectorToFilter(state.selector)
 						return filter(light: light)
 					}
 				} else {
