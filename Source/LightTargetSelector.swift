@@ -59,7 +59,7 @@ public struct LightTargetSelector: Equatable, CustomStringConvertible {
 	// MARK: Printable
 
 	public var description: String {
-		return "<Selector type: \"\(type)\", value: \"\(value)\">"
+		return "<LightTargetSelector type: \"\(type)\", value: \"\(value)\">"
 	}
 }
 
