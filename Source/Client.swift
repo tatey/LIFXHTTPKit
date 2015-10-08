@@ -7,9 +7,8 @@ import Foundation
 
 public class Client {
 	public let session: HTTPSession
-
-	private(set) var lights: [Light]
-	private(set) var scenes: [Scene]
+	public private(set) var lights: [Light]
+	public private(set) var scenes: [Scene]
 
 	private var observers: [ClientObserver]
 	private let queue: dispatch_queue_t

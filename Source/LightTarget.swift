@@ -18,9 +18,8 @@ public class LightTarget {
 	public private(set) var count: Int
 
 	public let selector: Selector
+	public private(set) var lights: [Light]
 	private let filter: Filter
-
-	private var lights: [Light]
 	private var observers: [LightTargetObserver]
 
 	private let client: Client
@@ -36,7 +35,6 @@ public class LightTarget {
 
 		self.selector = selector
 		self.filter = filter
-
 		lights = []
 		observers = []
 
@@ -109,6 +107,7 @@ public class LightTarget {
 	}
 
 	public func toLights() -> [Light] {
+		print("`toLights` is deprecated and will be removed in a future version. Use `lights` instead.")
 		return lights
 	}
 
