@@ -67,6 +67,24 @@ class LightTargetTests: XCTestCase {
 		waitForExpectationsWithTimeout(3.0, handler: nil)
 	}
 
+	func testRestoreState() {
+		let client = ClientHelper.sharedClient
+		if let scene = client.scenes.first {
+			let expectation = expectationWithDescription("restoreState")
+
+			let selector = LIFXHTTPKit.Selector(type: .SceneID, value: scene.uuid)
+			let lightTarget = client.lightTargetWithSelector(selector)
+			lightTarget.restoreState(0.0) { (results, error) in
+				XCTAssertNil(error, "expected error to be nil")
+				expectation.fulfill()
+			}
+
+			waitForExpectationsWithTimeout(3.0, handler: nil)
+		} else {
+			print("Skipping \(__FUNCTION__): Authenticated account doesn't have any scenes")
+		}
+	}
+
 	func testToGroupTargets() {
 		let groups = lightTarget.toGroupTargets()
 		XCTAssertGreaterThan(groups.count, 0, "expected at least one group")
