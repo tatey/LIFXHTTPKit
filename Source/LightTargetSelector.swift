@@ -27,8 +27,8 @@ public struct LightTargetSelector: Equatable, CustomStringConvertible {
 		}
 	}
 
-	public init?(rawSelector: String) {
-		let components = rawSelector.componentsSeparatedByString(":")
+	public init?(stringValue: String) {
+		let components = stringValue.componentsSeparatedByString(":")
 		if let type = LightTargetSelectorType(rawValue: components.first ?? "") {
 			if type == .All {
 				self.type = type
@@ -44,12 +44,16 @@ public struct LightTargetSelector: Equatable, CustomStringConvertible {
 		}
 	}
 
-	func toQueryStringValue() -> String {
+	public var stringValue: String {
 		if type == .All {
 			return type.rawValue
 		} else {
 			return "\(type.rawValue):\(value)"
 		}
+	}
+
+	func toQueryStringValue() -> String {
+		return stringValue
 	}
 
 	// MARK: Printable

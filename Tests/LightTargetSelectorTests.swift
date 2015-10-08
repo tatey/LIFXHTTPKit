@@ -10,7 +10,7 @@ import LIFXHTTPKit
 
 class LightTargetSelectorTests: XCTestCase {
 	func testNewSelectorWithRawSelectorHavingAll() {
-		if let selector = LightTargetSelector(rawSelector: "all") {
+		if let selector = LightTargetSelector(stringValue: "all") {
 			XCTAssertEqual(selector.type, LightTargetSelectorType.All)
 			XCTAssertEqual(selector.value, "")
 		} else {
@@ -19,7 +19,7 @@ class LightTargetSelectorTests: XCTestCase {
 	}
 
 	func testNewSelectorWithRawSelectorHavingIDAndValue() {
-		if let selector = LightTargetSelector(rawSelector: "id:d3b2f2d97452") {
+		if let selector = LightTargetSelector(stringValue: "id:d3b2f2d97452") {
 			XCTAssertEqual(selector.type, LightTargetSelectorType.ID)
 			XCTAssertEqual(selector.value, "d3b2f2d97452")
 		} else {
@@ -28,8 +28,16 @@ class LightTargetSelectorTests: XCTestCase {
 	}
 
 	func testNewSelectorWithRawSelectorHavingBadCombinations() {
-		XCTAssertNil(LightTargetSelector(rawSelector: ""))
-		XCTAssertNil(LightTargetSelector(rawSelector: "id:"))
-		XCTAssertNil(LightTargetSelector(rawSelector: ":"))
+		XCTAssertNil(LightTargetSelector(stringValue: ""))
+		XCTAssertNil(LightTargetSelector(stringValue: "id:"))
+		XCTAssertNil(LightTargetSelector(stringValue: ":"))
+	}
+
+	func testStringValue() {
+		let selector1 = LightTargetSelector(type: .ID, value: "d3b2f2d97452")
+		XCTAssertEqual(selector1.stringValue, "id:d3b2f2d97452")
+
+		let selector2 = LightTargetSelector(type: .All)
+		XCTAssertEqual(selector2.stringValue, "all")
 	}
 }
