@@ -12,7 +12,7 @@ if you want to see a real-world Mac app built on top of this framework.
 
 * Swift 2.0 (Xcode 7.0+)
 * iOS 8.0+
-* Mac OS X 10.10
+* Mac OS X 10.10+
 
 ## Installation
 
