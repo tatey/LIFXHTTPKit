@@ -14,21 +14,13 @@ public class Client {
 	private let queue: dispatch_queue_t
 
 	public convenience init(accessToken: String, lights: [Light]? = nil, scenes: [Scene]? = nil) {
-		self.init(session: HTTPSession(accessToken: accessToken))
-
-		if let lights = lights {
-			self.lights = lights
-		}
-
-		if let scenes = scenes {
-			self.scenes = scenes
-		}
+		self.init(session: HTTPSession(accessToken: accessToken), lights: lights, scenes: scenes)
 	}
 
-	public init(session: HTTPSession) {
+	public init(session: HTTPSession, lights: [Light]? = nil, scenes: [Scene]? = nil) {
 		self.session = session
-		lights = []
-		scenes = []
+		self.lights = lights ?? []
+		self.scenes = scenes ?? []
 		observers = []
 		queue = dispatch_queue_create("com.tatey.lifx-http-kit.client", DISPATCH_QUEUE_CONCURRENT)
 	}
