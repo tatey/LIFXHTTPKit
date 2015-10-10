@@ -34,6 +34,8 @@ public class HTTPSession {
 		session.dataTaskWithRequest(request) { (data, response, error) in
 			if error != nil {
 				completionHandler(request: request, response: response, lights: [], error: error)
+			} else if let response = response as? NSHTTPURLResponse where response.statusCode != 200 {
+				completionHandler(request: request, response: response, lights: [], error: NSError(domain: ErrorDomain, code: ErrorCode.UnexpectedResponseStatusCode.rawValue, userInfo: [NSLocalizedDescriptionKey: "Expected 200. Got \(response.statusCode)"]))
 			} else {
 				let (lights, error) = self.dataToLights(data)
 				completionHandler(request: request, response: response, lights: lights, error: error)
@@ -82,6 +84,8 @@ public class HTTPSession {
 		session.dataTaskWithRequest(request) { (data, response, error) in
 			if error != nil {
 				completionHandler(request: request, response: response, scenes: [], error: error)
+			} else if let response = response as? NSHTTPURLResponse where response.statusCode != 200 {
+				completionHandler(request: request, response: response, scenes: [], error: NSError(domain: ErrorDomain, code: ErrorCode.UnexpectedResponseStatusCode.rawValue, userInfo: [NSLocalizedDescriptionKey: "Expected 200. Got \(response.statusCode)"]))
 			} else {
 				let (scenes, error) = self.dataToScenes(data)
 				completionHandler(request: request, response: response, scenes: scenes, error: error)
