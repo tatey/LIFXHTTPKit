@@ -6,7 +6,9 @@
 * Add support for iOS 8.0+.
 * **(Breaking)** Add support for Swift 2. You must build with Xcode 7.0+.
 * Add support for light target based scenes.
-* Changed convenience `Client -init` to optionally take cached lights and scenes for faster restore.
+* Changed `HTTPSession -lights` to return an error for non-200 status codes. `HTTPSession -scenes` behaves the same.
+* Changed `Client` initializers to optionally take cached lights and scenes for faster restore.
+* **(Breaking)** Changed the completion handler in `Client -fetch:` to pass an array of aggregated errors instead of a single optional error.
 * **(Breaking)** Renamed `Selector` to `LightTargetSelector` for better interoperability in Xcode 7. Unfortunately a breaking change was unavoidable.
 * Publicly exposed `session` on `Client` to easily get a configured session from the client.
 * Publicly exposed `lights` and `scenes` as read-only on `Client` making it possible to inspect the state of the client.
