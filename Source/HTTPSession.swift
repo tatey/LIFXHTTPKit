@@ -14,15 +14,16 @@ public class HTTPSession {
 	private let baseURL: NSURL
 	private let userAgent: String
 	private let session: NSURLSession
+	let queue: dispatch_queue_t
 
 	public init(accessToken: String, baseURL: NSURL = HTTPSession.defaultBaseURL, userAgent: String = HTTPSession.defaultUserAgent) {
 		self.accessToken = accessToken
 		self.baseURL = baseURL
 		self.userAgent = userAgent
+		queue = dispatch_queue_create("com.tatey.lifx-http-kit.http-session", DISPATCH_QUEUE_SERIAL)
 
-		let underlyingQueue = dispatch_queue_create("com.tatey.lifx-http-kit.http-session", DISPATCH_QUEUE_SERIAL)
 		let operationQueue = NSOperationQueue()
-		operationQueue.underlyingQueue = underlyingQueue
+		operationQueue.underlyingQueue = queue
 		let config = NSURLSessionConfiguration.defaultSessionConfiguration()
 		config.timeoutIntervalForRequest = HTTPSession.defaultTimeoutIntervalForRequest
 		session = NSURLSession(configuration: config, delegate: nil, delegateQueue: operationQueue)

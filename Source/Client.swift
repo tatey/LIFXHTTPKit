@@ -11,7 +11,6 @@ public class Client {
 	public private(set) var scenes: [Scene]
 
 	private var observers: [ClientObserver]
-	private let queue: dispatch_queue_t
 
 	public convenience init(accessToken: String, lights: [Light]? = nil, scenes: [Scene]? = nil) {
 		self.init(session: HTTPSession(accessToken: accessToken), lights: lights, scenes: scenes)
@@ -22,7 +21,6 @@ public class Client {
 		self.lights = lights ?? []
 		self.scenes = scenes ?? []
 		observers = []
-		queue = dispatch_queue_create("com.tatey.lifx-http-kit.client", DISPATCH_QUEUE_CONCURRENT)
 	}
 
 	public func fetch(completionHandler: ((errors: [NSError]) -> Void)? = nil) {
@@ -45,7 +43,7 @@ public class Client {
 			dispatch_group_leave(group)
 		}
 
-		dispatch_group_notify(group, queue) {
+		dispatch_group_notify(group, session.queue) {
 			completionHandler?(errors: errors)
 		}
 	}
