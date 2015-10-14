@@ -6,6 +6,7 @@
 * Add support for iOS 8.0+.
 * **(Breaking)** Add support for Swift 2. You must build with Xcode 7.0+.
 * Add support for light target based scenes.
+* Add codified errors for various HTTP status codes.
 * Changed `HTTPSession -lights` to return an error for non-200 status codes. `HTTPSession -scenes` behaves the same.
 * Changed `Client` initializers to optionally take cached lights and scenes for faster restore.
 * **(Breaking)** Changed the completion handler in `Client -fetch:` to pass an array of aggregated errors instead of a single optional error.
