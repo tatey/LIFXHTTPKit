@@ -33,10 +33,8 @@ public class HTTPSession {
 		let request = requestWithBaseURLByAppendingPathComponent("/lights/\(selector)")
 		request.HTTPMethod = "GET"
 		session.dataTaskWithRequest(request) { (data, response, error) in
-			if error != nil {
+			if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200]) {
 				completionHandler(request: request, response: response, lights: [], error: error)
-			} else if let response = response as? NSHTTPURLResponse where response.statusCode != 200 {
-				completionHandler(request: request, response: response, lights: [], error: NSError(domain: ErrorDomain, code: ErrorCode.UnexpectedResponseStatusCode.rawValue, userInfo: [NSLocalizedDescriptionKey: "Expected 200. Got \(response.statusCode)"]))
 			} else {
 				let (lights, error) = self.dataToLights(data)
 				completionHandler(request: request, response: response, lights: lights, error: error)
@@ -70,7 +68,7 @@ public class HTTPSession {
 		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 		session.dataTaskWithRequest(request) { (data, response, error) in
-			if error != nil {
+			if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200, 207]) {
 				completionHandler(request: request, response: response, results: [], error: error)
 			} else {
 				let (results, error) = self.dataToResults(data)
@@ -83,10 +81,8 @@ public class HTTPSession {
 		let request = requestWithBaseURLByAppendingPathComponent("/scenes")
 		request.HTTPMethod = "GET"
 		session.dataTaskWithRequest(request) { (data, response, error) in
-			if error != nil {
+			if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200]) {
 				completionHandler(request: request, response: response, scenes: [], error: error)
-			} else if let response = response as? NSHTTPURLResponse where response.statusCode != 200 {
-				completionHandler(request: request, response: response, scenes: [], error: NSError(domain: ErrorDomain, code: ErrorCode.UnexpectedResponseStatusCode.rawValue, userInfo: [NSLocalizedDescriptionKey: "Expected 200. Got \(response.statusCode)"]))
 			} else {
 				let (scenes, error) = self.dataToScenes(data)
 				completionHandler(request: request, response: response, scenes: scenes, error: error)
@@ -100,7 +96,7 @@ public class HTTPSession {
 		request.HTTPMethod = "PUT"
 		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
 		session.dataTaskWithRequest(request) { (data, response, error) in
-			if error != nil {
+			if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200, 207]) {
 				completionHandler(request: request, response: response, results: [], error: error)
 			} else {
 				let (results, error) = self.dataToResults(data)
@@ -116,6 +112,29 @@ public class HTTPSession {
 		request.setValue("application/json", forHTTPHeaderField: "Accept")
 		request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
 		return request
+	}
+
+	private func validateResponseWithExpectedStatusCodes(response: NSURLResponse?, statusCodes: [Int]) -> NSError? {
+		guard let response = response as? NSHTTPURLResponse else {
+			return nil
+		}
+
+		if statusCodes.contains(response.statusCode) {
+			return nil
+		}
+
+		switch (response.statusCode) {
+		case 401:
+			return Error(code: .Unauthorized, message: "Bad access token").toNSError()
+		case 403:
+			return Error(code: .Forbidden, message: "Permission denied").toNSError()
+		case 429:
+			return Error(code: .TooManyRequests, message: "Rate limit exceeded").toNSError()
+		case 500, 502, 503, 523:
+			return Error(code: .Unauthorized, message: "Server error").toNSError()
+		default:
+			return Error(code: .UnexpectedHTTPStatusCode, message: "Expecting \(statusCodes), got \(response.statusCode)").toNSError()
+		}
 	}
 
 	private func dataToLights(data: NSData?) -> (lights: [Light], error: NSError?) {
