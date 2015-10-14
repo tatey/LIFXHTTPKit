@@ -139,7 +139,7 @@ public class HTTPSession {
 
 	private func dataToLights(data: NSData?) -> (lights: [Light], error: NSError?) {
 		guard let data = data else {
-			return ([], NSError(domain: ErrorDomain, code: ErrorCode.JSONInvalid.rawValue, userInfo: [NSLocalizedDescriptionKey: "No Data"]))
+			return ([], Error(code: .JSONInvalid, message: "No data").toNSError())
 		}
 
 		let rootJSONObject: AnyObject?
@@ -189,7 +189,7 @@ public class HTTPSession {
 					let light = Light(id: id, power: power == "on", brightness: brightness, color: color, label: label, connected: connected, group: group, location: location)
 					lights.append(light)
 			} else {
-				return ([], NSError(domain: ErrorDomain, code: ErrorCode.JSONInvalid.rawValue, userInfo: [NSLocalizedDescriptionKey: "JSON object is missing required properties"]))
+				return ([], Error(code: .JSONInvalid, message: "JSON object is missing required properties").toNSError())
 			}
 		}
 		return (lights, nil)
@@ -197,7 +197,7 @@ public class HTTPSession {
 
 	private func dataToScenes(data: NSData?) -> (scenes: [Scene], error: NSError?) {
 		guard let data = data else {
-			return ([], NSError(domain: ErrorDomain, code: ErrorCode.JSONInvalid.rawValue, userInfo: [NSLocalizedDescriptionKey: "No Data"]))
+			return ([], Error(code: .JSONInvalid, message: "No data").toNSError())
 		}
 
 		let rootJSONObject: AnyObject?
@@ -252,7 +252,7 @@ public class HTTPSession {
 
 	private func dataToResults(data: NSData?) -> (results: [Result], error: NSError?) {
 		guard let data = data else {
-			return ([], NSError(domain: ErrorDomain, code: ErrorCode.JSONInvalid.rawValue, userInfo: [NSLocalizedDescriptionKey: "No Data"]))
+			return ([], Error(code: .JSONInvalid, message: "No data").toNSError())
 		}
 
 		let rootJSONObject: AnyObject
@@ -275,7 +275,7 @@ public class HTTPSession {
 				let result = Result(id: id, status: status)
 				results.append(result)
 			} else {
-				return ([], NSError(domain: ErrorDomain, code: ErrorCode.JSONInvalid.rawValue, userInfo: [NSLocalizedDescriptionKey: "JSON object is missing required properties"]))
+				return ([], Error(code: .JSONInvalid, message: "JSON object is missing required properties").toNSError())
 			}
 		}
 
