@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D010A0C1BCDCECF00D08C83 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D010A0B1BCDCECF00D08C83 /* Logger.swift */; settings = {ASSET_TAGS = (); }; };
+		5D010A0D1BCDCECF00D08C83 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D010A0B1BCDCECF00D08C83 /* Logger.swift */; settings = {ASSET_TAGS = (); }; };
 		5D05E61E1BB5296E007B917D /* ClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA745131B52492E00BBC2D1 /* ClientHelper.swift */; };
 		5D05E61F1BB5296E007B917D /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5898B41B1887530024D47B /* ClientTests.swift */; };
 		5D05E6201BB5296E007B917D /* LightTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF649D81B2D436A0006EE03 /* LightTargetTests.swift */; };
@@ -73,6 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D010A0B1BCDCECF00D08C83 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		5D05E6291BB5296E007B917D /* LIFXHTTPKit-iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LIFXHTTPKit-iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D50E0581BC3A21800AED146 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		5D50E05A1BC3A26A00AED146 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
@@ -161,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				5DB41F3F1B2BD4CA0006F2A5 /* Errors.swift */,
+				5D010A0B1BCDCECF00D08C83 /* Logger.swift */,
 				5D5898BE1B1887650024D47B /* Client.swift */,
 				5DB41F431B2BD5370006F2A5 /* ClientObserver.swift */,
 				5DB41F471B2BD57C0006F2A5 /* LightTarget.swift */,
@@ -408,6 +412,7 @@
 				5DB41F441B2BD5370006F2A5 /* ClientObserver.swift in Sources */,
 				5DB41F481B2BD57C0006F2A5 /* LightTarget.swift in Sources */,
 				5D5898BF1B1887650024D47B /* Client.swift in Sources */,
+				5D010A0D1BCDCECF00D08C83 /* Logger.swift in Sources */,
 				5DB41F4C1B2BD5DD0006F2A5 /* Light.swift in Sources */,
 				5DB41F4E1B2BD5E50006F2A5 /* Result.swift in Sources */,
 				5D94C64C1B56726200C0BCD2 /* Location.swift in Sources */,
@@ -442,6 +447,7 @@
 				5D8BF5401BB5257D00A5575C /* Group.swift in Sources */,
 				5D8BF53B1BB5257200A5575C /* LightTarget.swift in Sources */,
 				5D8BF5421BB5258200A5575C /* Result.swift in Sources */,
+				5D010A0C1BCDCECF00D08C83 /* Logger.swift in Sources */,
 				5D8BF5371BB5256900A5575C /* Errors.swift in Sources */,
 				5D8BF53E1BB5257900A5575C /* Light.swift in Sources */,
 				5D8BF53D1BB5257600A5575C /* HTTPSession.swift in Sources */,

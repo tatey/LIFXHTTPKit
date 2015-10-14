@@ -6,6 +6,7 @@
 import Foundation
 
 public class Client {
+	public let logger: Logger
 	public let session: HTTPSession
 	public private(set) var lights: [Light]
 	public private(set) var scenes: [Scene]
@@ -17,6 +18,7 @@ public class Client {
 	}
 
 	public init(session: HTTPSession, lights: [Light]? = nil, scenes: [Scene]? = nil) {
+		logger = Logger()
 		self.session = session
 		self.lights = lights ?? []
 		self.scenes = scenes ?? []
@@ -49,6 +51,7 @@ public class Client {
 	}
 
 	public func fetchLights(completionHandler: ((error: NSError?) -> Void)? = nil) {
+		logger.log("\(__FUNCTION__) will begin operation", data: [:])
 		session.lights("all") { [weak self] (request, response, lights, error) in
 			if error != nil {
 				completionHandler?(error: error)
@@ -68,10 +71,12 @@ public class Client {
 			}
 
 			completionHandler?(error: nil)
+			self?.logger.log("\(__FUNCTION__) did complete operation", data: ["request": request, "response": response, "lights": lights, "error": error])
 		}
 	}
 
 	public func fetchScenes(completionHandler: ((error: NSError?) -> Void)? = nil) {
+		logger.log("\(__FUNCTION__) will begin operation", data: [:])
 		session.scenes { [weak self] (request, response, scenes, error) in
 			if error != nil {
 				completionHandler?(error: error)
@@ -81,6 +86,7 @@ public class Client {
 			self?.scenes = scenes
 
 			completionHandler?(error: nil)
+			self?.logger.log("\(__FUNCTION__) did complete operation", data: ["request": request, "response": response, "scenes": scenes, "error": error])
 		}
 	}
 

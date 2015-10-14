@@ -116,6 +116,7 @@ public class LightTarget {
 	public func setPower(power: Bool, duration: Float = LightTarget.defaultDuration, completionHandler: ((results: [Result], error: NSError?) -> Void)? = nil) {
 		let oldPower = self.power
 		client.updateLights(lights.map({ $0.lightWithProperties(power) }))
+		client.logger.log("\(__FUNCTION__) will begin operation", data: ["oldPower": oldPower, "power": power, "duration": duration])
 		client.session.setLightsState(selector.toQueryStringValue(), power: power, duration: duration) { [weak self] (request, response, results, error) in
 			if let strongSelf = self {
 				var newLights = strongSelf.lightsByDeterminingConnectivityWithResults(strongSelf.lights, results: results)
@@ -125,6 +126,7 @@ public class LightTarget {
 				strongSelf.client.updateLights(newLights)
 			}
 			completionHandler?(results: results, error: error)
+			self?.client.logger.log("\(__FUNCTION__) did complete operation", data: ["request": request, "response": response, "results": results, "error": error])
 		}
 	}
 
