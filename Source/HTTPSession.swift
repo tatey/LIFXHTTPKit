@@ -8,33 +8,29 @@ import Foundation
 public class HTTPSession {
 	public static let defaultBaseURL: NSURL = NSURL(string: "https://api.lifx.com/v1/")!
 	public static let defaultUserAgent: String = "LIFXHTTPKit/\(LIFXHTTPKitVersionNumber)"
-	public static let defaultTimeoutIntervalForRequest: NSTimeInterval = 5.0
+	public static let defaultTimeout: NSTimeInterval = 5.0
 
-	private let accessToken: String
-	private let baseURL: NSURL
-	private let userAgent: String
+	public let baseURL: NSURL
+	public let delegateQueue: dispatch_queue_t
+	public let URLSession: NSURLSession
 
-	let delegateQueue: dispatch_queue_t
 	private let operationQueue: NSOperationQueue
 
-	private let URLSession: NSURLSession
-
-	public init(accessToken: String, baseURL: NSURL = HTTPSession.defaultBaseURL, userAgent: String = HTTPSession.defaultUserAgent) {
-		self.accessToken = accessToken
+	public init(accessToken: String, delegateQueue: dispatch_queue_t = dispatch_queue_create("com.tatey.lifx-http-kit.http-session", DISPATCH_QUEUE_SERIAL), baseURL: NSURL = HTTPSession.defaultBaseURL, userAgent: String = HTTPSession.defaultUserAgent, timeout: NSTimeInterval = HTTPSession.defaultTimeout) {
 		self.baseURL = baseURL
-		self.userAgent = userAgent
-
-		delegateQueue = dispatch_queue_create("com.tatey.lifx-http-kit.http-session", DISPATCH_QUEUE_SERIAL)
-		operationQueue = NSOperationQueue()
-		operationQueue.maxConcurrentOperationCount = 1
+		self.delegateQueue = delegateQueue
 
 		let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-		configuration.timeoutIntervalForRequest = HTTPSession.defaultTimeoutIntervalForRequest
+		configuration.HTTPAdditionalHeaders = ["Authorization": "Bearer \(accessToken)", "Accept": "appplication/json", "User-Agent": userAgent]
+		configuration.timeoutIntervalForRequest = timeout
 		URLSession = NSURLSession(configuration: configuration)
+
+		operationQueue = NSOperationQueue()
+		operationQueue.maxConcurrentOperationCount = 1
 	}
 
 	public func lights(selector: String = "all", completionHandler: ((request: NSURLRequest, response: NSURLResponse?, lights: [Light], error: NSError?) -> Void)) {
-		let request = requestWithBaseURLByAppendingPathComponent("/lights/\(selector)")
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("/lights/\(selector)"))
 		request.HTTPMethod = "GET"
 		addOperationWithRequest(request) { (data, response, error) in
 			if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200]) {
@@ -57,7 +53,7 @@ public class HTTPSession {
 	}
 
 	public func setLightsState(selector: String, power: Bool? = nil, color: String? = nil, brightness: Double? = nil, duration: Float, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
-		let request = requestWithBaseURLByAppendingPathComponent("/lights/\(selector)/state")
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("/lights/\(selector)/state"))
 		var parameters: [String : AnyObject] = ["duration": duration]
 		if let power = power {
 			parameters["power"] = power ? "on" : "off"
@@ -82,7 +78,7 @@ public class HTTPSession {
 	}
 
 	public func scenes(completionHandler: ((request: NSURLRequest, response: NSURLResponse?, scenes: [Scene], error: NSError?) -> Void)) {
-		let request = requestWithBaseURLByAppendingPathComponent("/scenes")
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("/scenes"))
 		request.HTTPMethod = "GET"
 		addOperationWithRequest(request) { (data, response, error) in
 			if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200]) {
@@ -95,7 +91,7 @@ public class HTTPSession {
 	}
 
 	public func setScenesActivate(selector: String, duration: Float, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
-		let request = requestWithBaseURLByAppendingPathComponent("/scenes/\(selector)/activate")
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("/scenes/\(selector)/activate"))
 		let parameters = ["duration", duration]
 		request.HTTPMethod = "PUT"
 		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
@@ -110,15 +106,6 @@ public class HTTPSession {
 	}
 
 	// MARK: Helpers
-
-	private func requestWithBaseURLByAppendingPathComponent(pathComponent: String) -> NSMutableURLRequest {
-		let url = baseURL.URLByAppendingPathComponent(pathComponent)
-		let request = NSMutableURLRequest(URL: url)
-		request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-		request.setValue("application/json", forHTTPHeaderField: "Accept")
-		request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-		return request
-	}
 
 	private func addOperationWithRequest(request: NSURLRequest, completionHandler: (NSData?, NSURLResponse?, NSError?) -> Void) {
 		let operation = HTTPOperation(URLSession: URLSession, delegateQueue: delegateQueue, request: request, completionHandler: completionHandler)
