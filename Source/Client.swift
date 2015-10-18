@@ -43,7 +43,7 @@ public class Client {
 			dispatch_group_leave(group)
 		}
 
-		dispatch_group_notify(group, session.queue) {
+		dispatch_group_notify(group, session.delegateQueue) {
 			completionHandler?(errors: errors)
 		}
 	}

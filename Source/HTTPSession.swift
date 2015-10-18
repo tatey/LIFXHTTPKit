@@ -13,33 +13,37 @@ public class HTTPSession {
 	private let accessToken: String
 	private let baseURL: NSURL
 	private let userAgent: String
-	private let session: NSURLSession
-	let queue: dispatch_queue_t
+
+	let delegateQueue: dispatch_queue_t
+	private let operationQueue: NSOperationQueue
+
+	private let URLSession: NSURLSession
 
 	public init(accessToken: String, baseURL: NSURL = HTTPSession.defaultBaseURL, userAgent: String = HTTPSession.defaultUserAgent) {
 		self.accessToken = accessToken
 		self.baseURL = baseURL
 		self.userAgent = userAgent
-		queue = dispatch_queue_create("com.tatey.lifx-http-kit.http-session", DISPATCH_QUEUE_SERIAL)
 
-		let operationQueue = NSOperationQueue()
-		operationQueue.underlyingQueue = queue
-		let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-		config.timeoutIntervalForRequest = HTTPSession.defaultTimeoutIntervalForRequest
-		session = NSURLSession(configuration: config, delegate: nil, delegateQueue: operationQueue)
+		delegateQueue = dispatch_queue_create("com.tatey.lifx-http-kit.http-session", DISPATCH_QUEUE_SERIAL)
+		operationQueue = NSOperationQueue()
+		operationQueue.maxConcurrentOperationCount = 1
+
+		let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+		configuration.timeoutIntervalForRequest = HTTPSession.defaultTimeoutIntervalForRequest
+		URLSession = NSURLSession(configuration: configuration)
 	}
 
 	public func lights(selector: String = "all", completionHandler: ((request: NSURLRequest, response: NSURLResponse?, lights: [Light], error: NSError?) -> Void)) {
 		let request = requestWithBaseURLByAppendingPathComponent("/lights/\(selector)")
 		request.HTTPMethod = "GET"
-		session.dataTaskWithRequest(request) { (data, response, error) in
+		addOperationWithRequest(request) { (data, response, error) in
 			if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200]) {
 				completionHandler(request: request, response: response, lights: [], error: error)
 			} else {
 				let (lights, error) = self.dataToLights(data)
 				completionHandler(request: request, response: response, lights: lights, error: error)
 			}
-		}.resume()
+		}
 	}
 
 	public func setLightsPower(selector: String, power: Bool, duration: Float, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
@@ -67,27 +71,27 @@ public class HTTPSession {
 		request.HTTPMethod = "PUT"
 		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-		session.dataTaskWithRequest(request) { (data, response, error) in
+		addOperationWithRequest(request) { (data, response, error) in
 			if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200, 207]) {
 				completionHandler(request: request, response: response, results: [], error: error)
 			} else {
 				let (results, error) = self.dataToResults(data)
 				completionHandler(request: request, response: response, results: results, error: error)
 			}
-		}.resume()
+		}
 	}
 
 	public func scenes(completionHandler: ((request: NSURLRequest, response: NSURLResponse?, scenes: [Scene], error: NSError?) -> Void)) {
 		let request = requestWithBaseURLByAppendingPathComponent("/scenes")
 		request.HTTPMethod = "GET"
-		session.dataTaskWithRequest(request) { (data, response, error) in
+		addOperationWithRequest(request) { (data, response, error) in
 			if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200]) {
 				completionHandler(request: request, response: response, scenes: [], error: error)
 			} else {
 				let (scenes, error) = self.dataToScenes(data)
 				completionHandler(request: request, response: response, scenes: scenes, error: error)
 			}
-		}.resume()
+		}
 	}
 
 	public func setScenesActivate(selector: String, duration: Float, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
@@ -95,15 +99,17 @@ public class HTTPSession {
 		let parameters = ["duration", duration]
 		request.HTTPMethod = "PUT"
 		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
-		session.dataTaskWithRequest(request) { (data, response, error) in
+		addOperationWithRequest(request) { (data, response, error) in
 			if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200, 207]) {
 				completionHandler(request: request, response: response, results: [], error: error)
 			} else {
 				let (results, error) = self.dataToResults(data)
 				completionHandler(request: request, response: response, results: results, error: error)
 			}
-		}.resume()
+		}
 	}
+
+	// MARK: Helpers
 
 	private func requestWithBaseURLByAppendingPathComponent(pathComponent: String) -> NSMutableURLRequest {
 		let url = baseURL.URLByAppendingPathComponent(pathComponent)
@@ -112,6 +118,12 @@ public class HTTPSession {
 		request.setValue("application/json", forHTTPHeaderField: "Accept")
 		request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
 		return request
+	}
+
+	private func addOperationWithRequest(request: NSURLRequest, completionHandler: (NSData?, NSURLResponse?, NSError?) -> Void) {
+		let operation = HTTPOperation(URLSession: URLSession, delegateQueue: delegateQueue, request: request, completionHandler: completionHandler)
+		operationQueue.operations.first?.addDependency(operation)
+		operationQueue.addOperation(operation)
 	}
 
 	private func validateResponseWithExpectedStatusCodes(response: NSURLResponse?, statusCodes: [Int]) -> NSError? {

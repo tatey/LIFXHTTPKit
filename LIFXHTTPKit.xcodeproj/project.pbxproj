@@ -52,6 +52,8 @@
 		5DB41F4A1B2BD5B90006F2A5 /* HTTPSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F491B2BD5B90006F2A5 /* HTTPSession.swift */; };
 		5DB41F4C1B2BD5DD0006F2A5 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F4B1B2BD5DD0006F2A5 /* Light.swift */; };
 		5DB41F4E1B2BD5E50006F2A5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F4D1B2BD5E50006F2A5 /* Result.swift */; };
+		5DF3F61A1BD45C0F0002E52D /* HTTPOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF3F6191BD45C0F0002E52D /* HTTPOperation.swift */; settings = {ASSET_TAGS = (); }; };
+		5DF3F61B1BD45C0F0002E52D /* HTTPOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF3F6191BD45C0F0002E52D /* HTTPOperation.swift */; settings = {ASSET_TAGS = (); }; };
 		5DF649D91B2D436A0006EE03 /* LightTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF649D81B2D436A0006EE03 /* LightTargetTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +102,7 @@
 		5DB41F491B2BD5B90006F2A5 /* HTTPSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPSession.swift; sourceTree = "<group>"; };
 		5DB41F4B1B2BD5DD0006F2A5 /* Light.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
 		5DB41F4D1B2BD5E50006F2A5 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		5DF3F6191BD45C0F0002E52D /* HTTPOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPOperation.swift; sourceTree = "<group>"; };
 		5DF649D81B2D436A0006EE03 /* LightTargetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightTargetTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +170,7 @@
 				5D8C3D9D1BC5FC990059E05D /* LightTargetSelector.swift */,
 				5DB41F451B2BD55C0006F2A5 /* LightTargetObserver.swift */,
 				5DB41F491B2BD5B90006F2A5 /* HTTPSession.swift */,
+				5DF3F6191BD45C0F0002E52D /* HTTPOperation.swift */,
 				5DA7AB431B377ACA008A8130 /* Color.swift */,
 				5DB41F4B1B2BD5DD0006F2A5 /* Light.swift */,
 				5D50E0581BC3A21800AED146 /* Scene.swift */,
@@ -406,6 +410,7 @@
 				5D50E05D1BC3A39500AED146 /* State.swift in Sources */,
 				5DA7AB441B377ACA008A8130 /* Color.swift in Sources */,
 				5DB41F441B2BD5370006F2A5 /* ClientObserver.swift in Sources */,
+				5DF3F61B1BD45C0F0002E52D /* HTTPOperation.swift in Sources */,
 				5DB41F481B2BD57C0006F2A5 /* LightTarget.swift in Sources */,
 				5D5898BF1B1887650024D47B /* Client.swift in Sources */,
 				5DB41F4C1B2BD5DD0006F2A5 /* Light.swift in Sources */,
@@ -440,6 +445,7 @@
 				5D50E0591BC3A21800AED146 /* Scene.swift in Sources */,
 				5D50E05B1BC3A26A00AED146 /* State.swift in Sources */,
 				5D8BF5401BB5257D00A5575C /* Group.swift in Sources */,
+				5DF3F61A1BD45C0F0002E52D /* HTTPOperation.swift in Sources */,
 				5D8BF53B1BB5257200A5575C /* LightTarget.swift in Sources */,
 				5D8BF5421BB5258200A5575C /* Result.swift in Sources */,
 				5D8BF5371BB5256900A5575C /* Errors.swift in Sources */,
