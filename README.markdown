@@ -1,7 +1,9 @@
 # LIFXHTTPKit [![GitHub release](https://img.shields.io/github/release/tatey/LIFXHTTPKit.svg)](https://github.com/tatey/LIFXHTTPKit/releases/latest) [![GitHub license](https://img.shields.io/github/license/tatey/LIFXHTTPKit.svg)](https://raw.githubusercontent.com/tatey/LIFXHTTPKit/master/LICENSE.txt) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 A nice iOS/Mac framework for interacting with the [LIFX HTTP API](http://api.developer.lifx.com/docs)
-that has no external dependencies. Check out [Lighting](https://github.com/tatey/Lighting)
+that has no external dependencies. Suitable for use inside extensions.
+
+Check out [Lighting](https://github.com/tatey/Lighting)
 if you want to see a real-world Mac app built on top of this framework.
 
 *NOTE: For Swift 1.3 support use the versions tagged 0.0.x which you can read about in the [releases](https://github.com/tatey/LIFXHTTPKit/releases).*

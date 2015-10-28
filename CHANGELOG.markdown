@@ -1,6 +1,6 @@
 # Changelog
 
-## Current
+## 1.0.0 / 2015-10-28
 
 * Migrate from v1beta to v1 of the LIFX HTTP API.
 * Add support for iOS 8.0+.
