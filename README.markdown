@@ -3,8 +3,7 @@
 A nice iOS/Mac framework for interacting with the [LIFX HTTP API](http://api.developer.lifx.com/docs)
 that has no external dependencies. Suitable for use inside extensions.
 
-Check out [Lighting](https://github.com/tatey/Lighting)
-if you want to see a real-world Mac app built on top of this framework.
+Used by the [official LIFX iOS](https://itunes.apple.com/us/app/lifx/id657758311?mt=8) app and an open source Mac app, [Lighting](https://github.com/tatey/Lighting).
 
 *NOTE: For Swift 1.3 support use the versions tagged 0.0.x which you can read about in the [releases](https://github.com/tatey/LIFXHTTPKit/releases).*
 
