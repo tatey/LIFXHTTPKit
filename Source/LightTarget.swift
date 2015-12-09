@@ -16,6 +16,7 @@ public class LightTarget {
 	public private(set) var label: String
 	public private(set) var connected: Bool
 	public private(set) var count: Int
+    public private(set) var touchedAt: NSDate
 
 	public let selector: LightTargetSelector
 	public private(set) var lights: [Light]
@@ -32,6 +33,7 @@ public class LightTarget {
 		label = ""
 		connected = false
 		count = 0
+        touchedAt = NSDate(timeIntervalSince1970: 0.0)
 
 		self.selector = selector
 		self.filter = filter
@@ -290,6 +292,12 @@ public class LightTarget {
 			dirty = true
 		}
 
+        let newTouchedAt = deriveTouchedAt()
+        if touchedAt != newTouchedAt {
+            touchedAt = newTouchedAt
+            dirty = true
+        }
+
 		if dirty {
 			notifyObservers()
 		}
@@ -303,6 +311,19 @@ public class LightTarget {
 		}
 		return false
 	}
+
+    private func deriveTouchedAt() -> NSDate {
+        var derivedTouchedAt = self.touchedAt
+        for light in lights {
+            if let lightTouchedAt = light.touchedAt {
+                if lightTouchedAt.timeIntervalSinceDate(NSDate()) < 0 {
+                    derivedTouchedAt = lightTouchedAt
+                }
+            }
+        }
+
+        return derivedTouchedAt
+    }
 
 	private func deriveBrightness() -> Double {
 		let count = lights.count

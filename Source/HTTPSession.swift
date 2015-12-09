@@ -185,7 +185,7 @@ public class HTTPSession {
 					}
 
 					let color = Color(hue: colorHue, saturation: colorSaturation, kelvin: colorKelvin)
-					let light = Light(id: id, power: power == "on", brightness: brightness, color: color, label: label, connected: connected, group: group, location: location)
+                    let light = Light(id: id, power: power == "on", brightness: brightness, color: color, label: label, connected: connected, group: group, location: location, touchedAt: NSDate())
 					lights.append(light)
 			} else {
 				return ([], Error(code: .JSONInvalid, message: "JSON object is missing required properties").toNSError())
