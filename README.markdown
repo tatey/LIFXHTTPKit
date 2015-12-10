@@ -168,6 +168,7 @@ lightTarget.connected // => true
 lightTarget.count // => 5
 lightTarget.lights.first?.group // => <Group id: "1c8de82b81f445e7cfaafae49b259c71", name: "Lounge">
 lightTarget.lights.first?.location // => <Location id: "1d6fe8ef0fde4c6d77b0012dc736662c", name: "Home">
+lightTarget.touchedAt // => 2015-12-09 04:02:41 +0000
 ```
 
 The in-memory cache is updated when the client fetches, or an operation is

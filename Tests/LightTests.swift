@@ -26,7 +26,7 @@ class LightTests: XCTestCase {
 		let light2 = light1.lightWithProperties(color: Color.white(5000))
 		XCTAssertEqual(light2.color, Color.white(5000))
 		XCTAssertNotEqual(light1, light2)
-	}
+    }
 
 	func testLightWithPropertiesUsingConnected() {
 		let light1 = newLight()
@@ -36,6 +36,6 @@ class LightTests: XCTestCase {
 	}
 
 	private func newLight() -> Light {
-		return Light(id: "d3b2f2d97452", power: true, brightness: 0.5, color: Color.white(Color.defaultKelvin), label: "Lamp", connected: true, group: nil, location: nil)
+        return Light(id: "d3b2f2d97452", power: true, brightness: 0.5, color: Color.white(Color.defaultKelvin), label: "Lamp", connected: true, group: nil, location: nil, touchedAt: nil)
 	}
 }

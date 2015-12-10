@@ -97,4 +97,8 @@ class LightTargetTests: XCTestCase {
 		XCTAssertGreaterThan(locations.count, 0, "expected at least one location")
 		XCTAssertEqual(locations.first!.selector.type, LightTargetSelectorType.LocationID, "expected selector type to be LocationID")
 	}
+
+    func testLightTargetTouchedAt() {
+        XCTAssertEqualWithAccuracy(lightTarget.touchedAt.timeIntervalSinceNow, NSDate().timeIntervalSinceNow, accuracy: 10.0)
+    }
 }
