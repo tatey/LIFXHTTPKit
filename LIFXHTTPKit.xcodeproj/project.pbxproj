@@ -53,8 +53,8 @@
 		5DF3F61A1BD45C0F0002E52D /* HTTPOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF3F6191BD45C0F0002E52D /* HTTPOperation.swift */; };
 		5DF3F61B1BD45C0F0002E52D /* HTTPOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF3F6191BD45C0F0002E52D /* HTTPOperation.swift */; };
 		5DF649D91B2D436A0006EE03 /* LightTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF649D81B2D436A0006EE03 /* LightTargetTests.swift */; };
-		903A12B81CE050C70071D8F0 /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 903A12B71CE050C70071D8F0 /* LIFXHTTPKit.h */; };
-		903A12B91CE050C70071D8F0 /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 903A12B71CE050C70071D8F0 /* LIFXHTTPKit.h */; };
+		903A12B81CE050C70071D8F0 /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 903A12B71CE050C70071D8F0 /* LIFXHTTPKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		903A12B91CE050C70071D8F0 /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 903A12B71CE050C70071D8F0 /* LIFXHTTPKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		903A12BA1CE050C70071D8F0 /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 903A12B71CE050C70071D8F0 /* LIFXHTTPKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -105,6 +105,7 @@
 		5DF3F6191BD45C0F0002E52D /* HTTPOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPOperation.swift; sourceTree = "<group>"; };
 		5DF649D81B2D436A0006EE03 /* LightTargetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightTargetTests.swift; sourceTree = "<group>"; };
 		903A12B71CE050C70071D8F0 /* LIFXHTTPKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIFXHTTPKit.h; sourceTree = "<group>"; };
+		903A12BB1CE053AA0071D8F0 /* LIFXHTTPKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LIFXHTTPKit.h; path = Source/LIFXHTTPKit.h; sourceTree = "<group>"; };
 		908631CD1CDC7629006D9E47 /* LIFXHTTPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LIFXHTTPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -152,6 +153,7 @@
 		5D5898981B1887530024D47B = {
 			isa = PBXGroup;
 			children = (
+				903A12BB1CE053AA0071D8F0 /* LIFXHTTPKit.h */,
 				5D5898A41B1887530024D47B /* Source */,
 				5D5898B11B1887530024D47B /* Tests */,
 				5D5898A31B1887530024D47B /* Products */,
