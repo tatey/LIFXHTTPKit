@@ -55,6 +55,7 @@
 		5DF3F61A1BD45C0F0002E52D /* HTTPOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF3F6191BD45C0F0002E52D /* HTTPOperation.swift */; };
 		5DF3F61B1BD45C0F0002E52D /* HTTPOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF3F6191BD45C0F0002E52D /* HTTPOperation.swift */; };
 		5DF649D91B2D436A0006EE03 /* LightTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF649D81B2D436A0006EE03 /* LightTargetTests.swift */; };
+		903A12AA1CE02EF00071D8F0 /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D5898A71B1887530024D47B /* LIFXHTTPKit.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -247,6 +248,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				903A12AA1CE02EF00071D8F0 /* LIFXHTTPKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
