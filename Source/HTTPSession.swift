@@ -67,6 +67,10 @@ public class HTTPSession {
 		request.HTTPMethod = "PUT"
 		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        NSLog("setLightsState request: \(request)")
+        NSLog("parameters: \(parameters)")
+
 		addOperationWithRequest(request) { (data, response, error) in
 			if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200, 207]) {
 				completionHandler(request: request, response: response, results: [], error: error)

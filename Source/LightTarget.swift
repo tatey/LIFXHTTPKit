@@ -171,6 +171,12 @@ public class LightTarget {
 		let oldPower = self.power
 		client.updateLights(lights.map({ $0.lightWithProperties(power, color: color, brightness: brightness) }))
 		client.session.setLightsState(selector.toQueryStringValue(), color: color?.toQueryStringValue(), brightness: brightness, power: power, duration: duration) { [weak self] (request, response, results, error) in
+
+            NSLog("request: \(request)")
+            NSLog("response: \(response)")
+            NSLog("results: \(results)")
+            NSLog("error: \(error)")
+
 			if let strongSelf = self {
 				var newLights = strongSelf.lightsByDeterminingConnectivityWithResults(strongSelf.lights, results: results)
 				if error != nil {
