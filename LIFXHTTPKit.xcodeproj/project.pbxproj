@@ -13,32 +13,30 @@
 		5D05E6211BB5296E007B917D /* SecretsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7AB321B369608008A8130 /* SecretsHelper.swift */; };
 		5D05E6231BB5296E007B917D /* LIFXHTTPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */; };
 		5D05E6251BB5296E007B917D /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DA7AB2F1B3695BF008A8130 /* Secrets.plist */; };
-		5D50E0591BC3A21800AED146 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E0581BC3A21800AED146 /* Scene.swift */; settings = {ASSET_TAGS = (); }; };
-		5D50E05B1BC3A26A00AED146 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05A1BC3A26A00AED146 /* State.swift */; settings = {ASSET_TAGS = (); }; };
-		5D50E05C1BC3A39200AED146 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E0581BC3A21800AED146 /* Scene.swift */; settings = {ASSET_TAGS = (); }; };
-		5D50E05D1BC3A39500AED146 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05A1BC3A26A00AED146 /* State.swift */; settings = {ASSET_TAGS = (); }; };
-		5D50E0601BC3AD7A00AED146 /* LightTargetSelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05E1BC3AD7500AED146 /* LightTargetSelectorTests.swift */; settings = {ASSET_TAGS = (); }; };
-		5D50E0611BC3AD7B00AED146 /* LightTargetSelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05E1BC3AD7500AED146 /* LightTargetSelectorTests.swift */; settings = {ASSET_TAGS = (); }; };
-		5D5398121BC383BE0060AAED /* LightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5398041BC37FFA0060AAED /* LightTests.swift */; settings = {ASSET_TAGS = (); }; };
-		5D5398131BC383BF0060AAED /* LightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5398041BC37FFA0060AAED /* LightTests.swift */; settings = {ASSET_TAGS = (); }; };
-		5D5898A81B1887530024D47B /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D5898A71B1887530024D47B /* LIFXHTTPKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5D50E0591BC3A21800AED146 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E0581BC3A21800AED146 /* Scene.swift */; };
+		5D50E05B1BC3A26A00AED146 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05A1BC3A26A00AED146 /* State.swift */; };
+		5D50E05C1BC3A39200AED146 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E0581BC3A21800AED146 /* Scene.swift */; };
+		5D50E05D1BC3A39500AED146 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05A1BC3A26A00AED146 /* State.swift */; };
+		5D50E0601BC3AD7A00AED146 /* LightTargetSelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05E1BC3AD7500AED146 /* LightTargetSelectorTests.swift */; };
+		5D50E0611BC3AD7B00AED146 /* LightTargetSelectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05E1BC3AD7500AED146 /* LightTargetSelectorTests.swift */; };
+		5D5398121BC383BE0060AAED /* LightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5398041BC37FFA0060AAED /* LightTests.swift */; };
+		5D5398131BC383BF0060AAED /* LightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5398041BC37FFA0060AAED /* LightTests.swift */; };
 		5D5898AE1B1887530024D47B /* LIFXHTTPKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */; };
 		5D5898B51B1887530024D47B /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5898B41B1887530024D47B /* ClientTests.swift */; };
 		5D5898BF1B1887650024D47B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5898BE1B1887650024D47B /* Client.swift */; };
-		5D8BF5371BB5256900A5575C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F3F1B2BD4CA0006F2A5 /* Errors.swift */; settings = {ASSET_TAGS = (); }; };
-		5D8BF5381BB5256B00A5575C /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5898BE1B1887650024D47B /* Client.swift */; settings = {ASSET_TAGS = (); }; };
-		5D8BF5391BB5256D00A5575C /* ClientObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F431B2BD5370006F2A5 /* ClientObserver.swift */; settings = {ASSET_TAGS = (); }; };
-		5D8BF53B1BB5257200A5575C /* LightTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F471B2BD57C0006F2A5 /* LightTarget.swift */; settings = {ASSET_TAGS = (); }; };
-		5D8BF53C1BB5257400A5575C /* LightTargetObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F451B2BD55C0006F2A5 /* LightTargetObserver.swift */; settings = {ASSET_TAGS = (); }; };
-		5D8BF53D1BB5257600A5575C /* HTTPSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F491B2BD5B90006F2A5 /* HTTPSession.swift */; settings = {ASSET_TAGS = (); }; };
-		5D8BF53E1BB5257900A5575C /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F4B1B2BD5DD0006F2A5 /* Light.swift */; settings = {ASSET_TAGS = (); }; };
-		5D8BF53F1BB5257B00A5575C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7AB431B377ACA008A8130 /* Color.swift */; settings = {ASSET_TAGS = (); }; };
-		5D8BF5401BB5257D00A5575C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D94C6491B5671C300C0BCD2 /* Group.swift */; settings = {ASSET_TAGS = (); }; };
-		5D8BF5411BB5258000A5575C /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D94C64B1B56726200C0BCD2 /* Location.swift */; settings = {ASSET_TAGS = (); }; };
-		5D8BF5421BB5258200A5575C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F4D1B2BD5E50006F2A5 /* Result.swift */; settings = {ASSET_TAGS = (); }; };
-		5D8BF5431BB5258900A5575C /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D5898A71B1887530024D47B /* LIFXHTTPKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D8C3D9E1BC5FC990059E05D /* LightTargetSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8C3D9D1BC5FC990059E05D /* LightTargetSelector.swift */; settings = {ASSET_TAGS = (); }; };
-		5D8C3D9F1BC5FC990059E05D /* LightTargetSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8C3D9D1BC5FC990059E05D /* LightTargetSelector.swift */; settings = {ASSET_TAGS = (); }; };
+		5D8BF5371BB5256900A5575C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F3F1B2BD4CA0006F2A5 /* Errors.swift */; };
+		5D8BF5381BB5256B00A5575C /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5898BE1B1887650024D47B /* Client.swift */; };
+		5D8BF5391BB5256D00A5575C /* ClientObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F431B2BD5370006F2A5 /* ClientObserver.swift */; };
+		5D8BF53B1BB5257200A5575C /* LightTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F471B2BD57C0006F2A5 /* LightTarget.swift */; };
+		5D8BF53C1BB5257400A5575C /* LightTargetObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F451B2BD55C0006F2A5 /* LightTargetObserver.swift */; };
+		5D8BF53D1BB5257600A5575C /* HTTPSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F491B2BD5B90006F2A5 /* HTTPSession.swift */; };
+		5D8BF53E1BB5257900A5575C /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F4B1B2BD5DD0006F2A5 /* Light.swift */; };
+		5D8BF53F1BB5257B00A5575C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7AB431B377ACA008A8130 /* Color.swift */; };
+		5D8BF5401BB5257D00A5575C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D94C6491B5671C300C0BCD2 /* Group.swift */; };
+		5D8BF5411BB5258000A5575C /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D94C64B1B56726200C0BCD2 /* Location.swift */; };
+		5D8BF5421BB5258200A5575C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F4D1B2BD5E50006F2A5 /* Result.swift */; };
+		5D8C3D9E1BC5FC990059E05D /* LightTargetSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8C3D9D1BC5FC990059E05D /* LightTargetSelector.swift */; };
+		5D8C3D9F1BC5FC990059E05D /* LightTargetSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8C3D9D1BC5FC990059E05D /* LightTargetSelector.swift */; };
 		5D94C64A1B5671C300C0BCD2 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D94C6491B5671C300C0BCD2 /* Group.swift */; };
 		5D94C64C1B56726200C0BCD2 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D94C64B1B56726200C0BCD2 /* Location.swift */; };
 		5DA745151B52493500BBC2D1 /* ClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA745131B52492E00BBC2D1 /* ClientHelper.swift */; };
@@ -52,9 +50,27 @@
 		5DB41F4A1B2BD5B90006F2A5 /* HTTPSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F491B2BD5B90006F2A5 /* HTTPSession.swift */; };
 		5DB41F4C1B2BD5DD0006F2A5 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F4B1B2BD5DD0006F2A5 /* Light.swift */; };
 		5DB41F4E1B2BD5E50006F2A5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F4D1B2BD5E50006F2A5 /* Result.swift */; };
-		5DF3F61A1BD45C0F0002E52D /* HTTPOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF3F6191BD45C0F0002E52D /* HTTPOperation.swift */; settings = {ASSET_TAGS = (); }; };
-		5DF3F61B1BD45C0F0002E52D /* HTTPOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF3F6191BD45C0F0002E52D /* HTTPOperation.swift */; settings = {ASSET_TAGS = (); }; };
+		5DF3F61A1BD45C0F0002E52D /* HTTPOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF3F6191BD45C0F0002E52D /* HTTPOperation.swift */; };
+		5DF3F61B1BD45C0F0002E52D /* HTTPOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF3F6191BD45C0F0002E52D /* HTTPOperation.swift */; };
 		5DF649D91B2D436A0006EE03 /* LightTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF649D81B2D436A0006EE03 /* LightTargetTests.swift */; };
+		903A12B81CE050C70071D8F0 /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 903A12B71CE050C70071D8F0 /* LIFXHTTPKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		903A12B91CE050C70071D8F0 /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 903A12B71CE050C70071D8F0 /* LIFXHTTPKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		903A12BA1CE050C70071D8F0 /* LIFXHTTPKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 903A12B71CE050C70071D8F0 /* LIFXHTTPKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		903A12C01CE063DD0071D8F0 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F3F1B2BD4CA0006F2A5 /* Errors.swift */; };
+		903A12C11CE063EA0071D8F0 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5898BE1B1887650024D47B /* Client.swift */; };
+		903A12C21CE063ED0071D8F0 /* ClientObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F431B2BD5370006F2A5 /* ClientObserver.swift */; };
+		903A12C31CE063F00071D8F0 /* LightTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F471B2BD57C0006F2A5 /* LightTarget.swift */; };
+		903A12C41CE063F30071D8F0 /* LightTargetSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8C3D9D1BC5FC990059E05D /* LightTargetSelector.swift */; };
+		903A12C51CE063F70071D8F0 /* LightTargetObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F451B2BD55C0006F2A5 /* LightTargetObserver.swift */; };
+		903A12C61CE063FA0071D8F0 /* HTTPSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F491B2BD5B90006F2A5 /* HTTPSession.swift */; };
+		903A12C71CE063FE0071D8F0 /* HTTPOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF3F6191BD45C0F0002E52D /* HTTPOperation.swift */; };
+		903A12C81CE064010071D8F0 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7AB431B377ACA008A8130 /* Color.swift */; };
+		903A12C91CE064040071D8F0 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F4B1B2BD5DD0006F2A5 /* Light.swift */; };
+		903A12CA1CE064070071D8F0 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E0581BC3A21800AED146 /* Scene.swift */; };
+		903A12CB1CE064090071D8F0 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D50E05A1BC3A26A00AED146 /* State.swift */; };
+		903A12CC1CE0640C0071D8F0 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D94C6491B5671C300C0BCD2 /* Group.swift */; };
+		903A12CD1CE064100071D8F0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D94C64B1B56726200C0BCD2 /* Location.swift */; };
+		903A12CE1CE064130071D8F0 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F4D1B2BD5E50006F2A5 /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +98,6 @@
 		5D5398041BC37FFA0060AAED /* LightTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightTests.swift; sourceTree = "<group>"; };
 		5D5898A21B1887530024D47B /* LIFXHTTPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LIFXHTTPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5898A61B1887530024D47B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5D5898A71B1887530024D47B /* LIFXHTTPKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LIFXHTTPKit.h; sourceTree = "<group>"; };
 		5D5898AD1B1887530024D47B /* LIFXHTTPKit-Mac-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LIFXHTTPKit-Mac-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D5898B31B1887530024D47B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D5898B41B1887530024D47B /* ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
@@ -104,6 +119,8 @@
 		5DB41F4D1B2BD5E50006F2A5 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		5DF3F6191BD45C0F0002E52D /* HTTPOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPOperation.swift; sourceTree = "<group>"; };
 		5DF649D81B2D436A0006EE03 /* LightTargetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightTargetTests.swift; sourceTree = "<group>"; };
+		903A12B71CE050C70071D8F0 /* LIFXHTTPKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIFXHTTPKit.h; sourceTree = "<group>"; };
+		908631CD1CDC7629006D9E47 /* LIFXHTTPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LIFXHTTPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +154,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		908631C91CDC7629006D9E47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -156,6 +180,7 @@
 				5D5898AD1B1887530024D47B /* LIFXHTTPKit-Mac-Tests.xctest */,
 				5D8BF52F1BB524F400A5575C /* LIFXHTTPKit.framework */,
 				5D05E6291BB5296E007B917D /* LIFXHTTPKit-iOS-Tests.xctest */,
+				908631CD1CDC7629006D9E47 /* LIFXHTTPKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,7 +211,7 @@
 		5D5898A51B1887530024D47B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5D5898A71B1887530024D47B /* LIFXHTTPKit.h */,
+				903A12B71CE050C70071D8F0 /* LIFXHTTPKit.h */,
 				5D5898A61B1887530024D47B /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -222,7 +247,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D5898A81B1887530024D47B /* LIFXHTTPKit.h in Headers */,
+				903A12B91CE050C70071D8F0 /* LIFXHTTPKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +255,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D8BF5431BB5258900A5575C /* LIFXHTTPKit.h in Headers */,
+				903A12B81CE050C70071D8F0 /* LIFXHTTPKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		908631CA1CDC7629006D9E47 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				903A12BA1CE050C70071D8F0 /* LIFXHTTPKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +342,24 @@
 			productReference = 5D8BF52F1BB524F400A5575C /* LIFXHTTPKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		908631CC1CDC7629006D9E47 /* LIFXHTTPKit-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 908631D41CDC7629006D9E47 /* Build configuration list for PBXNativeTarget "LIFXHTTPKit-watchOS" */;
+			buildPhases = (
+				908631C81CDC7629006D9E47 /* Sources */,
+				908631C91CDC7629006D9E47 /* Frameworks */,
+				908631CA1CDC7629006D9E47 /* Headers */,
+				908631CB1CDC7629006D9E47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LIFXHTTPKit-watchOS";
+			productName = "LIFXHTTPKit-watchOS";
+			productReference = 908631CD1CDC7629006D9E47 /* LIFXHTTPKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -329,6 +380,9 @@
 					5D8BF52E1BB524F400A5575C = {
 						CreatedOnToolsVersion = 7.0;
 					};
+					908631CC1CDC7629006D9E47 = {
+						CreatedOnToolsVersion = 7.3;
+					};
 				};
 			};
 			buildConfigurationList = 5D58989C1B1887530024D47B /* Build configuration list for PBXProject "LIFXHTTPKit" */;
@@ -347,6 +401,7 @@
 				5D05E61A1BB5296E007B917D /* LIFXHTTPKit-iOS-Tests */,
 				5D5898A11B1887530024D47B /* LIFXHTTPKit-Mac */,
 				5D5898AC1B1887530024D47B /* LIFXHTTPKit-Mac-Tests */,
+				908631CC1CDC7629006D9E47 /* LIFXHTTPKit-watchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -376,6 +431,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		5D8BF52D1BB524F400A5575C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		908631CB1CDC7629006D9E47 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -452,6 +514,28 @@
 				5D8BF53E1BB5257900A5575C /* Light.swift in Sources */,
 				5D8BF53D1BB5257600A5575C /* HTTPSession.swift in Sources */,
 				5D8BF53F1BB5257B00A5575C /* Color.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		908631C81CDC7629006D9E47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				903A12C11CE063EA0071D8F0 /* Client.swift in Sources */,
+				903A12C51CE063F70071D8F0 /* LightTargetObserver.swift in Sources */,
+				903A12C21CE063ED0071D8F0 /* ClientObserver.swift in Sources */,
+				903A12C01CE063DD0071D8F0 /* Errors.swift in Sources */,
+				903A12C41CE063F30071D8F0 /* LightTargetSelector.swift in Sources */,
+				903A12C31CE063F00071D8F0 /* LightTarget.swift in Sources */,
+				903A12CE1CE064130071D8F0 /* Result.swift in Sources */,
+				903A12CD1CE064100071D8F0 /* Location.swift in Sources */,
+				903A12CC1CE0640C0071D8F0 /* Group.swift in Sources */,
+				903A12C91CE064040071D8F0 /* Light.swift in Sources */,
+				903A12C61CE063FA0071D8F0 /* HTTPSession.swift in Sources */,
+				903A12C71CE063FE0071D8F0 /* HTTPOperation.swift in Sources */,
+				903A12C81CE064010071D8F0 /* Color.swift in Sources */,
+				903A12CA1CE064070071D8F0 /* Scene.swift in Sources */,
+				903A12CB1CE064090071D8F0 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,7 +766,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tatey.LIFXHTTPKit;
 				PRODUCT_NAME = LIFXHTTPKit;
@@ -703,7 +787,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tatey.LIFXHTTPKit;
 				PRODUCT_NAME = LIFXHTTPKit;
@@ -711,6 +795,49 @@
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		908631D21CDC7629006D9E47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tatey.LIFXHTTPKit;
+				PRODUCT_NAME = LIFXHTTPKit;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		908631D31CDC7629006D9E47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tatey.LIFXHTTPKit;
+				PRODUCT_NAME = LIFXHTTPKit;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Release;
 		};
@@ -758,6 +885,15 @@
 			buildConfigurations = (
 				5D8BF5341BB524F400A5575C /* Debug */,
 				5D8BF5351BB524F400A5575C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		908631D41CDC7629006D9E47 /* Build configuration list for PBXNativeTarget "LIFXHTTPKit-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				908631D21CDC7629006D9E47 /* Debug */,
+				908631D31CDC7629006D9E47 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

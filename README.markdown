@@ -12,8 +12,9 @@ Used by the [official LIFX iOS](https://itunes.apple.com/us/app/lifx/id657758311
 ## Build Dependencies
 
 * Swift 2.0 (Xcode 7.0+)
-* iOS 8.0+
+* iOS 8.2+
 * Mac OS X 10.10+
+* watchOS 2+
 
 ## Installation
 
