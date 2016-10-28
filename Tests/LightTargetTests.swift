@@ -11,7 +11,7 @@ class LightTargetTests: XCTestCase {
 		if let first = ClientHelper.sharedClient.allLightTarget().toLightTargets().first {
 			return first
 		} else {
-			fatalError("\(__FUNCTION__): Expected at least one connected light target")
+			fatalError("\(#function): Expected at least one connected light target")
 		}
 	}()
 
@@ -82,7 +82,7 @@ class LightTargetTests: XCTestCase {
 
 			waitForExpectationsWithTimeout(3.0, handler: nil)
 		} else {
-			print("Skipping \(__FUNCTION__): Authenticated account doesn't have any scenes")
+			print("Skipping \(#function): Authenticated account doesn't have any scenes")
 		}
 	}
 

@@ -12,7 +12,7 @@ class ClientHelper {
 		let semaphore = dispatch_semaphore_create(0)
 		client.fetch { (errors) in
 			if errors.count > 0 {
-				fatalError("\(__FUNCTION__): Shared client failed to initialize. Are you using a genuine access token? See README.")
+				fatalError("\(#function): Shared client failed to initialize. Are you using a genuine access token? See README.")
 			}
 			dispatch_semaphore_signal(semaphore)
 		}

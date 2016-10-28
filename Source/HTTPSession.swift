@@ -30,7 +30,7 @@ public class HTTPSession {
 	}
 
 	public func lights(selector: String = "all", completionHandler: ((request: NSURLRequest, response: NSURLResponse?, lights: [Light], error: NSError?) -> Void)) {
-		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("lights/\(selector)"))
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("lights/\(selector)")!)
 		request.HTTPMethod = "GET"
 		addOperationWithRequest(request) { (data, response, error) in
 			if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200]) {
@@ -53,7 +53,7 @@ public class HTTPSession {
 	}
 
 	public func setLightsState(selector: String, power: Bool? = nil, color: String? = nil, brightness: Double? = nil, duration: Float, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
-		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("lights/\(selector)/state"))
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("lights/\(selector)/state")!)
 		var parameters: [String : AnyObject] = ["duration": duration]
 		if let power = power {
 			parameters["power"] = power ? "on" : "off"
@@ -78,7 +78,7 @@ public class HTTPSession {
 	}
 
 	public func scenes(completionHandler: ((request: NSURLRequest, response: NSURLResponse?, scenes: [Scene], error: NSError?) -> Void)) {
-		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("scenes"))
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("scenes")!)
 		request.HTTPMethod = "GET"
 		addOperationWithRequest(request) { (data, response, error) in
 			if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200]) {
@@ -91,7 +91,7 @@ public class HTTPSession {
 	}
 
 	public func setScenesActivate(selector: String, duration: Float, completionHandler: ((request: NSURLRequest, response: NSURLResponse?, results: [Result], error: NSError?) -> Void)) {
-		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("scenes/\(selector)/activate"))
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("scenes/\(selector)/activate")!)
 		let parameters = ["duration", duration]
 		request.HTTPMethod = "PUT"
 		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
