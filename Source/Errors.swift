@@ -8,28 +8,28 @@ import Foundation
 public let ErrorDomain: String = "LIFXHTTPKitErrorDomain"
 
 public enum ErrorCode: Int {
-    // LIFXHTTPKit Errors
-    case jsonInvalid
-    case unacceptableSelector
-    
-    // HTTP Errors
-    case unexpectedHTTPStatusCode
-    case unauthorized // 401
-    case forbidden // 403
-    case tooManyRequests // 429
-    case serverError // 5XX
+	// LIFXHTTPKit Errors
+	case jsonInvalid
+	case unacceptableSelector
+	
+	// HTTP Errors
+	case unexpectedHTTPStatusCode
+	case unauthorized // 401
+	case forbidden // 403
+	case tooManyRequests // 429
+	case serverError // 5XX
 }
 
 struct Error {
-    let code: ErrorCode
-    let message: String
-    
-    init(code: ErrorCode, message: String) {
-        self.code = code
-        self.message = message
-    }
-    
-    func toNSError() -> NSError {
-        return NSError(domain: ErrorDomain, code: code.rawValue, userInfo: [NSLocalizedDescriptionKey: message])
-    }
+	let code: ErrorCode
+	let message: String
+	
+	init(code: ErrorCode, message: String) {
+		self.code = code
+		self.message = message
+	}
+	
+	func toNSError() -> NSError {
+		return NSError(domain: ErrorDomain, code: code.rawValue, userInfo: [NSLocalizedDescriptionKey: message])
+	}
 }
