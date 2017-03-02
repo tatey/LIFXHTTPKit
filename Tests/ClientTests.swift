@@ -7,21 +7,21 @@ import XCTest
 import LIFXHTTPKit
 
 class ClientTests: XCTestCase {
-	func testAllLightsReturnsLightTargetConfiguredWithAllSelector() {
-		let client = Client(accessToken: "")
-		let lightTarget = client.allLightTarget()
-		XCTAssertEqual(lightTarget.selector, LightTargetSelector(type: .All), "Expected selector to be `.All` type")
-	}
-
-	func testFetchWithInvalidAccessTokenSetsErrors() {
-		let expectation = expectationWithDescription("fetch")
-
-		let client = Client(accessToken: "")
-		client.fetch { (errors) in
-			XCTAssertGreaterThan(errors.count, 0)
-			expectation.fulfill()
-		}
-
-		waitForExpectationsWithTimeout(3.0, handler: nil)
-	}
+    func testAllLightsReturnsLightTargetConfiguredWithAllSelector() {
+        let client = Client(accessToken: "")
+        let lightTarget = client.allLightTarget()
+        XCTAssertEqual(lightTarget.selector, LightTargetSelector(type: .All), "Expected selector to be `.All` type")
+    }
+    
+    func testFetchWithInvalidAccessTokenSetsErrors() {
+        let expectation = self.expectation(description: "fetch")
+        
+        let client = Client(accessToken: "")
+        client.fetch { (errors) in
+            XCTAssertGreaterThan(errors.count, 0)
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 3.0, handler: nil)
+    }
 }

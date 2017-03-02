@@ -6,11 +6,11 @@
 import Foundation
 
 public class LightTargetObserver {
-	public typealias StateDidUpdate = () -> Void
-
-	let stateDidUpdateHandler: StateDidUpdate
-
-	init(stateDidUpdateHandler: StateDidUpdate) {
-		self.stateDidUpdateHandler = stateDidUpdateHandler
-	}
+    public typealias StateDidUpdate = () -> Void
+    
+    let stateDidUpdateHandler: StateDidUpdate
+    
+    init(stateDidUpdateHandler: @escaping StateDidUpdate) {
+        self.stateDidUpdateHandler = stateDidUpdateHandler
+    }
 }

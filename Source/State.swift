@@ -6,14 +6,14 @@
 import Foundation
 
 public struct State: Equatable {
-	public let selector: LightTargetSelector
-	public let brightness: Double?
-	public let color: Color?
-	public let power: Bool?
+    public let selector: LightTargetSelector
+    public let brightness: Double?
+    public let color: Color?
+    public let power: Bool?
 }
 
 public func ==(lhs: State, rhs: State) -> Bool {
-	return lhs.brightness == rhs.brightness &&
-		lhs.color == rhs.color &&
-		lhs.selector == rhs.selector
+    return lhs.brightness == rhs.brightness &&
+        lhs.color == rhs.color &&
+        lhs.selector == rhs.selector
 }

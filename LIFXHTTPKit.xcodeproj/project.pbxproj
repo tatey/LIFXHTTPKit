@@ -371,6 +371,9 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Tate Johnson";
 				TargetAttributes = {
+					5D05E61A1BB5296E007B917D = {
+						LastSwiftMigration = 0820;
+					};
 					5D5898A11B1887530024D47B = {
 						CreatedOnToolsVersion = 6.3.2;
 						LastSwiftMigration = 0800;
@@ -381,6 +384,7 @@
 					};
 					5D8BF52E1BB524F400A5575C = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0820;
 					};
 					908631CC1CDC7629006D9E47 = {
 						CreatedOnToolsVersion = 7.3;
@@ -574,6 +578,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tatey.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -590,6 +595,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tatey.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -701,7 +707,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -724,7 +730,7 @@
 				PRODUCT_NAME = LIFXHTTPKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -745,7 +751,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tatey.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -762,7 +768,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tatey.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -783,6 +789,7 @@
 				PRODUCT_NAME = LIFXHTTPKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -804,6 +811,7 @@
 				PRODUCT_NAME = LIFXHTTPKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -826,6 +834,7 @@
 				PRODUCT_NAME = LIFXHTTPKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -848,6 +857,7 @@
 				PRODUCT_NAME = LIFXHTTPKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
