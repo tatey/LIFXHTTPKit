@@ -62,7 +62,7 @@ public class Client {
 				if oldLights != newLights {
 					strongSelf.lights = newLights
 					for observer in strongSelf.observers {
-						observer.lightsDidUpdateHandler(lights)
+						observer.lightsDidUpdateHandler?(lights)
 					}
 				}
 				
@@ -125,7 +125,7 @@ public class Client {
 		
 		if oldLights != newLights {
 			for observer in observers {
-				observer.lightsDidUpdateHandler(newLights)
+				observer.lightsDidUpdateHandler?(newLights)
 			}
 			self.lights = newLights
 		}

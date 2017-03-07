@@ -8,7 +8,7 @@ import Foundation
 class ClientObserver {
 	typealias LightsDidUpdate = (_ lights: [Light]) -> Void
 	
-	let lightsDidUpdateHandler: LightsDidUpdate
+	let lightsDidUpdateHandler: LightsDidUpdate?
 	
 	init(lightsDidUpdateHandler: @escaping LightsDidUpdate) {
 		self.lightsDidUpdateHandler = lightsDidUpdateHandler
