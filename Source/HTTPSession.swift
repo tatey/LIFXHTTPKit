@@ -29,7 +29,7 @@ public class HTTPSession {
 		operationQueue.maxConcurrentOperationCount = 1
 	}
 	
-	public func lights(_ selector: String = "all", completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ lights: [Light], _ error: NSError?) -> Void)) {
+	public func lights(_ selector: String = "all", completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ lights: [Light], _ error: Error?) -> Void)) {
 		let request = NSMutableURLRequest(url: baseURL.appendingPathComponent("lights/\(selector)"))
 		request.httpMethod = "GET"
 		addOperationWithRequest(request as URLRequest) { (data, response, error) in
@@ -42,17 +42,17 @@ public class HTTPSession {
 		}
 	}
 	
-	public func setLightsPower(_ selector: String, power: Bool, duration: Float, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: NSError?) -> Void)) {
+	public func setLightsPower(_ selector: String, power: Bool, duration: Float, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: Error?) -> Void)) {
 		print("`setLightsPower:power:duration:completionHandler:` is deprecated and will be removed in a future version. Use `setLightsState:power:color:brightness:duration:completionHandler:` instead.")
 		setLightsState(selector, power: power, duration: duration, completionHandler: completionHandler)
 	}
 	
-	public func setLightsColor(_ selector: String, color: String, duration: Float, powerOn: Bool, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: NSError?) -> Void)) {
+	public func setLightsColor(_ selector: String, color: String, duration: Float, powerOn: Bool, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: Error?) -> Void)) {
 		print("`setLightsColor:color:duration:powerOn:completionHandler:` is deprecated and will be removed in a future version. Use `setLightsState:power:color:brightness:duration:completionHandler:` instead.")
 		setLightsState(selector, power: powerOn, color: color, duration: duration, completionHandler: completionHandler)
 	}
 	
-	public func setLightsState(_ selector: String, power: Bool? = nil, color: String? = nil, brightness: Double? = nil, duration: Float, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: NSError?) -> Void)) {
+	public func setLightsState(_ selector: String, power: Bool? = nil, color: String? = nil, brightness: Double? = nil, duration: Float, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: Error?) -> Void)) {
 		let request = NSMutableURLRequest(url: baseURL.appendingPathComponent("lights/\(selector)/state"))
 		var parameters: [String : Any] = ["duration": duration as AnyObject]
 		if let power = power {
@@ -77,7 +77,7 @@ public class HTTPSession {
 		}
 	}
 	
-	public func scenes(_ completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ scenes: [Scene], _ error: NSError?) -> Void)) {
+	public func scenes(_ completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ scenes: [Scene], _ error: Error?) -> Void)) {
 		let request = NSMutableURLRequest(url: baseURL.appendingPathComponent("scenes"))
 		request.httpMethod = "GET"
 		addOperationWithRequest(request as URLRequest) { (data, response, error) in
@@ -90,7 +90,7 @@ public class HTTPSession {
 		}
 	}
 	
-	public func setScenesActivate(_ selector: String, duration: Float, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: NSError?) -> Void)) {
+	public func setScenesActivate(_ selector: String, duration: Float, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: Error?) -> Void)) {
 		let request = NSMutableURLRequest(url: baseURL.appendingPathComponent("scenes/\(selector)/activate"))
 		let parameters = ["duration", duration] as [Any]
 		request.httpMethod = "PUT"
@@ -107,13 +107,13 @@ public class HTTPSession {
 	
 	// MARK: Helpers
 	
-	private func addOperationWithRequest(_ request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, NSError?) -> Void) {
+	private func addOperationWithRequest(_ request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
 		let operation = HTTPOperation(URLSession: URLSession, delegateQueue: delegateQueue, request: request, completionHandler: completionHandler)
 		operationQueue.operations.first?.addDependency(operation)
 		operationQueue.addOperation(operation)
 	}
 	
-	private func validateResponseWithExpectedStatusCodes(_ response: URLResponse?, statusCodes: [Int]) -> NSError? {
+	private func validateResponseWithExpectedStatusCodes(_ response: URLResponse?, statusCodes: [Int]) -> Error? {
 		guard let response = response as? HTTPURLResponse else {
 			return nil
 		}
@@ -124,21 +124,21 @@ public class HTTPSession {
 		
 		switch (response.statusCode) {
 		case 401:
-			return Error(code: .unauthorized, message: "Bad access token").toNSError()
+			return HTTPKitError(code: .unauthorized, message: "Bad access token")
 		case 403:
-			return Error(code: .forbidden, message: "Permission denied").toNSError()
+			return HTTPKitError(code: .forbidden, message: "Permission denied")
 		case 429:
-			return Error(code: .tooManyRequests, message: "Rate limit exceeded").toNSError()
+			return HTTPKitError(code: .tooManyRequests, message: "Rate limit exceeded")
 		case 500, 502, 503, 523:
-			return Error(code: .unauthorized, message: "Server error").toNSError()
+			return HTTPKitError(code: .unauthorized, message: "Server error")
 		default:
-			return Error(code: .unexpectedHTTPStatusCode, message: "Expecting \(statusCodes), got \(response.statusCode)").toNSError()
+			return HTTPKitError(code: .unexpectedHTTPStatusCode, message: "Expecting \(statusCodes), got \(response.statusCode)")
 		}
 	}
 	
-	private func dataToLights(_ data: Data?) -> (lights: [Light], error: NSError?) {
+	private func dataToLights(_ data: Data?) -> (lights: [Light], error: Error?) {
 		guard let data = data else {
-			return ([], Error(code: .jsonInvalid, message: "No data").toNSError())
+			return ([], HTTPKitError(code: .jsonInvalid, message: "No data"))
 		}
 		
 		let rootJSONObject: Any?
@@ -188,15 +188,15 @@ public class HTTPSession {
 				let light = Light(id: id, power: power == "on", brightness: brightness, color: color, label: label, connected: connected, group: group, location: location, touchedAt: Date())
 				lights.append(light)
 			} else {
-				return ([], Error(code: .jsonInvalid, message: "JSON object is missing required properties").toNSError())
+				return ([], HTTPKitError(code: .jsonInvalid, message: "JSON object is missing required properties"))
 			}
 		}
 		return (lights, nil)
 	}
 	
-	private func dataToScenes(_ data: Data?) -> (scenes: [Scene], error: NSError?) {
+	private func dataToScenes(_ data: Data?) -> (scenes: [Scene], error: Error?) {
 		guard let data = data else {
-			return ([], Error(code: .jsonInvalid, message: "No data").toNSError())
+			return ([], HTTPKitError(code: .jsonInvalid, message: "No data"))
 		}
 		
 		let rootJSONObject: Any?
@@ -249,9 +249,9 @@ public class HTTPSession {
 		return (scenes, nil)
 	}
 	
-	private func dataToResults(_ data: Data?) -> (results: [Result], error: NSError?) {
+	private func dataToResults(_ data: Data?) -> (results: [Result], error: Error?) {
 		guard let data = data else {
-			return ([], Error(code: .jsonInvalid, message: "No data").toNSError())
+			return ([], HTTPKitError(code: .jsonInvalid, message: "No data"))
 		}
 		
 		let rootJSONObject: Any
@@ -274,7 +274,7 @@ public class HTTPSession {
 				let result = Result(id: id, status: status)
 				results.append(result)
 			} else {
-				return ([], Error(code: .jsonInvalid, message: "JSON object is missing required properties").toNSError())
+				return ([], HTTPKitError(code: .jsonInvalid, message: "JSON object is missing required properties"))
 			}
 		}
 		

@@ -20,7 +20,7 @@ public enum ErrorCode: Int {
 	case serverError // 5XX
 }
 
-struct Error {
+struct HTTPKitError: Error {
 	let code: ErrorCode
 	let message: String
 	
@@ -28,8 +28,5 @@ struct Error {
 		self.code = code
 		self.message = message
 	}
-	
-	func toNSError() -> NSError {
-		return NSError(domain: ErrorDomain, code: code.rawValue, userInfo: [NSLocalizedDescriptionKey: message])
-	}
 }
+

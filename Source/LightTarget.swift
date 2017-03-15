@@ -115,7 +115,7 @@ public class LightTarget {
 	
 	// MARK: Lighting Operations
 	
-	public func setPower(_ power: Bool, duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: NSError?) -> Void)? = nil) {
+	public func setPower(_ power: Bool, duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: Error?) -> Void)? = nil) {
 		let oldPower = self.power
 		client.updateLights(lights.map({ $0.lightWithProperties(power) }))
 		client.session.setLightsState(selector.toQueryStringValue(), power: power, duration: duration) { [weak self] (request, response, results, error) in
@@ -130,7 +130,7 @@ public class LightTarget {
 		}
 	}
 	
-	public func setBrightness(_ brightness: Double, duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: NSError?) -> Void)? = nil) {
+	public func setBrightness(_ brightness: Double, duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: Error?) -> Void)? = nil) {
 		let oldBrightness = self.brightness
 		client.updateLights(lights.map({ $0.lightWithProperties(brightness: brightness) }))
 		client.session.setLightsState(selector.toQueryStringValue(), brightness: brightness, duration: duration) { [weak self] (request, response, results, error) in
@@ -145,7 +145,7 @@ public class LightTarget {
 		}
 	}
 	
-	public func setColor(_ color: Color, duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: NSError?) -> Void)? = nil) {
+	public func setColor(_ color: Color, duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: Error?) -> Void)? = nil) {
 		let oldColor = self.color
 		client.updateLights(lights.map({ $0.lightWithProperties(color: color) }))
 		client.session.setLightsState(selector.toQueryStringValue(), color: color.toQueryStringValue(), duration: duration) { [weak self] (request, response, results, error) in
@@ -160,12 +160,12 @@ public class LightTarget {
 		}
 	}
 	
-	public func setColor(_ color: Color, brightness: Double, power: Bool? = nil, duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: NSError?) -> Void)? = nil) {
+	public func setColor(_ color: Color, brightness: Double, power: Bool? = nil, duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: Error?) -> Void)? = nil) {
 		print("`setColor:brightness:power:duration:completionHandler: is deprecated and will be removed in a future version. Use `setState:brightness:power:duration:completionHandler:` instead.")
 		return setState(color, brightness: brightness, power: power, duration: duration, completionHandler: completionHandler)
 	}
 	
-	public func setState(_ color: Color? = nil, brightness: Double? = nil, power: Bool? = nil, duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: NSError?) -> Void)? = nil) {
+	public func setState(_ color: Color? = nil, brightness: Double? = nil, power: Bool? = nil, duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: Error?) -> Void)? = nil) {
 		let oldBrightness = self.brightness
 		let oldColor = self.color
 		let oldPower = self.power
@@ -182,9 +182,9 @@ public class LightTarget {
 		}
 	}
 	
-	public func restoreState(_ duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: NSError?) -> Void)? = nil) {
+	public func restoreState(_ duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: Error?) -> Void)? = nil) {
 		if selector.type != .SceneID {
-			let error = Error(code: .unacceptableSelector, message: "Unsupported Selector. Only `.SceneID` is supported.").toNSError()
+			let error = HTTPKitError(code: .unacceptableSelector, message: "Unsupported Selector. Only `.SceneID` is supported.")
 			completionHandler?([], error)
 			return
 		}

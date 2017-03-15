@@ -23,9 +23,9 @@ public class Client {
 		observers = []
 	}
 	
-	public func fetch(completionHandler: ((_ errors: [NSError]) -> Void)? = nil) {
+	public func fetch(completionHandler: ((_ errors: [Error]) -> Void)? = nil) {
 		let group = DispatchGroup()
-		var errors: [NSError] = []
+		var errors: [Error] = []
 		
 		group.enter()
 		fetchLights { (error) in
@@ -49,7 +49,7 @@ public class Client {
 		
 	}
 	
-	public func fetchLights(completionHandler: ((_ error: NSError?) -> Void)? = nil) {
+	public func fetchLights(completionHandler: ((_ error: Error?) -> Void)? = nil) {
 		session.lights("all") { [weak self] (request, response, lights, error) in
 			if error != nil {
 				completionHandler?(error)
@@ -72,7 +72,7 @@ public class Client {
 		}
 	}
 	
-	public func fetchScenes(completionHandler: ((_ error: NSError?) -> Void)? = nil) {
+	public func fetchScenes(completionHandler: ((_ error: Error?) -> Void)? = nil) {
 		session.scenes { [weak self] (request, response, scenes, error) in
 			if error != nil {
 				completionHandler?(error)
