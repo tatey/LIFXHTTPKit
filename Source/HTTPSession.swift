@@ -30,14 +30,14 @@ public class HTTPSession {
 	}
 	
 	public func lights(_ selector: String = "all", completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ lights: [Light], _ error: Error?) -> Void)) {
-		let request = NSMutableURLRequest(url: baseURL.appendingPathComponent("lights/\(selector)"))
+		var request = URLRequest(url: baseURL.appendingPathComponent("lights/\(selector)"))
 		request.httpMethod = "GET"
 		addOperationWithRequest(request as URLRequest) { (data, response, error) in
 			if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200]) {
 				completionHandler(request as URLRequest, response, [], error)
 			} else {
 				let (lights, error) = self.dataToLights(data)
-				completionHandler(request as URLRequest, response, lights, error)
+				completionHandler(request, response, lights, error)
 			}
 		}
 	}
@@ -53,7 +53,7 @@ public class HTTPSession {
 	}
 	
 	public func setLightsState(_ selector: String, power: Bool? = nil, color: String? = nil, brightness: Double? = nil, duration: Float, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: Error?) -> Void)) {
-		let request = NSMutableURLRequest(url: baseURL.appendingPathComponent("lights/\(selector)/state"))
+		var request = URLRequest(url: baseURL.appendingPathComponent("lights/\(selector)/state"))
 		var parameters: [String : Any] = ["duration": duration as AnyObject]
 		if let power = power {
 			parameters["power"] = power ? "on" : "off" as AnyObject?
@@ -72,26 +72,26 @@ public class HTTPSession {
 				completionHandler(request as URLRequest, response, [], error)
 			} else {
 				let (results, error) = self.dataToResults(data)
-				completionHandler(request as URLRequest, response, results, error)
+				completionHandler(request, response, results, error)
 			}
 		}
 	}
 	
 	public func scenes(_ completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ scenes: [Scene], _ error: Error?) -> Void)) {
-		let request = NSMutableURLRequest(url: baseURL.appendingPathComponent("scenes"))
+		var request = URLRequest(url: baseURL.appendingPathComponent("scenes"))
 		request.httpMethod = "GET"
 		addOperationWithRequest(request as URLRequest) { (data, response, error) in
 			if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200]) {
 				completionHandler(request as URLRequest, response, [], error)
 			} else {
 				let (scenes, error) = self.dataToScenes(data)
-				completionHandler(request as URLRequest, response, scenes, error)
+				completionHandler(request, response, scenes, error)
 			}
 		}
 	}
 	
 	public func setScenesActivate(_ selector: String, duration: Float, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: Error?) -> Void)) {
-		let request = NSMutableURLRequest(url: baseURL.appendingPathComponent("scenes/\(selector)/activate"))
+		var request = URLRequest(url: baseURL.appendingPathComponent("scenes/\(selector)/activate"))
 		let parameters = ["duration", duration] as [Any]
 		request.httpMethod = "PUT"
 		request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: [])
@@ -100,7 +100,7 @@ public class HTTPSession {
 				completionHandler(request as URLRequest, response, [], error)
 			} else {
 				let (results, error) = self.dataToResults(data)
-				completionHandler(request as URLRequest, response, results, error)
+				completionHandler(request, response, results, error)
 			}
 		}
 	}
