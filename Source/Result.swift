@@ -11,10 +11,10 @@ public struct Result: Equatable, CustomStringConvertible {
 		case TimedOut = "timed_out"
 		case Offline  = "offline"
 	}
-
+	
 	public let id: String
 	public let status: Status
-
+	
 	// MARK: Printable
 	
 	public var description: String {

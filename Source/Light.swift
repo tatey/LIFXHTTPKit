@@ -14,16 +14,16 @@ public struct Light: Equatable, CustomStringConvertible {
 	public let connected: Bool
 	public let group: Group?
 	public let location: Location?
-    public let touchedAt: NSDate?
-
+	public let touchedAt: Date?
+	
 	public func toSelector() -> LightTargetSelector {
 		return LightTargetSelector(type: .ID, value: id)
 	}
-
-    func lightWithProperties(power: Bool? = nil, brightness: Double? = nil, color: Color? = nil, connected: Bool? = nil, touchedAt: NSDate? = nil) -> Light {
-        return Light(id: id, power: power ?? self.power, brightness: brightness ?? self.brightness, color: color ?? self.color, label: label, connected: connected ?? self.connected, group: group, location: location, touchedAt: touchedAt ?? NSDate())
-    }
-
+	
+	func lightWithProperties(_ power: Bool? = nil, brightness: Double? = nil, color: Color? = nil, connected: Bool? = nil, touchedAt: Date? = nil) -> Light {
+		return Light(id: id, power: power ?? self.power, brightness: brightness ?? self.brightness, color: color ?? self.color, label: label, connected: connected ?? self.connected, group: group, location: location, touchedAt: touchedAt ?? Date())
+	}
+	
 	// MARK: Printable
 	
 	public var description: String {

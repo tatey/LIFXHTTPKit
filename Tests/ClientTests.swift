@@ -12,16 +12,16 @@ class ClientTests: XCTestCase {
 		let lightTarget = client.allLightTarget()
 		XCTAssertEqual(lightTarget.selector, LightTargetSelector(type: .All), "Expected selector to be `.All` type")
 	}
-
+	
 	func testFetchWithInvalidAccessTokenSetsErrors() {
-		let expectation = expectationWithDescription("fetch")
-
+		let expectation = self.expectation(description: "fetch")
+		
 		let client = Client(accessToken: "")
 		client.fetch { (errors) in
 			XCTAssertGreaterThan(errors.count, 0)
 			expectation.fulfill()
 		}
-
-		waitForExpectationsWithTimeout(3.0, handler: nil)
+		
+		waitForExpectations(timeout: 3.0, handler: nil)
 	}
 }

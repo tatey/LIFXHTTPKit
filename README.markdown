@@ -1,20 +1,23 @@
 # LIFXHTTPKit [![GitHub release](https://img.shields.io/github/release/tatey/LIFXHTTPKit.svg)](https://github.com/tatey/LIFXHTTPKit/releases/latest) [![GitHub license](https://img.shields.io/github/license/tatey/LIFXHTTPKit.svg)](https://raw.githubusercontent.com/tatey/LIFXHTTPKit/master/LICENSE.txt) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-A nice iOS/Mac framework for interacting with the [LIFX HTTP API](http://api.developer.lifx.com/docs)
+A nice iOS/watchOS/macOS framework for interacting with the [LIFX HTTP API](http://api.developer.lifx.com/docs)
 that has no external dependencies. Suitable for use inside extensions.
 
 Used by the [official LIFX iOS](https://itunes.apple.com/us/app/lifx/id657758311?mt=8) app and an open source Mac app, [Lighting](https://github.com/tatey/Lighting).
-
-*NOTE: For Swift 1.3 support use the versions tagged 0.0.x which you can read about in the [releases](https://github.com/tatey/LIFXHTTPKit/releases).*
 
 *NOTE: This is not an official LIFX project.*
 
 ## Build Dependencies
 
-* Swift 2.0 (Xcode 7.0+)
+* Swift 2.3 (Xcode 8.0+)
 * iOS 8.2+
-* Mac OS X 10.10+
+* macOS 10.10+
 * watchOS 2+
+
+Looking for an earlier version of Swift?
+
+* Use [1.0.0](https://github.com/tatey/LIFXHTTPKit/releases/tag/1.0.0) for Swift 2.2
+* Use [0.0.2](https://github.com/tatey/LIFXHTTPKit/releases/tag/0.0.2) for Swift 1.3
 
 ## Installation
 
@@ -101,7 +104,7 @@ lightTarget.label // => "Lamp 1"
 
 ## Concepts
 
-LIFXHTTPKit has been built with Mac OS X and iOS apps in mind. These APIs
+LIFXHTTPKit has been built with macOS and iOS apps in mind. These APIs
 make it easy to consume the LIFX HTTP API without worrying about the specifics
 of HTTP or maintaining state.
 
@@ -466,4 +469,4 @@ Finally, run tests by selecting "Product > Tests" from the menu bar, or use the
 
 ## Copyright
 
-Copyright (c) 2015 Tate Johnson. All rights reserved. Licensed under the MIT license.
+Copyright (c) 2015-2016 Tate Johnson. All rights reserved. Licensed under the MIT license.

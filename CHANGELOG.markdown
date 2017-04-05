@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0 / 2016-07-08
+
+* **(Breaking)** Add support for watchOS 2.0. Minimum iOS target raised to 8.2.
+* Expose `lastTouched` to `Light` and `LightTarget` for determining the freshness of remotely fetched data.
+
 ## 1.0.0 / 2015-10-28
 
 * Migrate from v1beta to v1 of the LIFX HTTP API.

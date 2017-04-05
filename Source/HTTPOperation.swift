@@ -9,7 +9,7 @@ class HTTPOperationState {
 	var cancelled: Bool
 	var executing: Bool
 	var finished: Bool
-
+	
 	init() {
 		cancelled = false
 		executing = false
@@ -17,70 +17,70 @@ class HTTPOperationState {
 	}
 }
 
-class HTTPOperation: NSOperation {
+class HTTPOperation: Operation {
 	private let state: HTTPOperationState
-	private let delegateQueue: dispatch_queue_t
-	private var task: NSURLSessionDataTask?
-
-	init(URLSession: NSURLSession, delegateQueue: dispatch_queue_t, request: NSURLRequest, completionHandler: (NSData?, NSURLResponse?, NSError?) -> Void) {
+	private let delegateQueue: DispatchQueue
+	private var task: URLSessionDataTask?
+	
+	init(URLSession: Foundation.URLSession, delegateQueue: DispatchQueue, request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
 		state = HTTPOperationState()
 		self.delegateQueue = delegateQueue
-
+		
 		super.init()
-
-		task = URLSession.dataTaskWithRequest(request) { [weak self] (data, response, error) in
+		
+		task = URLSession.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
 			if let strongSelf = self {
-				strongSelf.executing = false
-				strongSelf.finished = true
-				dispatch_async(strongSelf.delegateQueue) {
-					completionHandler(data, response, error)
+				strongSelf.isExecuting = false
+				strongSelf.isFinished = true
+				strongSelf.delegateQueue.async {
+					completionHandler(data, response, error as NSError?)
 				}
 			}
-		}
+		})
 	}
-
-	override var asynchronous: Bool {
+	
+	override var isAsynchronous: Bool {
 		return true
 	}
-
-	override private(set) var cancelled: Bool {
+	
+	override private(set) var isCancelled: Bool {
 		get { return state.cancelled }
 		set {
-			willChangeValueForKey("isCancelled")
+			willChangeValue(forKey: "isCancelled")
 			state.cancelled = newValue
-			didChangeValueForKey("isCancelled")
+			didChangeValue(forKey: "isCancelled")
 		}
 	}
-
-	override private(set) var executing: Bool {
+	
+	override private(set) var isExecuting: Bool {
 		get { return state.executing }
 		set {
-			willChangeValueForKey("isExecuting")
+			willChangeValue(forKey: "isExecuting")
 			state.executing = newValue
-			didChangeValueForKey("isExecuting")
+			didChangeValue(forKey: "isExecuting")
 		}
 	}
-
-	override private(set) var finished: Bool {
+	
+	override private(set) var isFinished: Bool {
 		get { return state.finished }
 		set {
-			willChangeValueForKey("isFinished")
+			willChangeValue(forKey: "isFinished")
 			state.finished = newValue
-			didChangeValueForKey("isFinished")
+			didChangeValue(forKey: "isFinished")
 		}
 	}
-
+	
 	override func start() {
-		if cancelled {
+		if isCancelled {
 			return
 		}
-
+		
 		task?.resume()
-		executing = true
+		isExecuting = true
 	}
-
+	
 	override func cancel() {
 		task?.cancel()
-		cancelled = true
+		isCancelled = true
 	}
 }

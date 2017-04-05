@@ -9,7 +9,7 @@ public struct Scene: Equatable {
 	public let uuid: String
 	public let name: String
 	public let states: [State]
-
+	
 	public func toSelector() -> LightTargetSelector {
 		return LightTargetSelector(type: .SceneID, value: uuid)
 	}
