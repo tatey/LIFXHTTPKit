@@ -343,12 +343,12 @@ public class LightTarget {
 			var kelvinTotal: Int = 0
 			for light in lights {
 				let color = light.color
-				hueXTotal += sin(color.hue * 2.0 * M_PI / Color.maxHue)
-				hueYTotal += cos(color.hue * 2.0 * M_PI / Color.maxHue)
+				hueXTotal += sin(color.hue * 2.0 * .pi / Color.maxHue)
+				hueYTotal += cos(color.hue * 2.0 * .pi / Color.maxHue)
 				saturationTotal += color.saturation
 				kelvinTotal += color.kelvin
 			}
-			var hue: Double = atan2(hueXTotal, hueYTotal) / (2.0 * M_PI);
+			var hue: Double = atan2(hueXTotal, hueYTotal) / (2.0 * .pi);
 			if hue < 0.0 {
 				hue += 1.0
 			}
@@ -402,4 +402,16 @@ public class LightTarget {
 	private func deriveCount() -> Int {
 		return lights.count
 	}
+    
+    public var hasColorCapabilities: Bool {
+        return !(lights.map { $0.hasColor }.contains(false))
+    }
+    
+    public var hasIRCapabilities: Bool {
+        return !(lights.map { $0.hasIR }.contains(false))
+    }
+    
+    public var hasMultiZoneCapabilities: Bool {
+        return !(lights.map { $0.hasMultiZone }.contains(false))
+    }
 }

@@ -71,6 +71,7 @@
 		903A12CC1CE0640C0071D8F0 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D94C6491B5671C300C0BCD2 /* Group.swift */; };
 		903A12CD1CE064100071D8F0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D94C64B1B56726200C0BCD2 /* Location.swift */; };
 		903A12CE1CE064130071D8F0 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F4D1B2BD5E50006F2A5 /* Result.swift */; };
+		E9F4B5791E950F4800D0ED01 /* ProductInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4B5781E950F4800D0ED01 /* ProductInformation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		5DF649D81B2D436A0006EE03 /* LightTargetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightTargetTests.swift; sourceTree = "<group>"; };
 		903A12B71CE050C70071D8F0 /* LIFXHTTPKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIFXHTTPKit.h; sourceTree = "<group>"; };
 		908631CD1CDC7629006D9E47 /* LIFXHTTPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LIFXHTTPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9F4B5781E950F4800D0ED01 /* ProductInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductInformation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 				5DB41F4B1B2BD5DD0006F2A5 /* Light.swift */,
 				5D50E0581BC3A21800AED146 /* Scene.swift */,
 				5D50E05A1BC3A26A00AED146 /* State.swift */,
+				E9F4B5781E950F4800D0ED01 /* ProductInformation.swift */,
 				5D94C6491B5671C300C0BCD2 /* Group.swift */,
 				5D94C64B1B56726200C0BCD2 /* Location.swift */,
 				5DB41F4D1B2BD5E50006F2A5 /* Result.swift */,
@@ -515,6 +518,7 @@
 				5D8BF5401BB5257D00A5575C /* Group.swift in Sources */,
 				5DF3F61A1BD45C0F0002E52D /* HTTPOperation.swift in Sources */,
 				5D8BF53B1BB5257200A5575C /* LightTarget.swift in Sources */,
+				E9F4B5791E950F4800D0ED01 /* ProductInformation.swift in Sources */,
 				5D8BF5421BB5258200A5575C /* Result.swift in Sources */,
 				5D8BF5371BB5256900A5575C /* Errors.swift in Sources */,
 				5D8BF53E1BB5257900A5575C /* Light.swift in Sources */,
