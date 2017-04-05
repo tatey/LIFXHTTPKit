@@ -184,22 +184,9 @@ public class HTTPSession {
 					location = nil
 				}
                 
-                
-                let productInformation: ProductInformation?
-                if let productInformationJSONObject = lightJSONObject["product"] as? NSDictionary, let name = productInformationJSONObject["name"] as? String, let manufaturer = productInformationJSONObject["company"] as? String {
-                    
-                    let capabilities: Capabilities?
-                    if let capabilitiesJSONObject = productInformationJSONObject["capabilities"] as? NSDictionary {
-                        let hasColor = capabilitiesJSONObject["has_color"] as? Bool
-                        let hasIR = capabilitiesJSONObject["has_ir"] as? Bool
-                        let hasMultiZone = capabilitiesJSONObject["has_multizone"] as? Bool
-                        capabilities = Capabilities(hasColor: hasColor, hasIR: hasIR, hasMulitiZone: hasMultiZone)
-                    } else {
-                        capabilities = nil
-                    }
-                    productInformation = ProductInformation(productName: name, manufacturer: manufaturer, capabilities: capabilities)
-                } else {
-                    productInformation = nil
+                var productInformation: ProductInformation?
+                if let productInformationJSONObject = lightJSONObject["product"] as? NSDictionary {
+                    productInformation = ProductInformation(data: productInformationJSONObject)
                 }
 				
 				let color = Color(hue: colorHue, saturation: colorSaturation, kelvin: colorKelvin)
