@@ -144,7 +144,7 @@ public class HTTPSession {
 		let rootJSONObject: Any?
 		do {
 			rootJSONObject = try JSONSerialization.jsonObject(with: data, options: [])
-		} catch let error as NSError {
+		} catch let error {
 			return ([], error)
 		}
 		
@@ -202,7 +202,7 @@ public class HTTPSession {
 		let rootJSONObject: Any?
 		do {
 			rootJSONObject = try JSONSerialization.jsonObject(with: data, options: [])
-		} catch let error as NSError {
+		} catch let error {
 			return ([], error)
 		}
 		
@@ -257,7 +257,7 @@ public class HTTPSession {
 		let rootJSONObject: Any
 		do {
 			rootJSONObject = try JSONSerialization.jsonObject(with: data, options: [])
-		} catch let error as NSError {
+		} catch let error {
 			return ([], error)
 		}
 		

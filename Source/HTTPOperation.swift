@@ -22,7 +22,7 @@ class HTTPOperation: Operation {
 	private let delegateQueue: DispatchQueue
 	private var task: URLSessionDataTask?
 	
-	init(URLSession: Foundation.URLSession, delegateQueue: DispatchQueue, request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, NSError?) -> Void) {
+	init(URLSession: Foundation.URLSession, delegateQueue: DispatchQueue, request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
 		state = HTTPOperationState()
 		self.delegateQueue = delegateQueue
 		
