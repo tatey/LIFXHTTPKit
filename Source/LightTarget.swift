@@ -403,15 +403,15 @@ public class LightTarget {
 		return lights.count
 	}
     
-    public var hasColorCapabilities: Bool {
+    public var supportsColor: Bool {
         return !(lights.map { $0.hasColor }.contains(false))
     }
     
-    public var hasIRCapabilities: Bool {
+    public var supportsIR: Bool {
         return !(lights.map { $0.hasIR }.contains(false))
     }
     
-    public var hasMultiZoneCapabilities: Bool {
+    public var supportsMultiZone: Bool {
         return !(lights.map { $0.hasMultiZone }.contains(false))
     }
 }
