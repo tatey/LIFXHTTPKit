@@ -36,6 +36,6 @@ class LightTests: XCTestCase {
 	}
 	
 	private func newLight() -> Light {
-		return Light(id: "d3b2f2d97452", power: true, brightness: 0.5, color: Color.white(Color.defaultKelvin), label: "Lamp", connected: true, group: nil, location: nil, touchedAt: nil)
+		return Light(id: "d3b2f2d97452", power: true, brightness: 0.5, color: Color.white(Color.defaultKelvin), productInformation: nil, label: "Lamp", connected: true, group: nil, location: nil, touchedAt: nil)
 	}
 }
