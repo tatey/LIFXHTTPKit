@@ -10,7 +10,7 @@ public struct Light: Equatable, CustomStringConvertible {
 	public let power: Bool
 	public let brightness: Double
 	public let color: Color
-    public let productInformation: ProductInformation?
+	public let productInformation: ProductInformation?
 	public let label: String
 	public let connected: Bool
 	public let group: Group?
@@ -26,19 +26,19 @@ public struct Light: Equatable, CustomStringConvertible {
         return Light(id: id, power: power ?? self.power, brightness: brightness ?? self.brightness, color: color ?? self.color, productInformation: productInformation ?? self.productInformation, label: label, connected: connected ?? self.connected, group: group, location: location, touchedAt: touchedAt ?? Date())
     }
     
-    // MARK: Capabilities
-    
-    public var hasColor: Bool {
-        return self.productInformation?.capabilities?.hasColor ?? false
-    }
-    
-    public var hasIR: Bool {
-        return self.productInformation?.capabilities?.hasIR ?? false
-    }
-    
-    public var hasMultiZone: Bool {
-        return self.productInformation?.capabilities?.hasMulitiZone ?? false
-    }
+	// MARK: Capabilities
+	
+	public var hasColor: Bool {
+		return self.productInformation?.capabilities?.hasColor ?? false
+	}
+	
+	public var hasIR: Bool {
+		return self.productInformation?.capabilities?.hasIR ?? false
+	}
+	
+	public var hasMultiZone: Bool {
+		return self.productInformation?.capabilities?.hasMulitiZone ?? false
+	}
 	
 	// MARK: Printable
 	

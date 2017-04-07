@@ -402,16 +402,16 @@ public class LightTarget {
 	private func deriveCount() -> Int {
 		return lights.count
 	}
-    
-    public var supportsColor: Bool {
-        return lights.map { $0.hasColor }.contains(true)
-    }
-    
-    public var supportsIR: Bool {
-        return lights.map { $0.hasIR }.contains(true)
-    }
-    
-    public var supportsMultiZone: Bool {
-        return lights.map { $0.hasMultiZone }.contains(true)
-    }
+	
+	public var supportsColor: Bool {
+		return lights.map { $0.hasColor }.contains(true)
+	}
+	
+	public var supportsIR: Bool {
+		return lights.map { $0.hasIR }.contains(true)
+	}
+	
+	public var supportsMultiZone: Bool {
+		return lights.map { $0.hasMultiZone }.contains(true)
+	}
 }
