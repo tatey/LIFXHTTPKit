@@ -22,10 +22,10 @@ public struct Light: Equatable, CustomStringConvertible {
 		return LightTargetSelector(type: .ID, value: id)
 	}
 	
-    func lightWithProperties(_ power: Bool? = nil, brightness: Double? = nil, color: Color? = nil, productInformation: ProductInformation? = nil, connected: Bool? = nil, touchedAt: Date? = nil) -> Light {
-        return Light(id: id, power: power ?? self.power, brightness: brightness ?? self.brightness, color: color ?? self.color, productInformation: productInformation ?? self.productInformation, label: label, connected: connected ?? self.connected, group: group, location: location, touchedAt: touchedAt ?? Date())
-    }
-    
+	func lightWithProperties(_ power: Bool? = nil, brightness: Double? = nil, color: Color? = nil, productInformation: ProductInformation? = nil, connected: Bool? = nil, touchedAt: Date? = nil) -> Light {
+		return Light(id: id, power: power ?? self.power, brightness: brightness ?? self.brightness, color: color ?? self.color, productInformation: productInformation ?? self.productInformation, label: label, connected: connected ?? self.connected, group: group, location: location, touchedAt: touchedAt ?? Date())
+	}
+	
 	// MARK: Capabilities
 	
 	public var hasColor: Bool {
