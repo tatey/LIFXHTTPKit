@@ -183,9 +183,14 @@ public class HTTPSession {
 				} else {
 					location = nil
 				}
+                
+				var productInformation: ProductInformation?
+				if let productInformationJSONObject = lightJSONObject["product"] as? NSDictionary {
+					productInformation = ProductInformation(data: productInformationJSONObject)
+				}
 				
 				let color = Color(hue: colorHue, saturation: colorSaturation, kelvin: colorKelvin)
-				let light = Light(id: id, power: power == "on", brightness: brightness, color: color, label: label, connected: connected, group: group, location: location, touchedAt: Date())
+				let light = Light(id: id, power: power == "on", brightness: brightness, color: color, productInformation: productInformation, label: label, connected: connected, group: group, location: location, touchedAt: Date())
 				lights.append(light)
 			} else {
 				return ([], HTTPKitError(code: .jsonInvalid, message: "JSON object is missing required properties"))

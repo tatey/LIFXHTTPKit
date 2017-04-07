@@ -16,7 +16,7 @@ class ClientHelper {
 			}
 			semaphore.signal()
 		}
-		semaphore.wait(timeout: DispatchTime.distantFuture)
+		_ = semaphore.wait(timeout: DispatchTime.distantFuture)
 		return client
 	}()
 }
