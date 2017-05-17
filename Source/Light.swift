@@ -10,7 +10,7 @@ public struct Light: Equatable, CustomStringConvertible {
 	public let power: Bool
 	public let brightness: Double
 	public let color: Color
-	public let productInformation: ProductInformation?
+	public let productInfo: ProductInformation?
 	public let label: String
 	public let connected: Bool
 	public let group: Group?
@@ -23,21 +23,21 @@ public struct Light: Equatable, CustomStringConvertible {
 	}
 	
 	func lightWithProperties(_ power: Bool? = nil, brightness: Double? = nil, color: Color? = nil, productInformation: ProductInformation? = nil, connected: Bool? = nil, touchedAt: Date? = nil) -> Light {
-		return Light(id: id, power: power ?? self.power, brightness: brightness ?? self.brightness, color: color ?? self.color, productInformation: productInformation ?? self.productInformation, label: label, connected: connected ?? self.connected, group: group, location: location, touchedAt: touchedAt ?? Date())
+		return Light(id: id, power: power ?? self.power, brightness: brightness ?? self.brightness, color: color ?? self.color, productInfo: productInformation ?? self.productInfo, label: label, connected: connected ?? self.connected, group: group, location: location, touchedAt: touchedAt ?? Date())
 	}
 	
 	// MARK: Capabilities
 	
 	public var hasColor: Bool {
-		return self.productInformation?.capabilities?.hasColor ?? false
+		return self.productInfo?.capabilities?.hasColor ?? false
 	}
 	
 	public var hasIR: Bool {
-		return self.productInformation?.capabilities?.hasIR ?? false
+		return self.productInfo?.capabilities?.hasIR ?? false
 	}
 	
 	public var hasMultiZone: Bool {
-		return self.productInformation?.capabilities?.hasMulitiZone ?? false
+		return self.productInfo?.capabilities?.hasMulitiZone ?? false
 	}
 	
 	// MARK: Printable
