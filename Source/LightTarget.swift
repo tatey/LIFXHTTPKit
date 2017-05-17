@@ -74,7 +74,7 @@ public class LightTarget {
 	
 	private func notifyObservers() {
 		for observer in observers {
-			observer.stateDidUpdateHandler?()
+			observer.stateDidUpdateHandler()
 		}
 	}
 	
