@@ -9,7 +9,6 @@ public class Client {
 	public let session: HTTPSession
 	public private(set) var lights: [Light]
 	public private(set) var scenes: [Scene]
-	
 	private var observers: [ClientObserver]
 	
 	public convenience init(accessToken: String, lights: [Light]? = nil, scenes: [Scene]? = nil) {
@@ -46,7 +45,6 @@ public class Client {
 		group.notify(queue: session.delegateQueue) {
 			completionHandler?(errors)
 		}
-		
 	}
 	
 	public func fetchLights(completionHandler: ((_ error: Error?) -> Void)? = nil) {
@@ -62,7 +60,7 @@ public class Client {
 				if oldLights != newLights {
 					strongSelf.lights = newLights
 					for observer in strongSelf.observers {
-						observer.lightsDidUpdateHandler?(lights)
+						observer.lightsDidUpdateHandler(lights)
 					}
 				}
 				
@@ -125,7 +123,7 @@ public class Client {
 		
 		if oldLights != newLights {
 			for observer in observers {
-				observer.lightsDidUpdateHandler?(newLights)
+				observer.lightsDidUpdateHandler(newLights)
 			}
 			self.lights = newLights
 		}

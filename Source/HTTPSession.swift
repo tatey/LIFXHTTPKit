@@ -190,7 +190,7 @@ public class HTTPSession {
 				}
 				
 				let color = Color(hue: colorHue, saturation: colorSaturation, kelvin: colorKelvin)
-				let light = Light(id: id, power: power == "on", brightness: brightness, color: color, productInformation: productInformation, label: label, connected: connected, group: group, location: location, touchedAt: Date())
+				let light = Light(id: id, power: power == "on", brightness: brightness, color: color, productInfo: productInformation, label: label, connected: connected, group: group, location: location, touchedAt: Date())
 				lights.append(light)
 			} else {
 				return ([], HTTPKitError(code: .jsonInvalid, message: "JSON object is missing required properties"))
