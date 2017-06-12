@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.0.0 / 2017-06-12
+
+* **(Breaking)** Add support for Swift 3.0.
+* Expose `productInfo` on `Light` for determining product features.
+
 ## 2.0.0 / 2016-07-08
 
 * **(Breaking)** Add support for watchOS 2.0. Minimum iOS target raised to 8.2.

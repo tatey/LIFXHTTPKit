@@ -9,13 +9,14 @@ Used by the [official LIFX iOS](https://itunes.apple.com/us/app/lifx/id657758311
 
 ## Build Dependencies
 
-* Swift 2.3 (Xcode 8.0+)
+* Swift 3.0 (Xcode 8.3+)
 * iOS 8.2+
 * macOS 10.10+
 * watchOS 2+
 
 Looking for an earlier version of Swift?
 
+* Use [2.0.0](https://github.com/tatey/LIFXHTTPKit/releases/tag/2.0.0) for Swift 2.3
 * Use [1.0.0](https://github.com/tatey/LIFXHTTPKit/releases/tag/1.0.0) for Swift 2.2
 * Use [0.0.2](https://github.com/tatey/LIFXHTTPKit/releases/tag/0.0.2) for Swift 1.3
 
@@ -261,9 +262,9 @@ class LightView: NSView {
 
   func setupObserver()
     observer = lightTarget.addObserver({ () -> Void
-      dispatch_async(dispatch_get_main_queue(), { () -> Void in
+      DispatchQueue.main.async {
         self.layer?.backgroundColor = self.lightTarget.color
-      })
+      }
     })
   }
 
@@ -280,7 +281,7 @@ class LightView: NSView {
 Keep these things in the back of your mind when using observers:
 
 * Observers may be notified in the background queue of the client. You can use
-  `dispatch_async` to jump to a different queue.
+  `DispatchQueue` to jump to a different queue.
 * Observers must be explicitly removed to prevent memory leaks. The destructor
   is a good place to remove an observer in the object lifecycle. You can
   add as many observers as you want as long as you remove them when you're done.
@@ -432,7 +433,6 @@ Inspect the lights addressable by the light target. If you're dealing
 with a mixed group you can inspect each light individually.
 
 ``` swift
-
 for light in lightTarget.lights {
   println(light.id)
 }
@@ -449,6 +449,7 @@ light.label // => "Lamp 1"
 light.connected // => true
 light.group // => <Group id: "1c8de82b81f445e7cfaafae49b259c71", name: "Lounge">
 light.location // => <Location id: "1d6fe8ef0fde4c6d77b0012dc736662c", name: "Home">
+light.productInfo // => <ProductInformation productName: "LIFX Color 1000", manufacturer: "LIFX", capabilities: <Capabilities hasColor: true, hasIR: false, hasMultiZone: false>>
 ```
 
 The `group` and `location` properties are optional as they are not required by
