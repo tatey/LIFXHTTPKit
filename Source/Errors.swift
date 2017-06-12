@@ -9,27 +9,24 @@ public let ErrorDomain: String = "LIFXHTTPKitErrorDomain"
 
 public enum ErrorCode: Int {
 	// LIFXHTTPKit Errors
-	case JSONInvalid
-	case UnacceptableSelector
-
+	case jsonInvalid
+	case unacceptableSelector
+	
 	// HTTP Errors
-	case UnexpectedHTTPStatusCode
-	case Unauthorized // 401
-	case Forbidden // 403
-	case TooManyRequests // 429
-	case ServerError // 5XX
+	case unexpectedHTTPStatusCode
+	case unauthorized // 401
+	case forbidden // 403
+	case tooManyRequests // 429
+	case serverError // 5XX
 }
 
-struct Error {
+struct HTTPKitError: Error {
 	let code: ErrorCode
 	let message: String
-
+	
 	init(code: ErrorCode, message: String) {
 		self.code = code
 		self.message = message
 	}
-
-	func toNSError() -> NSError {
-		return NSError(domain: ErrorDomain, code: code.rawValue, userInfo: [NSLocalizedDescriptionKey: message])
-	}
 }
+

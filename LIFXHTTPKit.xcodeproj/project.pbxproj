@@ -71,6 +71,11 @@
 		903A12CC1CE0640C0071D8F0 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D94C6491B5671C300C0BCD2 /* Group.swift */; };
 		903A12CD1CE064100071D8F0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D94C64B1B56726200C0BCD2 /* Location.swift */; };
 		903A12CE1CE064130071D8F0 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB41F4D1B2BD5E50006F2A5 /* Result.swift */; };
+		DD1E132F81EB962FED0C262F /* ProductInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4B5781E950F4800D0ED01 /* ProductInformation.swift */; };
+		DD1E13F233373003945C348D /* ProductInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4B5781E950F4800D0ED01 /* ProductInformation.swift */; };
+		DD1E1B4B1DF488D68F6F302D /* ProductInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4B5781E950F4800D0ED01 /* ProductInformation.swift */; };
+		DD1E1ED9D4663020C0323F96 /* ProductInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4B5781E950F4800D0ED01 /* ProductInformation.swift */; };
+		E9F4B5791E950F4800D0ED01 /* ProductInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F4B5781E950F4800D0ED01 /* ProductInformation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +126,7 @@
 		5DF649D81B2D436A0006EE03 /* LightTargetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightTargetTests.swift; sourceTree = "<group>"; };
 		903A12B71CE050C70071D8F0 /* LIFXHTTPKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LIFXHTTPKit.h; sourceTree = "<group>"; };
 		908631CD1CDC7629006D9E47 /* LIFXHTTPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LIFXHTTPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9F4B5781E950F4800D0ED01 /* ProductInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductInformation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +206,7 @@
 				5DB41F4B1B2BD5DD0006F2A5 /* Light.swift */,
 				5D50E0581BC3A21800AED146 /* Scene.swift */,
 				5D50E05A1BC3A26A00AED146 /* State.swift */,
+				E9F4B5781E950F4800D0ED01 /* ProductInformation.swift */,
 				5D94C6491B5671C300C0BCD2 /* Group.swift */,
 				5D94C64B1B56726200C0BCD2 /* Location.swift */,
 				5DB41F4D1B2BD5E50006F2A5 /* Result.swift */,
@@ -371,6 +378,9 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Tate Johnson";
 				TargetAttributes = {
+					5D05E61A1BB5296E007B917D = {
+						LastSwiftMigration = 0820;
+					};
 					5D5898A11B1887530024D47B = {
 						CreatedOnToolsVersion = 6.3.2;
 						LastSwiftMigration = 0800;
@@ -381,6 +391,7 @@
 					};
 					5D8BF52E1BB524F400A5575C = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0820;
 					};
 					908631CC1CDC7629006D9E47 = {
 						CreatedOnToolsVersion = 7.3;
@@ -459,6 +470,7 @@
 				5D05E61F1BB5296E007B917D /* ClientTests.swift in Sources */,
 				5D05E6201BB5296E007B917D /* LightTargetTests.swift in Sources */,
 				5D05E6211BB5296E007B917D /* SecretsHelper.swift in Sources */,
+				DD1E13F233373003945C348D /* ProductInformation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +493,7 @@
 				5DB41F4E1B2BD5E50006F2A5 /* Result.swift in Sources */,
 				5D94C64C1B56726200C0BCD2 /* Location.swift in Sources */,
 				5DB41F461B2BD55C0006F2A5 /* LightTargetObserver.swift in Sources */,
+				DD1E1B4B1DF488D68F6F302D /* ProductInformation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +507,7 @@
 				5D5898B51B1887530024D47B /* ClientTests.swift in Sources */,
 				5DF649D91B2D436A0006EE03 /* LightTargetTests.swift in Sources */,
 				5DA7AB341B369640008A8130 /* SecretsHelper.swift in Sources */,
+				DD1E1ED9D4663020C0323F96 /* ProductInformation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +525,7 @@
 				5D8BF5401BB5257D00A5575C /* Group.swift in Sources */,
 				5DF3F61A1BD45C0F0002E52D /* HTTPOperation.swift in Sources */,
 				5D8BF53B1BB5257200A5575C /* LightTarget.swift in Sources */,
+				E9F4B5791E950F4800D0ED01 /* ProductInformation.swift in Sources */,
 				5D8BF5421BB5258200A5575C /* Result.swift in Sources */,
 				5D8BF5371BB5256900A5575C /* Errors.swift in Sources */,
 				5D8BF53E1BB5257900A5575C /* Light.swift in Sources */,
@@ -538,6 +553,7 @@
 				903A12C81CE064010071D8F0 /* Color.swift in Sources */,
 				903A12CA1CE064070071D8F0 /* Scene.swift in Sources */,
 				903A12CB1CE064090071D8F0 /* State.swift in Sources */,
+				DD1E132F81EB962FED0C262F /* ProductInformation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +590,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tatey.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -590,6 +607,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tatey.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -701,7 +719,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -724,7 +742,7 @@
 				PRODUCT_NAME = LIFXHTTPKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -745,7 +763,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tatey.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -762,7 +780,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tatey.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -783,6 +801,7 @@
 				PRODUCT_NAME = LIFXHTTPKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -804,6 +823,7 @@
 				PRODUCT_NAME = LIFXHTTPKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -826,6 +846,7 @@
 				PRODUCT_NAME = LIFXHTTPKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -848,6 +869,7 @@
 				PRODUCT_NAME = LIFXHTTPKit;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;

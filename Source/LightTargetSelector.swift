@@ -17,23 +17,23 @@ public enum LightTargetSelectorType: String {
 public struct LightTargetSelector: Equatable, CustomStringConvertible {
 	public let type: LightTargetSelectorType
 	public let value: String
-
+	
 	public init(type: LightTargetSelectorType, value: String = "") {
 		self.type = type
 		self.value = value
-
+		
 		if (type == .Label) {
 			print("Constructing selectors with `.Label` type is deprecated and will be removed in a future version.")
 		}
 	}
-
+	
 	public init?(stringValue: String) {
-		let components = stringValue.componentsSeparatedByString(":")
+		let components = stringValue.components(separatedBy: ":")
 		if let type = LightTargetSelectorType(rawValue: components.first ?? "") {
 			if type == .All {
 				self.type = type
 				value = ""
-			} else if let value = components.last where value.characters.count > 0 {
+			} else if let value = components.last, value.characters.count > 0 {
 				self.type = type
 				self.value = value
 			} else {
@@ -43,7 +43,7 @@ public struct LightTargetSelector: Equatable, CustomStringConvertible {
 			return nil
 		}
 	}
-
+	
 	public var stringValue: String {
 		if type == .All {
 			return type.rawValue
@@ -51,13 +51,13 @@ public struct LightTargetSelector: Equatable, CustomStringConvertible {
 			return "\(type.rawValue):\(value)"
 		}
 	}
-
+	
 	func toQueryStringValue() -> String {
 		return stringValue
 	}
-
+	
 	// MARK: Printable
-
+	
 	public var description: String {
 		return "<LightTargetSelector type: \"\(type)\", value: \"\(value)\">"
 	}
