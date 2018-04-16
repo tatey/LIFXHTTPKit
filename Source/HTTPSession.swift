@@ -92,7 +92,7 @@ public class HTTPSession {
 	
 	public func setScenesActivate(_ selector: String, duration: Float, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: Error?) -> Void)) {
 		var request = URLRequest(url: baseURL.appendingPathComponent("scenes/\(selector)/activate"))
-		let parameters = ["duration", duration] as [Any]
+		let parameters = ["duration": duration] as [String: Any]
 		request.httpMethod = "PUT"
 		request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: [])
 		addOperationWithRequest(request as URLRequest) { (data, response, error) in
