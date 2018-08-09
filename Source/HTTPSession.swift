@@ -104,6 +104,40 @@ public class HTTPSession {
 			}
 		}
 	}
+    
+    public func curatedThemes(_ completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ themes: [Theme], _ error: Error?) -> Void)) {
+        guard let curatedThemesURL = URL(string: "https://cloud.lifx.com/themes/v1/curated") else {
+            return
+        }
+        var request = URLRequest(url: curatedThemesURL)
+        request.httpMethod = "GET"
+        addOperationWithRequest(request as URLRequest) { (data, response, error) in
+            if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200]) {
+                completionHandler(request as URLRequest, response, [], error)
+            } else {
+                let (themes, error) = self.dataToThemes(data)
+                completionHandler(request, response, themes, error)
+            }
+        }
+    }
+    
+    public func applyTheme(_ selector: String, theme: String, duration: Float, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: Error?) -> Void)) {
+        var request = URLRequest(url: baseURL.appendingPathComponent("themes/\(selector)"))
+        let parameters = [
+            "theme": theme,
+            "duration": duration
+        ] as [String: Any]
+        request.httpMethod = "PUT"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: [])
+        addOperationWithRequest(request as URLRequest) { (data, response, error) in
+            if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200]) {
+                completionHandler(request as URLRequest, response, [], error)
+            } else {
+                let (results, error) = self.dataToResults(data)
+                completionHandler(request, response, results, error)
+            }
+        }
+    }
 	
 	// MARK: Helpers
 	
@@ -253,6 +287,48 @@ public class HTTPSession {
 		}
 		return (scenes, nil)
 	}
+    
+    private func dataToThemes(_ data: Data?) -> (themes: [Theme], error: Error?) {
+        guard let data = data else {
+            return ([], HTTPKitError(code: .jsonInvalid, message: "No data"))
+        }
+        
+        let rootJSONObject: Any?
+        do {
+            rootJSONObject = try JSONSerialization.jsonObject(with: data, options: [])
+        } catch let error {
+            return ([], error)
+        }
+        
+        let themeJSONObjects: [NSDictionary]
+        if let array = rootJSONObject as? [NSDictionary] {
+            themeJSONObjects = array
+        } else {
+            themeJSONObjects = []
+        }
+        
+        var themes: [Theme] = []
+        for themeJSONObject in themeJSONObjects {
+            if let uuid = themeJSONObject["uuid"] as? String,
+                let title = themeJSONObject["title"] as? String,
+                let imageUrl = themeJSONObject["image_url"] as? String,
+                let colorsRaw = themeJSONObject["colors"] as? [[String: Any]] {
+                
+                let colors = colorsRaw.compactMap { raw -> Color? in
+                    if let hue = raw["hue"] as? Double,
+                    let saturation = raw["saturation"] as? Double,
+                    let kelvin = raw["kelvin"] as? Int {
+                        return Color(hue: hue, saturation: saturation, kelvin: kelvin)
+                    }
+                    return nil
+                }
+                themes.append(Theme(uuid: uuid, title: title, imageUrl: imageUrl, colors: colors))
+            } else {
+                return ([], HTTPKitError(code: .jsonInvalid, message: "JSON object is missing required properties"))
+            }
+        }
+        return (themes, nil)
+    }
 	
 	private func dataToResults(_ data: Data?) -> (results: [Result], error: Error?) {
 		guard let data = data else {

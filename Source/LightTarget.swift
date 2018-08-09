@@ -159,6 +159,12 @@ public class LightTarget {
 			completionHandler?(results, error)
 		}
 	}
+    
+    public func applyTheme(_ theme: Theme, duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: Error?) -> Void)? = nil) {
+        client.session.applyTheme(selector.toQueryStringValue(), theme: theme.title, duration: duration) { (request, response, results, error) in
+            completionHandler?(results, error)
+        }
+    }
 	
 	public func setColor(_ color: Color, brightness: Double, power: Bool? = nil, duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: Error?) -> Void)? = nil) {
 		print("`setColor:brightness:power:duration:completionHandler: is deprecated and will be removed in a future version. Use `setState:brightness:power:duration:completionHandler:` instead.")
