@@ -130,7 +130,7 @@ public class HTTPSession {
         request.httpMethod = "PUT"
         request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: [])
         addOperationWithRequest(request as URLRequest) { (data, response, error) in
-            if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200]) {
+            if let error = error ?? self.validateResponseWithExpectedStatusCodes(response, statusCodes: [200, 207]) {
                 completionHandler(request as URLRequest, response, [], error)
             } else {
                 let (results, error) = self.dataToResults(data)
