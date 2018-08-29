@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "LIFXHTTPKit"
-  s.version      = "3.0.0"
+  s.version      = "3.0.1"
   s.summary      = "A framework for interacting with the LIFX HTTP API that has no external dependencies. Suitable for use inside extensions."
 
   s.license      = { :type => 'MIT', :file => 'LICENSE.txt' }
