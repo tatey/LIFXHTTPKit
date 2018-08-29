@@ -33,7 +33,7 @@ public struct LightTargetSelector: Equatable, CustomStringConvertible {
 			if type == .All {
 				self.type = type
 				value = ""
-			} else if let value = components.last, value.characters.count > 0 {
+			} else if let value = components.last, value.count > 0 {
 				self.type = type
 				self.value = value
 			} else {
