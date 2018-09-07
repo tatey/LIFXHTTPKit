@@ -26,7 +26,7 @@ public struct Color: Equatable, CustomStringConvertible {
             self.saturation = 0
             self.kelvin = kelvin
         } else if components.count == 3, let first = components.first, first == "hue" {
-            let hueAndSaturation = components[1].split(separator: "0")
+            let hueAndSaturation = components[1].split(separator: " ")
             if hueAndSaturation.count == 2, let first = hueAndSaturation.first, let hue = Double(first), hueAndSaturation[1] == "saturation", let last = components.last, let saturation = Double(last) {
                 self.hue = hue
                 self.saturation = saturation
