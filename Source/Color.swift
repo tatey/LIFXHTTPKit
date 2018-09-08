@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct Color: Equatable, CustomStringConvertible {
+public struct Color: Equatable, Codable, CustomStringConvertible {
 	static let maxHue: Double = 360.0
 	static let defaultKelvin: Int = 3500
 	

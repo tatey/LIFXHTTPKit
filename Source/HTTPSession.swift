@@ -293,41 +293,13 @@ public class HTTPSession {
             return ([], HTTPKitError(code: .jsonInvalid, message: "No data"))
         }
         
-        let rootJSONObject: Any?
+        let decoder = JSONDecoder()
         do {
-            rootJSONObject = try JSONSerialization.jsonObject(with: data, options: [])
+            let themes = try decoder.decode([Theme].self, from: data)
+            return (themes, nil)
         } catch let error {
-            return ([], error)
+            return ([], HTTPKitError(code: .jsonInvalid, message: "JSON object is missing required properties"))
         }
-        
-        let themeJSONObjects: [NSDictionary]
-        if let array = rootJSONObject as? [NSDictionary] {
-            themeJSONObjects = array
-        } else {
-            themeJSONObjects = []
-        }
-        
-        var themes: [Theme] = []
-        for themeJSONObject in themeJSONObjects {
-            if let uuid = themeJSONObject["uuid"] as? String,
-                let title = themeJSONObject["title"] as? String,
-                let imageUrl = themeJSONObject["image_url"] as? String,
-                let colorsRaw = themeJSONObject["colors"] as? [[String: Any]] {
-                
-                let colors = colorsRaw.compactMap { raw -> Color? in
-                    if let hue = raw["hue"] as? Double,
-                    let saturation = raw["saturation"] as? Double,
-                    let kelvin = raw["kelvin"] as? Int {
-                        return Color(hue: hue, saturation: saturation, kelvin: kelvin)
-                    }
-                    return nil
-                }
-                themes.append(Theme(uuid: uuid, title: title, imageUrl: imageUrl, colors: colors))
-            } else {
-                return ([], HTTPKitError(code: .jsonInvalid, message: "JSON object is missing required properties"))
-            }
-        }
-        return (themes, nil)
     }
 	
 	private func dataToResults(_ data: Data?) -> (results: [Result], error: Error?) {
