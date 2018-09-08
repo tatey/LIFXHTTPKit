@@ -11,6 +11,7 @@ import Foundation
 public struct Theme: Equatable, Codable {
     public let uuid: String
     public let title: String
+    public let invocation: String?
     public let analytics: String
     public let image_url: String
     public let order: Int
