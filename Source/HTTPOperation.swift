@@ -22,13 +22,13 @@ public class HTTPOperation: Operation {
 	private let delegateQueue: DispatchQueue
 	private var task: URLSessionDataTask?
 	
-	public init(URLSession: Foundation.URLSession, delegateQueue: DispatchQueue, request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+	public init(session: URLSession, delegateQueue: DispatchQueue, request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
 		state = HTTPOperationState()
 		self.delegateQueue = delegateQueue
 		
 		super.init()
 		
-		task = URLSession.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
+		task = session.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
 			if let strongSelf = self {
 				strongSelf.isExecuting = false
 				strongSelf.isFinished = true

@@ -5,21 +5,21 @@
 
 import Foundation
 
-public struct Group: Equatable, CustomStringConvertible {
+public struct Location: Codable, Equatable {
 	public let id: String
 	public let name: String
 	
 	public func toSelector() -> LightTargetSelector {
-		return LightTargetSelector(type: .GroupID, value: id)
+		return LightTargetSelector(type: .LocationID, value: id)
 	}
 	
 	// MARK: Printable
 	
 	public var description: String {
-		return "<Group id: \"\(id)\", label: \"\(name)\">"
+		return "<Location id: \"\(id)\", label: \"\(name)\">"
 	}
 }
 
-public func ==(lhs: Group, rhs: Group) -> Bool {
+public func ==(lhs: Location, rhs: Location) -> Bool {
 	return lhs.id == rhs.id && lhs.name == rhs.name
 }
