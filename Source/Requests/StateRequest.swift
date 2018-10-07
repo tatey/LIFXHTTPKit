@@ -8,8 +8,17 @@
 import Foundation
 
 struct StateRequest: Encodable {
-    let power: Bool?
+    enum Power: String, Encodable {
+        case on, off
+    }
+    let power: Power?
     let color: String?
     let brightness: Double?
     let duration: Float
+}
+
+extension Bool {
+    var asPower: StateRequest.Power {
+        return self ? .on : .off
+    }
 }

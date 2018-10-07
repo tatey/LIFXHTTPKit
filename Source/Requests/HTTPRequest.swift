@@ -9,7 +9,7 @@ import Foundation
 
 private let encoder = JSONEncoder()
 
-public struct HTTPRequest<T: Encodable> {
+public struct HTTPRequest<T: Encodable>: CustomStringConvertible {
     
     public enum Method: String {
         case get = "GET"
@@ -23,6 +23,14 @@ public struct HTTPRequest<T: Encodable> {
     let body: T?
     let expectedStatusCodes: [Int]
     
+    var url: URL {
+        var url = baseURL
+        if let path = path {
+            url.appendPathComponent(path)
+        }
+        return url
+    }
+    
     init(baseURL: URL, path: String?, method: Method = .get, headers: [String: String]? = nil, body: T? = nil, expectedStatusCodes: [Int] = [200]) {
         self.baseURL = baseURL
         self.path = path
@@ -33,11 +41,6 @@ public struct HTTPRequest<T: Encodable> {
     }
     
     func toURLRequest() -> URLRequest {
-        var url = baseURL
-        if let path = path {
-            url.appendPathComponent(path)
-        }
-        
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         
@@ -52,6 +55,20 @@ public struct HTTPRequest<T: Encodable> {
         }
         
         return request
+    }
+    
+    public var description: String {
+        var description = "REQUEST [\(method.rawValue)] '\(url.path)'"
+        
+        if let body = body {
+            if let data = try? encoder.encode(body), let json = try? JSONSerialization.jsonObject(with: data, options: []) {
+                description += "\nBody:\n\(json)"
+            } else {
+                description += "\nBody:\n\(body)"
+            }
+        }
+        
+        return description
     }
 }
 
