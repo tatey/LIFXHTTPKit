@@ -52,7 +52,7 @@ public struct LightTargetSelector: Equatable, CustomStringConvertible {
 		}
 	}
 	
-	func toQueryStringValue() -> String {
+	public func toQueryStringValue() -> String {
 		return stringValue
 	}
 	
