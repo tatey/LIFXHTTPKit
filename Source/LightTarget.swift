@@ -321,11 +321,10 @@ public class LightTarget {
 	private func deriveTouchedAt() -> Date {
 		var derivedTouchedAt = self.touchedAt
 		for light in lights {
-			if let lightTouchedAt = light.touchedAt {
-				if lightTouchedAt.timeIntervalSince(Date()) < 0 {
-					derivedTouchedAt = lightTouchedAt as Date
-				}
-			}
+			let lightTouchedAt = light.touchedAt
+            if lightTouchedAt.timeIntervalSince(Date()) < 0 {
+                derivedTouchedAt = lightTouchedAt as Date
+            }
 		}
 		
 		return derivedTouchedAt
