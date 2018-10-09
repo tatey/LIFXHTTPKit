@@ -60,6 +60,7 @@ public class HTTPSession {
             completionHandler(request.toURLRequest(), response.response, response.body?.results ?? [], response.error)
         }
 	}
+    
     /// Lists all scenes.
     /// GET /scenes
 	public func scenes(_ completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ scenes: [Scene], _ error: Error?) -> Void)) {
@@ -70,9 +71,9 @@ public class HTTPSession {
         }
 	}
 	
-    /// Activates a scene over a `duration`.
+    /// Activates a scene. The `duration` will override the duration stored on each scene device.
     /// PUT /scenes/{selector}/activate
-	public func setScenesActivate(_ selector: String, duration: Float, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: Error?) -> Void)) {
+	public func setScenesActivate(_ selector: String, duration: Float? = nil, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: Error?) -> Void)) {
         let body = SceneRequest(duration: duration)
         let request = HTTPRequest<SceneRequest>(baseURL: baseURL, path: "scenes/\(selector)/activate", method: .put, headers: ["Content-Type": "application/json"], body: body, expectedStatusCodes: [200, 207])
         

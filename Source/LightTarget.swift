@@ -215,7 +215,7 @@ public class LightTarget {
 		}
 		
 		client.updateLights(newLights)
-		client.session.setScenesActivate(selector.toQueryStringValue(), duration: duration) { [weak self] (request, response, results, error) in
+		client.session.setScenesActivate(selector.toQueryStringValue()) { [weak self] (request, response, results, error) in
 			if let strongSelf = self {
 				var newLights = strongSelf.lightsByDeterminingConnectivityWithResults(strongSelf.lights, results: results)
 				if error != nil {

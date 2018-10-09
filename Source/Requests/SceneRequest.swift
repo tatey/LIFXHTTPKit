@@ -8,5 +8,5 @@
 import Foundation
 
 struct SceneRequest: Encodable {
-    let duration: Float
+    let duration: Float?
 }
