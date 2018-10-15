@@ -16,6 +16,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 .idea/
+.DS_Store
 
 # Configuration
 Tests/Secrets.plist

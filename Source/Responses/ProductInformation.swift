@@ -6,7 +6,7 @@
 
 import Foundation
 
-public struct ProductInformation: Decodable {
+public struct ProductInformation: Codable {
 	public let productName: String
 	public let manufacturer: String
 	public let capabilities: Capabilities?
@@ -16,6 +16,13 @@ public struct ProductInformation: Decodable {
         productName = try container.decode(String.self, forKey: .productName)
         manufacturer = try container.decode(String.self, forKey: .manufacturer)
         capabilities = try container.decodeIfPresent(Capabilities.self, forKey: .capabilities)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(productName, forKey: .productName)
+        try container.encode(manufacturer, forKey: .manufacturer)
+        try container.encodeIfPresent(capabilities, forKey: .capabilities)
     }
 	
 	var description: String {
@@ -29,7 +36,7 @@ public struct ProductInformation: Decodable {
     }
 }
 
-public struct Capabilities: Decodable {
+public struct Capabilities: Codable {
 	public let hasColor: Bool
 	public let hasIR: Bool
 	public let hasMulitiZone: Bool
@@ -39,6 +46,13 @@ public struct Capabilities: Decodable {
         hasColor = try container.decode(Bool.self, forKey: .hasColor)
         hasIR = try container.decode(Bool.self, forKey: .hasIR)
         hasMulitiZone = try container.decode(Bool.self, forKey: .hasMultiZone)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(hasColor, forKey: .hasColor)
+        try container.encode(hasIR, forKey: .hasIR)
+        try container.encode(hasMulitiZone, forKey: .hasMultiZone)
     }
 	
 	var description: String {

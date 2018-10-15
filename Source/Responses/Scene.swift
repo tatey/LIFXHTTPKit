@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct Scene: Decodable, Equatable {
+public struct Scene: Codable, Equatable {
 	public let uuid: String
 	public let name: String
 	public let states: [State]

@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct State: Decodable, Equatable {
+public struct State: Codable, Equatable {
 	public let selector: LightTargetSelector
 	public let brightness: Double?
 	public let color: Color?
@@ -24,6 +24,15 @@ public struct State: Decodable, Equatable {
         power = on == "on"
         brightness = try container.decode(Double.self, forKey: .brightness)
         color = try container.decode(Color.self, forKey: .color)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(selector.toQueryStringValue(), forKey: .selector)
+        let powerString = (power ?? false) ? "on" : "off"
+        try container.encode(powerString, forKey: .power)
+        try container.encode(brightness, forKey: .brightness)
+        try container.encode(color, forKey: .color)
     }
     
     private enum CodingKeys: String, CodingKey {

@@ -14,6 +14,7 @@ public struct HTTPRequest<T: Encodable>: CustomStringConvertible {
     public enum Method: String {
         case get = "GET"
         case put = "PUT"
+        case post = "POST"
     }
     
     let baseURL: URL
