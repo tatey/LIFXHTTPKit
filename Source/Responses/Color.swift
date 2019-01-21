@@ -12,11 +12,13 @@ public struct Color: Equatable, Codable, CustomStringConvertible {
 	public let hue: Double
 	public let saturation: Double
 	public let kelvin: Int
+    public let brightness: Double?
 	
 	public init(hue: Double, saturation: Double, kelvin: Int) {
 		self.hue = hue
 		self.saturation = saturation
 		self.kelvin = kelvin
+        self.brightness = 1
 	}
     
     public init?(query: String) {
@@ -25,12 +27,14 @@ public struct Color: Equatable, Codable, CustomStringConvertible {
             self.hue = 0
             self.saturation = 0
             self.kelvin = kelvin
+            self.brightness = 1
         } else if components.count == 3, let first = components.first, first == "hue" {
             let hueAndSaturation = components[1].split(separator: " ")
             if hueAndSaturation.count == 2, let first = hueAndSaturation.first, let hue = Double(first), hueAndSaturation[1] == "saturation", let last = components.last, let saturation = Double(last) {
                 self.hue = hue
                 self.saturation = saturation
                 self.kelvin = Color.defaultKelvin
+                self.brightness = 1
             } else {
                 return nil
             }
