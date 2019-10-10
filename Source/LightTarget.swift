@@ -445,4 +445,8 @@ public class LightTarget {
 	public var supportsMultiZone: Bool {
 		return lights.map { $0.hasMultiZone }.contains(true)
 	}
+    
+    public var supportsVariableColorTemp: Bool {
+        return lights.contains(where: { $0.hasVariableColorTemp })
+    }
 }

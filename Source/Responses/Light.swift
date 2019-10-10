@@ -156,6 +156,10 @@ public struct Light: Codable, Equatable, CustomStringConvertible {
 	public var hasMultiZone: Bool {
 		return self.product?.capabilities?.hasMulitiZone ?? false
 	}
+    
+    public var hasVariableColorTemp: Bool {
+        return self.product?.capabilities?.hasVariableColorTemp ?? false
+    }
 	
 	// MARK: Printable
 	

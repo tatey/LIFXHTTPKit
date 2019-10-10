@@ -40,12 +40,14 @@ public struct Capabilities: Codable {
 	public let hasColor: Bool
 	public let hasIR: Bool
 	public let hasMulitiZone: Bool
+    public let hasVariableColorTemp: Bool
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         hasColor = try container.decode(Bool.self, forKey: .hasColor)
         hasIR = try container.decode(Bool.self, forKey: .hasIR)
         hasMulitiZone = try container.decode(Bool.self, forKey: .hasMultiZone)
+        hasVariableColorTemp = try container.decode(Bool.self, forKey: .hasVariableColorTemp)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -53,6 +55,7 @@ public struct Capabilities: Codable {
         try container.encode(hasColor, forKey: .hasColor)
         try container.encode(hasIR, forKey: .hasIR)
         try container.encode(hasMulitiZone, forKey: .hasMultiZone)
+        try container.encode(hasVariableColorTemp, forKey: .hasVariableColorTemp)
     }
 	
 	var description: String {
@@ -63,6 +66,7 @@ public struct Capabilities: Codable {
         case hasColor = "has_color"
         case hasIR = "has_ir"
         case hasMultiZone = "has_multizone"
+        case hasVariableColorTemp = "has_variable_color_temp"
     }
 	
 }
