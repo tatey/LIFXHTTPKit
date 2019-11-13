@@ -20,10 +20,10 @@ public struct State: Codable, Equatable {
         }
         self.selector = selector
         
-        let on = try container.decode(String.self, forKey: .power)
+        let on = try container.decodeIfPresent(String.self, forKey: .power)
         power = on == "on"
-        brightness = try container.decode(Double.self, forKey: .brightness)
-        color = try container.decode(Color.self, forKey: .color)
+        brightness = try container.decodeIfPresent(Double.self, forKey: .brightness)
+        color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
     
     public func encode(to encoder: Encoder) throws {

@@ -17,14 +17,20 @@ struct HTTPResponse<T: Decodable>: CustomStringConvertible {
     let error: Error?
     
     init(data: Data?, response: URLResponse?, error: Error?) {
+        var err: Error? = error
         self.data = data
         if let data = data {
-            self.body = try? decoder.decode(T.self, from: data)
+            do {
+                self.body = try decoder.decode(T.self, from: data)
+            } catch {
+                self.body = nil
+                err = error
+            }
         } else {
             self.body = nil
         }
         self.response = response
-        self.error = error
+        self.error = err
     }
     
     var description: String {
