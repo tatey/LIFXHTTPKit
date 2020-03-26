@@ -114,6 +114,10 @@ public class LightTarget {
 	}
 	
 	// MARK: Lighting Operations
+    
+    public func fetch() {
+        client.fetchLight(selector)
+    }
 	
 	public func setPower(_ power: Bool, duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: Error?) -> Void)? = nil) {
 		let oldPower = self.power
