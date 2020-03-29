@@ -361,22 +361,22 @@ public class LightTarget {
 	}
 	
 	private func deriveBrightness() -> Double {
-		let count = lights.count
-		if count > 0 {
-			return lights.filter({ $0.connected }).reduce(0.0, { $1.brightness + $0 }) / Double(count)
+		let connectedLights = lights.filter { $0.connected }
+        if connectedLights.count > 0 {
+            return connectedLights.reduce(0.0, { $1.brightness + $0 }) / Double(connectedLights.count)
 		} else {
 			return 0.0
 		}
 	}
 	
 	private func deriveColor() -> Color {
-		let count = lights.count
-		if count > 1 {
+        let connectedLights = lights.filter { $0.connected }
+        if connectedLights.count > 1 {
 			var hueXTotal: Double = 0.0
 			var hueYTotal: Double = 0.0
 			var saturationTotal: Double = 0.0
 			var kelvinTotal: Int = 0
-			for light in lights {
+			for light in connectedLights {
 				let color = light.color
 				hueXTotal += sin(color.hue * 2.0 * .pi / Color.maxHue)
 				hueYTotal += cos(color.hue * 2.0 * .pi / Color.maxHue)
@@ -388,10 +388,10 @@ public class LightTarget {
 				hue += 1.0
 			}
 			hue *= Color.maxHue
-			let saturation = saturationTotal / Double(count)
-			let kelvin = kelvinTotal / count
+            let saturation = saturationTotal / Double(connectedLights.count)
+            let kelvin = kelvinTotal / connectedLights.count
 			return Color(hue: hue, saturation: saturation, kelvin: kelvin)
-		} else if let light = lights.first, count == 1 {
+        } else if let light = connectedLights.first, connectedLights.count == 1 {
 			return light.color
 		} else {
 			return Color(hue: 0, saturation: 0, kelvin: Color.defaultKelvin)
