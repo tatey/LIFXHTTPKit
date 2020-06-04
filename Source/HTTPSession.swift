@@ -54,7 +54,7 @@ public class HTTPSession {
     /// Sets `power`, `color` or `brightness` (or any combination) over a `duration`, limited by `selector`.
     /// PUT /lights/{selector}/state
 	public func setLightsState(_ selector: String, power: Bool? = nil, color: String? = nil, brightness: Double? = nil, duration: Float, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: Error?) -> Void)) {
-        let body = StateRequest(power: power?.asPower, color: color, brightness: brightness, duration: duration)
+        let body = StateRequest(power: power?.asPower, color: color, brightness: brightness, duration: duration, async: true)
         let request = HTTPRequest<StateRequest>(baseURL: baseURL, path: "lights/\(selector)/state", method: .put, headers: ["Content-Type": "application/json"], body: body, expectedStatusCodes: [200, 207])
         
         perform(request: request) { (response: HTTPResponse<Results>) in
@@ -84,7 +84,7 @@ public class HTTPSession {
     /// Activates a scene. The `duration` will override the duration stored on each scene device.
     /// PUT /scenes/{selector}/activate
 	public func setScenesActivate(_ selector: String, duration: Float? = nil, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: Error?) -> Void)) {
-        let body = SceneRequest(duration: duration)
+        let body = SceneRequest(duration: duration, async: true)
         let request = HTTPRequest<SceneRequest>(baseURL: baseURL, path: "scenes/\(selector)/activate", method: .put, headers: ["Content-Type": "application/json"], body: body, expectedStatusCodes: [200, 207])
         
         perform(request: request) { (response: HTTPResponse<Results>) in

@@ -12,6 +12,7 @@ public struct Results: Decodable {
 public struct Result: Decodable, Equatable, CustomStringConvertible {
 	public enum Status: String, Codable {
 		case OK       = "ok"
+		case Async    = "async"
 		case TimedOut = "timed_out"
 		case Offline  = "offline"
 	}

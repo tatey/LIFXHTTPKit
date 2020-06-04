@@ -275,7 +275,7 @@ public class LightTarget {
 			for result in results {
 				if result.id == light.id {
 					switch result.status {
-					case .OK:
+					case .OK, .Async:
                         return light.lightWithProperties(connected: true, inFlightProperties: newInFlightProperties, dirtyProperties: dirtyProperties)
 					case .TimedOut, .Offline:
                         // If failed, use new inFlight which removes the inFlight properties and use old dirtyProperties so that that property is not considered dirty

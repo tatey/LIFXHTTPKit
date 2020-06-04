@@ -15,6 +15,7 @@ struct StateRequest: Encodable {
     let color: String?
     let brightness: Double?
     let duration: Float
+    let async: Bool?
 }
 
 extension Bool {
