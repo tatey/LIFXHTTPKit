@@ -24,10 +24,6 @@ public struct Result: Decodable, Equatable, CustomStringConvertible {
 	public let id: String
 	public let status: Status
     public let power: Power?
-
-    public var isOn: Bool {
-        power == .on
-    }
 	
 	// MARK: Printable
 	

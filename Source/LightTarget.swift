@@ -139,10 +139,10 @@ public class LightTarget {
             let newLights: [Light] = self
                 .lightsByDeterminingConnectivityWithResults(self.lights, results: results, removingInFlightProperties: [.toggle])
                 .map { light in
-                    guard let result = results.first(where: { $0.id == light.id }) else {
+                    guard let result = results.first(where: { $0.id == light.id }), let power = result.power else {
                         return light
                     }
-                    return light.lightWithProperties(result.isOn)
+                    return light.lightWithProperties(power == .on)
                 }
 
             self.client.updateLights(newLights)
