@@ -177,7 +177,7 @@ public class Client {
 			return { (light) in return light.location?.id == selector.value }
 		case .SceneID:
 			return { [weak self] (light) in
-				if let strongSelf = self, let index = strongSelf.scenes.index(where: { $0.toSelector() == selector }) {
+                if let strongSelf = self, let index = strongSelf.scenes.firstIndex(where: { $0.toSelector() == selector }) {
 					let scene = strongSelf.scenes[index]
 					return scene.states.contains { (state) in
 						let filter = strongSelf.selectorToFilter(state.selector)

@@ -16,9 +16,14 @@ public struct Result: Decodable, Equatable, CustomStringConvertible {
 		case TimedOut = "timed_out"
 		case Offline  = "offline"
 	}
-	
+
+    public enum Power: String, Decodable {
+        case on, off
+    }
+
 	public let id: String
 	public let status: Status
+    public let power: Power?
 	
 	// MARK: Printable
 	

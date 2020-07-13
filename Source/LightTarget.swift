@@ -108,11 +108,6 @@ public class LightTarget {
 		}
 	}
 	
-	public func toLights() -> [Light] {
-		print("`toLights` is deprecated and will be removed in a future version. Use `lights` instead.")
-		return lights
-	}
-	
 	// MARK: Lighting Operations
     
     public func fetch() {
@@ -135,17 +130,21 @@ public class LightTarget {
 	}
     
     public func togglePower(_ duration: Float = LightTarget.defaultDuration, completionHandler: ((_ results: [Result], _ error: Error?) -> Void)? = nil) {
-        let oldPower = self.power
         client.updateLights(lights.map({ $0.lightWithProperties(!power, inFlightProperties: [.toggle]) }))
         client.session.togglePower(selector.toQueryStringValue(), duration: duration) { [weak self] (request, response, results, error) in
             guard let `self` = self else {
                 completionHandler?(results, error)
                 return
             }
-            var newLights = self.lightsByDeterminingConnectivityWithResults(self.lights, results: results, removingInFlightProperties: [.toggle])
-            if error != nil {
-                newLights = newLights.map({ $0.lightWithProperties(oldPower) })
-            }
+            let newLights: [Light] = self
+                .lightsByDeterminingConnectivityWithResults(self.lights, results: results, removingInFlightProperties: [.toggle])
+                .map { light in
+                    guard let result = results.first(where: { $0.id == light.id }), let power = result.power else {
+                        return light
+                    }
+                    return light.lightWithProperties(power == .on)
+                }
+
             self.client.updateLights(newLights)
             completionHandler?(results, error)
         }
@@ -217,14 +216,14 @@ public class LightTarget {
 		}
 		
 		let states: [State]
-		if let index = client.scenes.index(where: { $0.toSelector() == selector }) {
+		if let index = client.scenes.firstIndex(where: { $0.toSelector() == selector }) {
 			states = client.scenes[index].states
 		} else {
 			states = []
 		}
 		let oldLights = lights
 		let newLights = oldLights.map { (light) -> Light in
-			if let index = states.index(where: { $0.selector == light.toSelector() }) {
+			if let index = states.firstIndex(where: { $0.selector == light.toSelector() }) {
 				let state = states[index]
 				let brightness = state.brightness ?? light.brightness
 				let color = state.color ?? light.color
@@ -241,7 +240,7 @@ public class LightTarget {
 				var newLights = strongSelf.lightsByDeterminingConnectivityWithResults(strongSelf.lights, results: results, removingInFlightProperties: [.color, .power, .brightness])
 				if error != nil {
 					newLights = newLights.map { (newLight) -> Light in
-						if let index = oldLights.index(where: { $0.id == newLight.id }) {
+						if let index = oldLights.firstIndex(where: { $0.id == newLight.id }) {
 							let oldLight = oldLights[index]
 							return oldLight.lightWithProperties(connected: newLight.connected)
 						} else {
@@ -417,7 +416,7 @@ public class LightTarget {
 				return ""
 			}
 		case .SceneID:
-			if let index = client.scenes.index(where: { $0.toSelector() == selector }) {
+            if let index = client.scenes.firstIndex(where: { $0.toSelector() == selector }) {
 				return client.scenes[index].name
 			} else {
 				return ""
