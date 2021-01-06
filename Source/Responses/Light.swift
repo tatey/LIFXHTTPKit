@@ -152,6 +152,10 @@ public struct Light: Codable, Equatable, CustomStringConvertible {
 	public var hasIR: Bool {
 		return self.product?.capabilities?.hasIR ?? false
 	}
+
+    public var hasHEV: Bool {
+        return self.product?.capabilities?.hasHEV ?? false
+    }
 	
 	public var hasMultiZone: Bool {
 		return self.product?.capabilities?.hasMulitiZone ?? false

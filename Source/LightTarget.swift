@@ -444,7 +444,11 @@ public class LightTarget {
 	public var supportsIR: Bool {
 		return lights.map { $0.hasIR }.contains(true)
 	}
-	
+
+    public var supportsHEV: Bool {
+        return lights.map { $0.hasHEV }.contains(true)
+    }
+
 	public var supportsMultiZone: Bool {
 		return lights.map { $0.hasMultiZone }.contains(true)
 	}

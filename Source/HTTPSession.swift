@@ -91,6 +91,17 @@ public class HTTPSession {
             completionHandler(request.toURLRequest(), response.response, response.body?.results ?? [], response.error)
         }
 	}
+
+    /// Activates/deactivates clean cycle. The `duration` will only be necessary for active.
+    /// POST /lights/{selector}/clean
+    public func setCleanCycle(_ selector: String, active isActive: Bool, duration: Float?, completionHandler: @escaping ((_ request: URLRequest, _ response: URLResponse?, _ results: [Result], _ error: Error?) -> Void)) {
+        let body = CleanCycleRequest(isActive: isActive, duration: duration)
+        let request = HTTPRequest<CleanCycleRequest>(baseURL: baseURL, path: "lights/\(selector)/clean", method: .post, headers: ["Content-Type": "application/json"], body: body, expectedStatusCodes: [200, 207])
+
+        perform(request: request) { (response: HTTPResponse<Results>) in
+            completionHandler(request.toURLRequest(), response.response, response.body?.results ?? [], response.error)
+        }
+    }
     
     // MARK: - Deprecated
     

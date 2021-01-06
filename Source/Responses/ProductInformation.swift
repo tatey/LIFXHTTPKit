@@ -39,6 +39,7 @@ public struct ProductInformation: Codable {
 public struct Capabilities: Codable {
 	public let hasColor: Bool
 	public let hasIR: Bool
+    public let hasHEV: Bool
 	public let hasMulitiZone: Bool
     public let hasVariableColorTemp: Bool
     
@@ -46,6 +47,7 @@ public struct Capabilities: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         hasColor = try container.decode(Bool.self, forKey: .hasColor)
         hasIR = try container.decode(Bool.self, forKey: .hasIR)
+        hasHEV = try container.decode(Bool.self, forKey: .hasHEV)
         hasMulitiZone = try container.decode(Bool.self, forKey: .hasMultiZone)
         hasVariableColorTemp = try container.decode(Bool.self, forKey: .hasVariableColorTemp)
     }
@@ -54,6 +56,7 @@ public struct Capabilities: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(hasColor, forKey: .hasColor)
         try container.encode(hasIR, forKey: .hasIR)
+        try container.encode(hasHEV, forKey: .hasHEV)
         try container.encode(hasMulitiZone, forKey: .hasMultiZone)
         try container.encode(hasVariableColorTemp, forKey: .hasVariableColorTemp)
     }
@@ -65,6 +68,7 @@ public struct Capabilities: Codable {
     private enum CodingKeys: String, CodingKey {
         case hasColor = "has_color"
         case hasIR = "has_ir"
+        case hasHEV = "has_hev"
         case hasMultiZone = "has_multizone"
         case hasVariableColorTemp = "has_variable_color_temp"
     }
