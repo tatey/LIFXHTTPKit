@@ -79,34 +79,44 @@ public class LightTarget {
 	}
 	
 	// MARK: Slicing
-	
-	public func toLightTargets() -> [LightTarget] {
-		return lights.map { (light) in return self.client.lightTargetWithSelector(LightTargetSelector(type: .ID, value: light.id)) }
-	}
-	
-	public func toGroupTargets() -> [LightTarget] {
-		return lights.reduce([]) { (groups, light) -> [Group] in
-			if let group = light.group, !groups.contains(group) {
-				return groups + [group]
-			} else {
-				return groups
-			}
-			}.map { (group) in
-				return self.client.lightTargetWithSelector(group.toSelector())
-		}
-	}
-	
-	public func toLocationTargets() -> [LightTarget] {
-		return lights.reduce([]) { (locations, light) -> [Location] in
-			if let location = light.location, !locations.contains(location) {
-				return locations + [location]
-			} else {
-				return locations
-			}
-			}.map { (location) in
-				return self.client.lightTargetWithSelector(location.toSelector())
-		}
-	}
+
+    public func toLightTargets(filter: ((Light) -> Bool) = { _ in true }) -> [LightTarget] {
+        lights
+            .filter(filter)
+            .map { light in
+                 self.client.lightTargetWithSelector(LightTargetSelector(type: .ID, value: light.id))
+            }
+    }
+
+    public func toGroupTargets(filter: ((Light) -> Bool) = { _ in true }) -> [LightTarget] {
+        lights
+            .filter(filter)
+            .reduce([]) { (groups, light) -> [Group] in
+                if let group = light.group, !groups.contains(group) {
+                    return groups + [group]
+                } else {
+                    return groups
+                }
+            }
+            .map { (group) in
+                return self.client.lightTargetWithSelector(group.toSelector())
+            }
+    }
+
+    public func toLocationTargets(filter: ((Light) -> Bool) = { _ in true }) -> [LightTarget] {
+        lights
+            .filter(filter)
+            .reduce([]) { (locations, light) -> [Location] in
+                if let location = light.location, !locations.contains(location) {
+                    return locations + [location]
+                } else {
+                    return locations
+                }
+            }
+            .map { (location) in
+                return self.client.lightTargetWithSelector(location.toSelector())
+            }
+    }
 	
 	// MARK: Lighting Operations
     
