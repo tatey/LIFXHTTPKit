@@ -5,15 +5,25 @@
 
 import Foundation
 
-public struct Result: Equatable, CustomStringConvertible {
-	public enum Status: String {
+public struct Results: Decodable {
+    public let results: [Result]
+}
+
+public struct Result: Decodable, Equatable, CustomStringConvertible {
+	public enum Status: String, Codable {
 		case OK       = "ok"
+		case Async    = "async"
 		case TimedOut = "timed_out"
 		case Offline  = "offline"
 	}
-	
+
+    public enum Power: String, Decodable {
+        case on, off
+    }
+
 	public let id: String
 	public let status: Status
+    public let power: Power?
 	
 	// MARK: Printable
 	

@@ -5,30 +5,30 @@
 
 import Foundation
 
-class HTTPOperationState {
-	var cancelled: Bool
-	var executing: Bool
-	var finished: Bool
+public class HTTPOperationState {
+	public var cancelled: Bool
+	public var executing: Bool
+	public var finished: Bool
 	
-	init() {
+	public init() {
 		cancelled = false
 		executing = false
 		finished = false
 	}
 }
 
-class HTTPOperation: Operation {
+public class HTTPOperation: Operation {
 	private let state: HTTPOperationState
 	private let delegateQueue: DispatchQueue
 	private var task: URLSessionDataTask?
 	
-	init(URLSession: Foundation.URLSession, delegateQueue: DispatchQueue, request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+	public init(session: URLSession, delegateQueue: DispatchQueue, request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
 		state = HTTPOperationState()
 		self.delegateQueue = delegateQueue
 		
 		super.init()
 		
-		task = URLSession.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
+		task = session.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
 			if let strongSelf = self {
 				strongSelf.isExecuting = false
 				strongSelf.isFinished = true
@@ -39,11 +39,11 @@ class HTTPOperation: Operation {
 		})
 	}
 	
-	override var isAsynchronous: Bool {
+	override public var isAsynchronous: Bool {
 		return true
 	}
 	
-	override private(set) var isCancelled: Bool {
+	override private(set) public var isCancelled: Bool {
 		get { return state.cancelled }
 		set {
 			willChangeValue(forKey: "isCancelled")
@@ -52,7 +52,7 @@ class HTTPOperation: Operation {
 		}
 	}
 	
-	override private(set) var isExecuting: Bool {
+	override private(set) public var isExecuting: Bool {
 		get { return state.executing }
 		set {
 			willChangeValue(forKey: "isExecuting")
@@ -61,7 +61,7 @@ class HTTPOperation: Operation {
 		}
 	}
 	
-	override private(set) var isFinished: Bool {
+	override private(set) public var isFinished: Bool {
 		get { return state.finished }
 		set {
 			willChangeValue(forKey: "isFinished")
@@ -70,7 +70,7 @@ class HTTPOperation: Operation {
 		}
 	}
 	
-	override func start() {
+	override public func start() {
 		if isCancelled {
 			return
 		}
@@ -79,7 +79,7 @@ class HTTPOperation: Operation {
 		isExecuting = true
 	}
 	
-	override func cancel() {
+	override public func cancel() {
 		task?.cancel()
 		isCancelled = true
 	}
